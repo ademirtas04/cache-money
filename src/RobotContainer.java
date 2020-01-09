@@ -27,12 +27,7 @@ public class RobotContainer {
 
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
-  VictorSPX front_right, front_left, back_right, back_left;
-
-  Joystick controlStick;
-
-  XboxController xbox;
-
+  
   
 
 

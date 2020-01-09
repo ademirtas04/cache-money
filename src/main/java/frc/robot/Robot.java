@@ -16,6 +16,7 @@ import frc.robot.misc.SensorReset;
 import frc.robot.misc.SmartDashboardInterface;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -47,7 +48,13 @@ public class Robot extends TimedRobot {
     m_controlChooser = new ControlChooser();
     m_smartDashboardInterface = new SmartDashboardInterface();
     m_sensorReset = new SensorReset();
-    
+    //variable instances
+    VictorSPX front_right, front_left, back_right, back_left;
+
+    Joystick controlStick;
+
+    XboxController xbox;
+  
     m_smartDashboardInterface.SmartDashboardInit();
     m_sensorReset.ResetSensors();
   }
