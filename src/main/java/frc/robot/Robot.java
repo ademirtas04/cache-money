@@ -98,7 +98,6 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
-    m_autonomousCommand = m_robotContainer.getAutonomousCommand();
     m_controlChooser.ControlInit(SmartDashboardInterface.controlType.getSelected());
  
     // schedule the autonomous command (example)
