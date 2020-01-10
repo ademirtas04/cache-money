@@ -5,17 +5,16 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.subsystems;
+package frc.robot;
 
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class ExampleSubsystem extends SubsystemBase {
-  /**
-   * Creates a new ExampleSubsystem.
-   */
+public class RobotMap {
 
-  @Override
-  public void periodic() {
-    // This method will be called once per scheduler run
-  }
+	public static final int MOTOR_LEFT_1_ID = 0;
+  public static final int MOTOR_LEFT_2_ID = 0;
+	public static final int MOTOR_RIGHT_1_ID = 0;
+	public static final int MOTOR_RIGHT_2_ID = 0;
+	public static final int DRIVER_CONTROLLER = 0;
+	public static final int LEFT_STICK_Y = 0;
+	public static final int RIGHT_STICK_Y = 0;
 }
