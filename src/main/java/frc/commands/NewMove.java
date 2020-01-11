@@ -11,11 +11,10 @@ package frc.robot.commands;
 import frc.robot.RobotMap;
 import frc.robot.Robot;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import edu.wpi.first.wpilibj2.command.CommandGroupBase;
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command;
 import frc.robot.subsystems.DriveTrain;
 
-public class NewMove extends Command {
+public class NewMove extends CommandBase {
   double m_time,  m_lSpeed, m_rSpeed;
 
   /**
@@ -24,7 +23,7 @@ public class NewMove extends Command {
   public NewMove(double time, double lSpeed, double rSpeed) {
     m_time = time;
     m_lSpeed=lSpeed;
-    requires(Robot.driveTrain);
+    addRequirements(Robot.driveTrain);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 

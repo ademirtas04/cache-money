@@ -7,14 +7,14 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 import frc.robot.commands.TankDrive;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
-public class DriveTrain extends SubsystemBase {
+public class DriveTrain extends Subsystem {
   /**
    * Drive Train motor declaration
    */
@@ -25,9 +25,8 @@ public class DriveTrain extends SubsystemBase {
  
  
   @Override
-  public void periodic() {
+  public void initDefaultCommand() {
     // This method will be called once per scheduler run
-    setDefaultCommand(new TankDrive());
   }
 
 //-speed goes reverse
