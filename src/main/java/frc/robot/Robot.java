@@ -16,9 +16,7 @@ import frc.robot.misc.SensorReset;
 import frc.robot.misc.SmartDashboardInterface;
 import frc.robot.subsystems.DriveTrain;
 
-import com.ctre.phoenix.motorcontrol.can.VictorSPX;
-import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.XboxController;
+
 
 
 /**
@@ -32,29 +30,22 @@ public class Robot extends TimedRobot {
   public static OI m_oi;
   private Command m_autonomousCommand;
 
-  private RobotMap m_robotContainer;
   private ControlChooser m_controlChooser;
   private SmartDashboardInterface m_smartDashboardInterface;
   private SensorReset m_sensorReset;
 
   /**
-   * This function is run when the robot is first started up and should be used for any
-   * initialization code.
+   * This function is run when the robot is first started up and should be used
+   * for any initialization code.
    */
   @Override
   public void robotInit() {
-    // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
-    // autonomous chooser on the dashboard.
-    m_robotContainer = new RobotMap();
+    new RobotMap();
     m_controlChooser = new ControlChooser();
     m_smartDashboardInterface = new SmartDashboardInterface();
     m_sensorReset = new SensorReset();
     //variable instances
-    VictorSPX front_right, front_left, back_right, back_left;
-
-    Joystick controlStick;
-
-    XboxController xbox;
+ 
   
     m_smartDashboardInterface.SmartDashboardInit();
     m_sensorReset.ResetSensors();

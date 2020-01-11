@@ -16,7 +16,7 @@ import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 public class DriveTrain extends SubsystemBase {
   /**
-   * Creates a new ExampleSubsystem.
+   * Drive Train motor declaration
    */
   private VictorSPX motorLeft1 = new VictorSPX(RobotMap.MOTOR_LEFT_1_ID);
   private VictorSPX motorLeft2 = new VictorSPX(RobotMap.MOTOR_LEFT_2_ID);
