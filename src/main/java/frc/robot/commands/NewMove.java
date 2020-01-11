@@ -10,6 +10,7 @@ package frc.robot.commands;
 
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.subsystems.DriveTrain;
 
@@ -34,8 +35,8 @@ public class NewMove extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    Robot.driveTrain.setLeftMotors(0.5);
-    Robot.driveTrain.setRightMotors(0.5);
+    Robot.driveTrain.setLeftMotors(m_lSpeed);
+    Robot.driveTrain.setRightMotors(m_rSpeed);
     setTimeout(m_time);
   }
 
