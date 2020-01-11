@@ -22,35 +22,43 @@ public class NewMove extends CommandBase {
   public NewMove(double time, double lSpeed, double rSpeed) {
     m_time = time;
     m_lSpeed=lSpeed;
-    Requires(Robot.driveTrain);
+    addRequirements(Robot.driveTrain);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
  
 
-  private void Requires(DriveTrain driveTrain) {
-  }
+
+  
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
     Robot.driveTrain.setLeftMotors(0.5);
     Robot.driveTrain.setRightMotors(0.5);
+    setTimeout(m_time);
   }
+
+ 
+
+ 
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
   }
 
-  // Called once the command ends or is interrupted.
+  // Called once the command ends or is interruoted.
   @Override
   public void end(boolean interrupted) {
+    Robot.driveTrain.setLeftMotors(0);
+    Robot.driveTrain.setRightMotors(0);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return isTimedout();
+    
   }
 }
