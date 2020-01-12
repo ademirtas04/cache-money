@@ -8,12 +8,8 @@
 package frc.robot.commands;
 
 
-import frc.robot.RobotMap;
 import frc.robot.Robot;
-import edu.wpi.first.wpilibj2.command.CommandBase;
-import edu.wpi.first.wpilibj2.command.CommandGroupBase;
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.subsystems.DriveTrain;
 
 public class NewMove extends Command {
   double m_time,  m_lSpeed, m_rSpeed;
@@ -42,7 +38,10 @@ public class NewMove extends Command {
   }
 
  
+  @Override
+  public void interrupted(){
 
+  }
  
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -52,7 +51,7 @@ public class NewMove extends Command {
 
   // Called once the command ends or is interruoted.
   @Override
-  public void end(boolean interrupted) {
+  public void end() {
     Robot.driveTrain.setLeftMotors(0);
     Robot.driveTrain.setRightMotors(0);
   }
@@ -60,7 +59,9 @@ public class NewMove extends Command {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return isTimedout();
+    return isTimedOut();
     
   }
+
+
 }
