@@ -52,7 +52,7 @@ public class NewMove extends Command {
 
   // Called once the command ends or is interruoted.
   @Override
-  public void end(boolean interrupted) {
+  public void end() {
     Robot.driveTrain.setLeftMotors(0);
     Robot.driveTrain.setRightMotors(0);
   }
@@ -60,7 +60,7 @@ public class NewMove extends Command {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return isTimedout();
+    return isTimedOut();
     
   }
 }
