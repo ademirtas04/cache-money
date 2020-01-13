@@ -31,10 +31,11 @@ public class TankDrive extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double JoystickY = Robot.m_oi.getDriverRawAxis(RobotMap.JOYSTICK_Y);
+    double leftStickY = Robot.m_oi.getDriverRawAxis(RobotMap.LEFT_STICK_Y);
+    double rightStickY = Robot.m_oi.getDriverRawAxis(RobotMap.RIGHT_STICK_Y);
 
-    Robot.driveTrain.setLeftMotors(JoystickY);
-    Robot.driveTrain.setRightMotors(JoystickY);
+    Robot.driveTrain.setLeftMotors(leftStickY);
+    Robot.driveTrain.setRightMotors(rightStickY);
 }
 
   // Called once the command ends or is interrupted.
