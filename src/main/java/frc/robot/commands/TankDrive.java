@@ -36,11 +36,15 @@ public class TankDrive extends CommandBase {
   @Override
   public void execute() {
 <<<<<<< HEAD
+<<<<<<< HEAD
     double JoystickY = Robot.m_oi.getDriverRawAxis(RobotMap.JOYSTICK_Y);
 
     Robot.driveTrain.setLeftMotors(JoystickY);
     Robot.driveTrain.setRightMotors(JoystickY);
 }
+=======
+  }
+>>>>>>> parent of 9f7856d... COMPLETED DRIVETRAIN
 =======
   }
 >>>>>>> parent of 9f7856d... COMPLETED DRIVETRAIN
