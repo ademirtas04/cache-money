@@ -27,7 +27,6 @@ public class DriveTrain extends Subsystem {
   @Override
   public void initDefaultCommand() {
     // This method will be called once per scheduler run
-    setDefaultCommand(new TankDrive());
   }
 
 //-speed goes reverse
@@ -39,6 +38,6 @@ public class DriveTrain extends Subsystem {
   public void setRightMotors(double speed) {
     motorRight1.set(ControlMode.PercentOutput, speed);
     motorRight2.set(ControlMode.PercentOutput, speed);
-  }
+}
 
 }
