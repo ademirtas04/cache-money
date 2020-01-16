@@ -29,8 +29,8 @@ public class DriveTrain extends Subsystem {
 
 //-speed goes reverse
   public void setLeftMotors(double speed) {
-      motorLeft1.set(ControlMode.PercentOutput, -speed);
-      motorLeft2.set(ControlMode.PercentOutput, -speed);
+      motorLeft1.set(ControlMode.PercentOutput, speed);
+      motorLeft2.set(ControlMode.PercentOutput, speed);
   }
 
   public void setRightMotors(double speed) {
