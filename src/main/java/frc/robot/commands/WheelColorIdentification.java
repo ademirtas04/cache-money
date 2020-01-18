@@ -7,7 +7,6 @@
 
 package frc.robot.commands;
 
-import io.github.pseudoresonance.pixy2api;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class WheelColorIdentification extends Command {
