@@ -11,6 +11,8 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.commands.Autonomous;
+import frc.robot.commands.TankDrive;
 import frc.robot.misc.ControlChooser;
 import frc.robot.misc.SensorReset;
 import frc.robot.misc.SmartDashboardInterface;
@@ -27,6 +29,8 @@ import frc.robot.subsystems.DriveTrain;
  */
 public class Robot extends TimedRobot {
   public static DriveTrain driveTrain = new DriveTrain();
+  public static TankDrive tankDrive = new TankDrive();
+  public static Autonomous autonomous = new Autonomous();
   public static OI m_oi;
   private Command m_autonomousCommand;
 
@@ -100,7 +104,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousPeriodic() {
-    CommandScheduler.getInstance().run();
+    autonomous.execute();
   }
 
   @Override
@@ -120,7 +124,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
-    m_controlChooser.ControlSafety(SmartDashboardInterface.controlType.getSelected());
+    tankDrive.execute();
   }
 
   @Override
