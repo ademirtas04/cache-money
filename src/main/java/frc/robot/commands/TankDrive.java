@@ -24,6 +24,7 @@ public class TankDrive extends Command {
 
   // Called when the command is initially scheduled.
   @Override
+  // variables and mapping out buttons for the controller when it starts
   public void initialize() {
       double speed = -Robot.m_oi.getDriverRawAxis(RobotMap.LEFT_STICK_Y);
       double turn = Robot.m_oi.getDriverRawAxis(RobotMap.RIGHT_STICK_X);
@@ -35,7 +36,7 @@ public class TankDrive extends Command {
       Robot.driveTrain.setRightMotors(-right);
   }
 
-  // Called every time the scheduler runs while the command is scheduled.
+  //variables and mapping out buttons called 50 times per second
   @Override
   public void execute() {
     double speed = -Robot.m_oi.getDriverRawAxis(RobotMap.LEFT_STICK_Y);
@@ -48,7 +49,7 @@ public class TankDrive extends Command {
      Robot.driveTrain.setRightMotors(-right);
 
   }
-  // Called once the command ends or is interrupted.
+  // When the stop button is hit, the motors turn off
   @Override
   public void end() {
       Robot.driveTrain.setLeftMotors(0);

@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 public class Autonomous extends Command {
+  //declareing variables
   private double startTime;
   public Autonomous() {
     // Use requires() here to declare subsystem dependencies
@@ -21,11 +22,13 @@ public class Autonomous extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    //This line allows the timer to start when we hit start autonomous and not when we first deploy the code
     startTime = Timer.getFPGATimestamp();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
+  //The robot will move at 60% speed for 3 seconds as soon as the start auto button is hit
 public void execute() {
     double time = Timer.getFPGATimestamp();
     if (time - startTime < 3){

@@ -7,7 +7,7 @@
 
 package frc.robot;
 
-
+//Reference to all the id's for the motors
 public class RobotMap {
 
 	public static final int MOTOR_LEFT_1_ID = 0;
