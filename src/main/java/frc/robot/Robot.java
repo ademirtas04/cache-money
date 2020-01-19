@@ -117,7 +117,14 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
-    m_controlChooser.ControlInit(SmartDashboardInterface.controlType.getSelected());
+    double speed = -Robot.m_oi.getDriverRawAxis(RobotMap.LEFT_STICK_Y);
+    double turn = Robot.m_oi.getDriverRawAxis(RobotMap.RIGHT_STICK_X);
+
+     double left = speed + turn;
+     double right = speed - turn;
+
+     Robot.driveTrain.setLeftMotors(left);
+     Robot.driveTrain.setRightMotors(-right);
   }
 
   /**
@@ -125,7 +132,14 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
-    tankDrive.execute();
+    double speed = -Robot.m_oi.getDriverRawAxis(RobotMap.LEFT_STICK_Y);
+    double turn = Robot.m_oi.getDriverRawAxis(RobotMap.RIGHT_STICK_X);
+
+     double left = speed + turn;
+     double right = speed - turn;
+
+     Robot.driveTrain.setLeftMotors(left);
+     Robot.driveTrain.setRightMotors(-right);
   }
 
   @Override
