@@ -8,7 +8,7 @@ import frc.robot.commands.WheelRotationSequence;
 
 
 public class OI {
-    private final XboxController driveController = new XboxController(RobotMap.DRIVER_CONTROLLER);
+    private XboxController driveController = new XboxController(RobotMap.DRIVER_CONTROLLER);
     Button xButton = new JoystickButton(driveController, RobotMap.BUTTON_X);
 
 

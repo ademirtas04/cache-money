@@ -7,7 +7,11 @@
 
 package frc.robot;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
@@ -34,7 +38,11 @@ public class Robot extends TimedRobot {
   public static Autonomous autonomous = new Autonomous();
   public static OI m_oi;
   private Command m_autonomousCommand;
-
+  private XboxController driveController = new XboxController(RobotMap.DRIVER_CONTROLLER);
+  private VictorSPX motorLeft1 = new VictorSPX(RobotMap.MOTOR_LEFT_1_ID);
+  private VictorSPX motorLeft2 = new VictorSPX(RobotMap.MOTOR_LEFT_2_ID);
+  private VictorSPX motorRight1 = new VictorSPX(RobotMap.MOTOR_RIGHT_1_ID);
+  private VictorSPX motorRight2 = new VictorSPX(RobotMap.MOTOR_RIGHT_2_ID);
   private ControlChooser m_controlChooser;
   private SmartDashboardInterface m_smartDashboardInterface;
   private SensorReset m_sensorReset;
@@ -117,8 +125,8 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
-    double speed = -Robot.m_oi.getDriverRawAxis(RobotMap.LEFT_STICK_Y);
-    double turn = Robot.m_oi.getDriverRawAxis(RobotMap.RIGHT_STICK_X);
+    double speed = driveController.getRawAxis((RobotMap.LEFT_STICK_Y));
+    double turn = driveController.getRawAxis((RobotMap.RIGHT_STICK_X));
 
      double left = speed + turn;
      double right = speed - turn;
@@ -132,13 +140,13 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
-    double speed = -Robot.m_oi.getDriverRawAxis(RobotMap.LEFT_STICK_Y);
-    double turn = Robot.m_oi.getDriverRawAxis(RobotMap.RIGHT_STICK_X);
+    double speed = driveController.getRawAxis((RobotMap.LEFT_STICK_Y));
+    double turn = driveController.getRawAxis((RobotMap.RIGHT_STICK_X));
 
      double left = speed + turn;
      double right = speed - turn;
 
-     Robot.driveTrain.setLeftMotors(left);
+     driveTrain.setLeftMotors(left);
      Robot.driveTrain.setRightMotors(-right);
   }
 
@@ -154,4 +162,14 @@ public class Robot extends TimedRobot {
   @Override
   public void testPeriodic() {
   }
+
+  public void setLeftMotors(double speed) {
+    motorLeft1.set(ControlMode.PercentOutput, speed);
+    motorLeft2.set(ControlMode.PercentOutput, speed);
+}
+
+public void setRightMotors(double speed) {
+  motorRight1.set(ControlMode.PercentOutput, speed);
+  motorRight2.set(ControlMode.PercentOutput, speed);
+}
 }
