@@ -8,9 +8,12 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.pixy.Pixy2;
 
 public class WheelColorIdentification extends Command {
   public WheelColorIdentification() {
+    Pixy2 cam = new Pixy2();
+
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
@@ -18,6 +21,7 @@ public class WheelColorIdentification extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    cam.getCCC;
   }
 
   // Called repeatedly when this Command is scheduled to run
