@@ -128,8 +128,8 @@ public class Robot extends TimedRobot {
     double speed = driveController.getRawAxis((RobotMap.LEFT_STICK_Y));
     double turn = driveController.getRawAxis((RobotMap.RIGHT_STICK_X));
 
-     double left = speed + turn;
-     double right = speed - turn;
+    double left = speed + turn;
+    double right = speed - turn;
 
      Robot.driveTrain.setLeftMotors(left);
      Robot.driveTrain.setRightMotors(-right);
@@ -166,10 +166,10 @@ public class Robot extends TimedRobot {
   public void setLeftMotors(double speed) {
     motorLeft1.set(ControlMode.PercentOutput, speed);
     motorLeft2.set(ControlMode.PercentOutput, speed);
-}
+  }
 
-public void setRightMotors(double speed) {
-  motorRight1.set(ControlMode.PercentOutput, speed);
-  motorRight2.set(ControlMode.PercentOutput, speed);
-}
+  public void setRightMotors(double speed) {
+    motorRight1.set(ControlMode.PercentOutput, speed);
+    motorRight2.set(ControlMode.PercentOutput, speed);
+  }
 }
