@@ -146,8 +146,8 @@ public class Robot extends TimedRobot {
      double left = speed - turn;
      double right = speed + turn;
 
-     driveTrain.setLeftMotors(left);
-     Robot.driveTrain.setRightMotors(-right);
+     driveTrain.setLeftMotors(-left);
+     Robot.driveTrain.setRightMotors(right);
   }
 
   @Override
