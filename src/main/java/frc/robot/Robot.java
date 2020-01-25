@@ -128,11 +128,11 @@ public class Robot extends TimedRobot {
     double speed = driveController.getRawAxis((RobotMap.LEFT_STICK_Y));
     double turn = driveController.getRawAxis((RobotMap.RIGHT_STICK_X));
 
-    double left = speed + turn;
-    double right = speed - turn;
+    double left = speed - turn;
+    double right = speed + turn;
 
-     Robot.driveTrain.setLeftMotors(left);
-     Robot.driveTrain.setRightMotors(-right);
+     Robot.driveTrain.setLeftMotors(-left);
+     Robot.driveTrain.setRightMotors(right);
   }
 
   /**
@@ -143,8 +143,8 @@ public class Robot extends TimedRobot {
     double speed = driveController.getRawAxis((RobotMap.LEFT_STICK_Y));
     double turn = driveController.getRawAxis((RobotMap.RIGHT_STICK_X));
 
-     double left = speed + turn;
-     double right = speed - turn;
+     double left = speed - turn;
+     double right = speed + turn;
 
      driveTrain.setLeftMotors(left);
      Robot.driveTrain.setRightMotors(-right);

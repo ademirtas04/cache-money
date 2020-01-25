@@ -6,7 +6,6 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot.subsystems;
-
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 import com.ctre.phoenix.motorcontrol.ControlMode;
@@ -29,13 +28,13 @@ public class DriveTrain extends Subsystem {
 
 //-speed goes reverse
   public void setLeftMotors(double speed) {
-      motorLeft1.set(ControlMode.PercentOutput, speed);
-      motorLeft2.set(ControlMode.PercentOutput, speed);
+      motorLeft1.set(ControlMode.PercentOutput, -speed);
+      motorLeft2.set(ControlMode.PercentOutput, -speed);
   }
 
   public void setRightMotors(double speed) {
-    motorRight1.set(ControlMode.PercentOutput, -speed);
-    motorRight2.set(ControlMode.PercentOutput, -speed);
+    motorRight1.set(ControlMode.PercentOutput, +speed);
+    motorRight2.set(ControlMode.PercentOutput, +speed);
 }
 
 }
