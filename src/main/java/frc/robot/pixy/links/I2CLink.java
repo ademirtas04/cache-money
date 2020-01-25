@@ -131,4 +131,10 @@ public class I2CLink implements Link {
 		}
 		return length;
 	}
+
+	@Override
+	public int receive(byte[] buffer, int length) {
+		
+		return 0;
+	}
 }
