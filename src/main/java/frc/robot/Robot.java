@@ -131,8 +131,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
-    double speed = -driveController.getRawAxis(-RobotMap.LEFT_STICK_Y);
-    double turn = driveController.getRawAxis(-RobotMap.RIGHT_STICK_X);
+    double speed = driveController.getRawAxis(RobotMap.LEFT_STICK_Y);
+    double turn = -driveController.getRawAxis(RobotMap.RIGHT_STICK_X);
 
      double left = speed + turn;
      double right = speed - turn;
