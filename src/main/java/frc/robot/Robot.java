@@ -139,8 +139,8 @@ public class Robot extends TimedRobot {
 
      motorLeft1.set(ControlMode.PercentOutput, left);
      motorLeft2.set(ControlMode.PercentOutput, left);
-     motorLeft1.set(ControlMode.PercentOutput, -right);
-     motorLeft2.set(ControlMode.PercentOutput, -right);
+     motorRight1.set(ControlMode.PercentOutput, -right);
+     motorRight2.set(ControlMode.PercentOutput, -right);
   }
 
   @Override
