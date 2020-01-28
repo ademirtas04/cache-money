@@ -102,7 +102,7 @@ public class Pixy2 {
 	 * 
 	 * @param link {@link Link} to communicate with Pixy2
 	 */
-	private Pixy2(Link link) {
+	public Pixy2(Link link) {
 		this.link = link;
 		// Initializes send/return buffer and payload buffer
 		buffer = new byte[PIXY_BUFFERSIZE + PIXY_SEND_HEADER_SIZE];
