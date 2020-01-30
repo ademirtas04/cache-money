@@ -6,16 +6,21 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot.commands;
-
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.pixy.Pixy2;
+import frc.robot.pixy.Pixy2Video;
 import frc.robot.pixy.links.I2CLink;
 
 public class WheelColorIdentification extends Command {
   I2CLink link = new I2CLink();
   Pixy2 camera = new Pixy2(link);
-  public WheelColorIdentification() {
-    
+  Pixy2Video video = new Pixy2Video(camera);
+  int color;
+  int r;
+  int g;
+  int b;
+  public WheelColorIdentification(int i) {
+    this.color = i;
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
@@ -23,12 +28,38 @@ public class WheelColorIdentification extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    camera.getCCC();
+    colorSet();
+
   }
 
-  // Called repeatedly when this Command is scheduled to run
-  @Override
+  public void colorSet() {
+    switch (this.color){
+      case 1: 
+        this.r = 0;
+        this.g = 255;
+        this.b = 0;
+      case 2: 
+        this.r = 255;
+        this.g = 0;
+        this.b = 0;
+      case 3:
+        this.r = 0;
+        this.g = 0;
+        this.b = 255;
+      case 4: 
+        this.r = 255;
+        this.g = 255;
+        this.b = 0;  
+      default:
+        this.r = 0;
+        this.g = 0;
+        this.b = 0;
+
+    }
+  }
+	  @Override
   protected void execute() {
+    camera.getCCC();
   }
 
   // Make this return true when this Command no longer needs to run execute()
