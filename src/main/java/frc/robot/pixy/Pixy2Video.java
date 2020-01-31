@@ -44,7 +44,7 @@ public class Pixy2Video {
 	 * 
 	 * @param pixy Pixy2 instance
 	 */
-	protected Pixy2Video(Pixy2 pixy) {
+	public Pixy2Video(Pixy2 pixy) {
 		this.pixy = pixy;
 	}
 

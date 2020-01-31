@@ -10,15 +10,15 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.pixy.Pixy2;
 import frc.robot.pixy.Pixy2Video;
 import frc.robot.pixy.links.I2CLink;
+import java.awt.Color;
 
 public class WheelColorIdentification extends Command {
-  I2CLink link = new I2CLink();
-  Pixy2 camera = new Pixy2(link);
-  Pixy2Video video = new Pixy2Video(camera);
+  public I2CLink link = new I2CLink();
+  public Pixy2 camera = new Pixy2(link);
+  public Pixy2Video video = new Pixy2Video(camera);
   int color;
-  int r;
-  int g;
-  int b;
+  Color idealColor;
+  boolean match = false;
   public WheelColorIdentification(int i) {
     this.color = i;
     // Use requires() here to declare subsystem dependencies
@@ -29,37 +29,27 @@ public class WheelColorIdentification extends Command {
   @Override
   protected void initialize() {
     colorSet();
-
   }
 
   public void colorSet() {
     switch (this.color){
       case 1: 
-        this.r = 0;
-        this.g = 255;
-        this.b = 0;
+        idealColor = new Color(0,255,0);
       case 2: 
-        this.r = 255;
-        this.g = 0;
-        this.b = 0;
+        idealColor = new Color(255,0,0);
       case 3:
-        this.r = 0;
-        this.g = 0;
-        this.b = 255;
+        idealColor = new Color(0,0,255);
       case 4: 
-        this.r = 255;
-        this.g = 255;
-        this.b = 0;  
+        idealColor = new Color(255,255,0); 
       default:
-        this.r = 0;
-        this.g = 0;
-        this.b = 0;
-
+        idealColor = new Color(0,0,0);
     }
   }
-	  @Override
+  public boolean colorMatch(){
+    Color inputColor = video.getColor(); 
+  }
+	@Override
   protected void execute() {
-    camera.getCCC();
   }
 
   // Make this return true when this Command no longer needs to run execute()
