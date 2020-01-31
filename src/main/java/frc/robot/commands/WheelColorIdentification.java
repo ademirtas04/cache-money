@@ -9,6 +9,7 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.pixy.Pixy2;
 import frc.robot.pixy.Pixy2Video;
+import frc.robot.pixy.Pixy2Video.RGB;
 import frc.robot.pixy.links.I2CLink;
 import java.awt.Color;
 
@@ -47,6 +48,7 @@ public class WheelColorIdentification extends Command {
   }
   public boolean colorMatch(){
     Color inputColor = video.getColor(); 
+    return true;
   }
 	@Override
   protected void execute() {
