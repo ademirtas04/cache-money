@@ -14,11 +14,12 @@ import frc.robot.pixy.links.I2CLink;
 import java.awt.Color;
 
 public class WheelColorIdentification extends Command {
-  public I2CLink link = new I2CLink();
-  public Pixy2 camera = new Pixy2(link);
-  public Pixy2Video video = new Pixy2Video(camera);
+  public static I2CLink link = new I2CLink();
+  public static Pixy2 camera = new Pixy2(link);
+  public static Pixy2Video video = new Pixy2Video(camera);
+  public static RGB ruth = video.new RGB(0, 0, 0);
   int color;
-  Color idealColor;
+  public static Color idealColor;
   boolean match = false;
   public WheelColorIdentification(int i) {
     this.color = i;
@@ -46,9 +47,14 @@ public class WheelColorIdentification extends Command {
         idealColor = new Color(0,0,0);
     }
   }
-  public boolean colorMatch(){
-    Color inputColor = video.getColor(); 
-    return true;
+  public static boolean colorMatch(){
+    video.getRGB(200, 200, ruth, true);
+    Color inputColor = ruth.getColor(); 
+    if(inputColor.equals(idealColor)){
+      return true;
+    } else {
+      return false;
+    }
   }
 	@Override
   protected void execute() {
