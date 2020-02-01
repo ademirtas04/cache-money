@@ -6,13 +6,15 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.WheelRotationSequence;
 
-//XYAB will be used for the pixycam
+//XYAB will be used for the pixycam, bumpers and triggers for arm control
 public class OI {
     private XboxController driveController = new XboxController(RobotMap.DRIVER_CONTROLLER);
     Button greenButton = new JoystickButton(driveController, RobotMap.BUTTON_GREEN);
     Button redButton = new JoystickButton(driveController, RobotMap.BUTTON_RED);
     Button blueButton = new JoystickButton(driveController, RobotMap.BUTTON_BLUE);
     Button yellowButton = new JoystickButton(driveController, RobotMap.BUTTON_YELLOW);
+    Button trigButton = new JoystickButton(driveController, RobotMap.BUTTON_TRIG);
+    Button bumpButton = new JoystickButton(driveController, RobotMap.BUTTON_BUMP);
 
 
 

@@ -10,8 +10,10 @@ package frc.robot;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
@@ -44,7 +46,9 @@ public class Robot extends TimedRobot {
   private SmartDashboardInterface m_smartDashboardInterface;
   private SensorReset m_sensorReset;
 
- 
+  private Encoder encoder = new Encoder(0, 1, true, EncodingType.k4X);
+  private final double kDriveTick2Feet = 1.0 / 128 * 6 * Math.PI / 12;
+
   @Override
  
   public void robotInit() {
@@ -62,6 +66,7 @@ public class Robot extends TimedRobot {
  
   @Override
   public void robotPeriodic() {
+    SmartDashboard.putNumber("encoder value", encoder.get() * kDriveTick2Feet);
     
     CommandScheduler.getInstance().run();
     m_smartDashboardInterface.SmartDashboardPeriodic();
@@ -86,20 +91,35 @@ public class Robot extends TimedRobot {
   @Override
   //Code when the enable button is hit in the autonomous tab
   public void autonomousInit() {
+    encoder.reset();
     m_controlChooser.ControlInit(SmartDashboardInterface.controlType.getSelected());
  
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
     }
   }
-
-  /**
-   * This function is called periodically during autonomous every 0.02 seconds
-   */
+  final double kP = 0.05;
+  double setpoint = 0;
   @Override
   public void autonomousPeriodic() {
-    autonomous.execute();
+  if (driveController.getRawButton(5)){
+    setpoint = 10;
+
+  }else if (driveController.getRawButton(6)) {
+    setpoint = 0;
+
   }
+  double sensorPosition = encoder.get() * kDriveTick2Feet;
+  double error = setpoint - sensorPosition;
+
+  double outputSpeed = kP * error;
+     motorLeft1.set(outputSpeed);
+     motorLeft2.set(outputSpeed);
+     motorRight1.set(-outputSpeed);
+     motorRight2.set(-outputSpeed);
+  }
+  
+
 
   @Override
   //Code when the Enable button is hit during teleop period

@@ -22,6 +22,8 @@ public class RobotMap {
 	public static final int BUTTON_RED = 2;
 	public static final int BUTTON_BLUE = 3;
 	public static final int BUTTON_YELLOW = 4;
+	public static final int BUTTON_TRIG = 5;
+	public static final int BUTTON_BUMP = 6;
 
 
 
