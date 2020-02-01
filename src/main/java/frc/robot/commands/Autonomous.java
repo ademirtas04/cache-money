@@ -7,38 +7,34 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.CounterBase.EncodingType;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.RobotMap;
 
 public class Autonomous extends Command {
   //declareing variables
-  private double startTime;
-  public Autonomous() {
-    // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
+  private static double setpoint = 0;
+  private static Encoder encoder = new Encoder(0, 1, true, EncodingType.k4X);
+  private static double buttonInput;
+  
+  public Autonomous(int i) {
+    buttonInput = i;
+    requires(Robot.driveTrain);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
     //This line allows the timer to start when we hit start autonomous and not when we first deploy the code
-    startTime = Timer.getFPGATimestamp();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   //The robot will move at 60% speed for 3 seconds as soon as the start auto button is hit
 public void execute() {
-    double time = Timer.getFPGATimestamp();
-    if (time - startTime < 3){
-      Robot.driveTrain.setLeftMotors(0.6);
-      Robot.driveTrain.setRightMotors(0.6);
-    } else {
-      Robot.driveTrain.setLeftMotors(0);
-      Robot.driveTrain.setRightMotors(0);
-    }
-  }
+}
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
@@ -55,5 +51,20 @@ public void execute() {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+  }
+
+  public static void autoLine() throws IndexOutOfBoundsException {
+  if (buttonInput == 0){
+    setpoint = 10;
+  }else if (buttonInput == 1) {
+    setpoint = 0;
+  } else {
+    throw new IndexOutOfBoundsException();
+  }
+  double sensorPosition = encoder.get() * RobotMap.kDriveTick2Feet;
+  double error = setpoint - sensorPosition;
+
+  double outputSpeed = RobotMap.kP * error;
+  TankDrive.move(outputSpeed, -outputSpeed);
   }
 }

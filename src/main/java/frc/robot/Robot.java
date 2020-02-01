@@ -7,9 +7,6 @@
 
 package frc.robot;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
-
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.XboxController;
@@ -17,7 +14,6 @@ import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.commands.Autonomous;
 import frc.robot.commands.TankDrive;
 import frc.robot.misc.ControlChooser;
 import frc.robot.misc.SensorReset;
@@ -34,14 +30,9 @@ import frc.robot.subsystems.DriveTrain;
 public class Robot extends TimedRobot {
   public static DriveTrain driveTrain = new DriveTrain();
   public static TankDrive tankDrive = new TankDrive();
-  public static Autonomous autonomous = new Autonomous();
   public static OI m_oi;
   private Command m_autonomousCommand;
   private XboxController driveController = new XboxController(RobotMap.DRIVER_CONTROLLER);
-  private WPI_VictorSPX motorLeft1 = new WPI_VictorSPX(RobotMap.MOTOR_LEFT_1_ID);
-  private WPI_VictorSPX motorLeft2 = new WPI_VictorSPX(RobotMap.MOTOR_LEFT_2_ID);
-  private WPI_VictorSPX motorRight1 = new WPI_VictorSPX(RobotMap.MOTOR_RIGHT_1_ID);
-  private WPI_VictorSPX motorRight2 = new WPI_VictorSPX(RobotMap.MOTOR_RIGHT_2_ID);
   private ControlChooser m_controlChooser;
   private SmartDashboardInterface m_smartDashboardInterface;
   private SensorReset m_sensorReset;
@@ -91,32 +82,7 @@ public class Robot extends TimedRobot {
   @Override
   //Code when the enable button is hit in the autonomous tab
   public void autonomousInit() {
-    encoder.reset();
-    m_controlChooser.ControlInit(SmartDashboardInterface.controlType.getSelected());
- 
-    if (m_autonomousCommand != null) {
-      m_autonomousCommand.schedule();
-    }
-  }
-  final double kP = 0.05;
-  double setpoint = 0;
-  @Override
-  public void autonomousPeriodic() {
-  if (driveController.getRawButton(5)){
-    setpoint = 10;
 
-  }else if (driveController.getRawButton(6)) {
-    setpoint = 0;
-
-  }
-  double sensorPosition = encoder.get() * kDriveTick2Feet;
-  double error = setpoint - sensorPosition;
-
-  double outputSpeed = kP * error;
-     motorLeft1.set(outputSpeed);
-     motorLeft2.set(outputSpeed);
-     motorRight1.set(-outputSpeed);
-     motorRight2.set(-outputSpeed);
   }
   
 
@@ -139,16 +105,12 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
     //The Left stick is speed control, the Right stick is turning control
     double speed = driveController.getRawAxis(RobotMap.LEFT_STICK_Y);
-
     double turn = -driveController.getRawAxis(RobotMap.RIGHT_STICK_X);
     //The Left is pos the right is neg
      double left = speed + turn;
      double right = speed - turn;
+     TankDrive.move(left,right);
 
-     motorLeft1.set(ControlMode.PercentOutput, left);
-     motorLeft2.set(ControlMode.PercentOutput, left);
-     motorRight1.set(ControlMode.PercentOutput, -right);
-     motorRight2.set(ControlMode.PercentOutput, -right);
   }
 
   @Override

@@ -4,6 +4,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.commands.Autonomous;
 import frc.robot.commands.WheelRotationSequence;
 
 //XYAB will be used for the pixycam, bumpers and triggers for arm control
@@ -25,12 +26,8 @@ public class OI {
         redButton.whenPressed(new WheelRotationSequence());
         blueButton.whenPressed(new WheelRotationSequence());
         yellowButton.whenPressed(new WheelRotationSequence());
-
-    }
-
-
-    public double getDriverRawAxis(int axis) {
-        return driveController.getRawAxis(axis);
+        LeftBumpButton.whenPressed(new Autonomous(0));
+        RightBumpButton.whenPressed(new Autonomous(1));
     }
 
 }

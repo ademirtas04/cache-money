@@ -26,6 +26,8 @@ public class RobotMap {
 	public static final int BUTTON_RIGHTTRIG = 3;
 	public static final int BUTTON_RIGHTBUMP = 6;
 	public static final int BUTTON_LEFTBUMP = 5;
+	public static final  double kP = 0.05;
+	public static  final double kDriveTick2Feet = 1.0 / 128 * 6 * Math.PI / 12;
 
 
 
