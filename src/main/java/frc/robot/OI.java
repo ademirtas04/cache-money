@@ -13,8 +13,10 @@ public class OI {
     Button redButton = new JoystickButton(driveController, RobotMap.BUTTON_RED);
     Button blueButton = new JoystickButton(driveController, RobotMap.BUTTON_BLUE);
     Button yellowButton = new JoystickButton(driveController, RobotMap.BUTTON_YELLOW);
-    Button trigButton = new JoystickButton(driveController, RobotMap.BUTTON_TRIG);
-    Button bumpButton = new JoystickButton(driveController, RobotMap.BUTTON_BUMP);
+    Button LeftTrigButton = new JoystickButton(driveController, RobotMap.BUTTON_LEFTTRIG);
+    Button RightTrigButton = new JoystickButton(driveController, RobotMap.BUTTON_RIGHTTRIG);
+    Button LeftBumpButton = new JoystickButton(driveController, RobotMap.BUTTON_LEFTBUMP);
+    Button RightBumpButton = new JoystickButton(driveController, RobotMap.BUTTON_RIGHTBUMP);
 
 
 
