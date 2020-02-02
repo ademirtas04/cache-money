@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.commands.Autonomous;
 import frc.robot.commands.TankDrive;
 import frc.robot.misc.ControlChooser;
 import frc.robot.misc.SensorReset;
@@ -82,7 +83,12 @@ public class Robot extends TimedRobot {
   @Override
   //Code when the enable button is hit in the autonomous tab
   public void autonomousInit() {
+    Autonomous.autoStart();
+  }
 
+  @Override
+  public void autonomousPeriodic() {
+    Autonomous.autoSequence();
   }
   
 

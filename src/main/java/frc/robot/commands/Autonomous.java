@@ -9,6 +9,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
@@ -17,10 +18,11 @@ public class Autonomous extends Command {
   //declareing variables
   private static double setpoint = 0;
   private static Encoder encoder = new Encoder(0, 1, true, EncodingType.k4X);
-  private static double buttonInput;
+  public static double lastTimeStamp = 0;
+  public static double lastError = 0;
+  public static double errorSum = 0;
   
-  public Autonomous(int i) {
-    buttonInput = i;
+  public Autonomous() {
     requires(Robot.driveTrain);
   }
 
@@ -33,8 +35,8 @@ public class Autonomous extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   //The robot will move at 60% speed for 3 seconds as soon as the start auto button is hit
-public void execute() {
-}
+  public void execute() {
+  }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
@@ -53,7 +55,14 @@ public void execute() {
   protected void interrupted() {
   }
 
-  public static void autoLine() throws IndexOutOfBoundsException {
+  public static void autoStart(){
+    encoder.reset();
+    errorSum = 0;
+    lastError = 0;
+    lastTimeStamp = Timer.getFPGATimestamp();
+  }
+  
+  public static void autoLine(int buttonInput) throws IndexOutOfBoundsException {
   if (buttonInput == 0){
     setpoint = 10;
   }else if (buttonInput == 1) {
@@ -61,10 +70,29 @@ public void execute() {
   } else {
     throw new IndexOutOfBoundsException();
   }
+  //get sensor position
   double sensorPosition = encoder.get() * RobotMap.kDriveTick2Feet;
-  double error = setpoint - sensorPosition;
 
-  double outputSpeed = RobotMap.kP * error;
+  //calculations
+  double error = setpoint - sensorPosition;
+  double dt = Timer.getFPGATimestamp() - lastTimeStamp;
+  
+  if(Math.abs(error) < RobotMap.iLimit){
+    errorSum += error * dt;
+  }
+
+  double errorRate = (error - lastError) / dt; 
+
+  double outputSpeed = RobotMap.kP * error + RobotMap.kI * errorSum + RobotMap.kD * errorRate;
+  //output to motors
   TankDrive.move(outputSpeed, -outputSpeed);
+  lastTimeStamp = Timer.getFPGATimestamp();
+  lastError = error;
+  }
+
+  public static void autoSequence(){
+    autoLine(0);
+    Intake.dump();
+    autoLine(1);
   }
 }
