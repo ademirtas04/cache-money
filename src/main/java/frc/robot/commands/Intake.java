@@ -8,8 +8,11 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.Servo;
 
 public class Intake extends Command {
+  //look for the actual int channel. 
+  public static Servo swervo = new Servo(11);
   public Intake() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
@@ -43,17 +46,17 @@ public class Intake extends Command {
   }
   //makes the wheels turn to dump balls
   public static void dump(){
-    System.out.println("Dump");
+    swervo.setSpeed(1);
   }
   
   //makes the wheels turn to intake balls
   public static void intake(){
-    System.out.println("Intake");
+    swervo.setSpeed(-1);
   }
 
   //stops the wheels from turning
   public static void stop(){
-    System.out.println("Cancel");
+    swervo.setSpeed(0);
   }
 
 }

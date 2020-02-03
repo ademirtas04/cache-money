@@ -92,7 +92,11 @@ public class Autonomous extends Command {
 
   public static void autoSequence(){
     autoLine(0);
-    Intake.dump();
+    double startTime = Timer.getFPGATimestamp();
+    while(Timer.getFPGATimestamp() - startTime < 7){
+      Intake.dump();
+    }
+    Intake.stop();
     autoLine(1);
   }
 }
