@@ -46,12 +46,12 @@ public class Intake extends Command {
   }
   //makes the wheels turn to dump balls
   public static void dump(){
-    swervo.setSpeed(1);
+    swervo.setAngle(-90);
   }
   
   //makes the wheels turn to intake balls
   public static void intake(){
-    swervo.setSpeed(-1);
+    swervo.setAngle(0);
   }
 
   //stops the wheels from turning

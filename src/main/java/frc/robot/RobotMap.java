@@ -31,6 +31,8 @@ public class RobotMap {
 	public static final double kD = 0.1;
 	public static final double iLimit = 1;
 	public static final double kDriveTick2Feet = 1.0 / 128 * 6 * Math.PI / 12;
+	public static final int PIXY_WIDTH = 640;
+	public static final int PIXY_LENGTH = 400;
 
 
 

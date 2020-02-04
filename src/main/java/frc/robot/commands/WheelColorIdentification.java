@@ -6,7 +6,9 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot.commands;
+
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.RobotMap;
 import frc.robot.pixy.Pixy2;
 import frc.robot.pixy.Pixy2Video;
 import frc.robot.pixy.Pixy2Video.RGB;
@@ -18,6 +20,7 @@ public class WheelColorIdentification extends Command {
   public static Pixy2 camera = new Pixy2(link);
   public static Pixy2Video video = new Pixy2Video(camera);
   public static RGB ruth = video.new RGB(0, 0, 0);
+  public static int numCorrect = 0;
   int color;
   public static Color idealColor;
   boolean match = false;
@@ -48,13 +51,25 @@ public class WheelColorIdentification extends Command {
     }
   }
   public static boolean colorMatch(){
-    video.getRGB(200, 200, ruth, true);
-    Color inputColor = ruth.getColor(); 
-    if(inputColor.equals(idealColor)){
+    int startCoordX = RobotMap.PIXY_WIDTH/2 - 10;
+    int startCoordY = RobotMap.PIXY_LENGTH/2 - 10;
+    for(int i = 0; i < 20; i++){
+      for(int j = 0; j < 20;j++){
+        video.getRGB(startCoordX + j, startCoordY + i, ruth, true);
+        Color inputColor = ruth.getColor(); 
+        //cannot equal, that would make it too precise.
+        //will set the R above if it is in a certain limit.
+        if(inputColor.equals(idealColor)){
+          numCorrect++;
+        }
+      }
+    } 
+    if(numCorrect > 300){
       return true;
     } else {
       return false;
     }
+    
   }
 	@Override
   protected void execute() {
