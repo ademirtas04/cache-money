@@ -7,10 +7,10 @@
 
 package frc.robot;
 
-import edu.wpi.first.wpilibj.Encoder;
+
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.CounterBase.EncodingType;
+
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
@@ -38,8 +38,7 @@ public class Robot extends TimedRobot {
   private SmartDashboardInterface m_smartDashboardInterface;
   private SensorReset m_sensorReset;
 
-  private Encoder encoder = new Encoder(0, 1, true, EncodingType.k4X);
-  private final double kDriveTick2Feet = 1.0 / 128 * 6 * Math.PI / 12;
+
 
   @Override
  
@@ -58,7 +57,7 @@ public class Robot extends TimedRobot {
  
   @Override
   public void robotPeriodic() {
-    SmartDashboard.putNumber("encoder value", encoder.get() * kDriveTick2Feet);
+    
     
     CommandScheduler.getInstance().run();
     m_smartDashboardInterface.SmartDashboardPeriodic();

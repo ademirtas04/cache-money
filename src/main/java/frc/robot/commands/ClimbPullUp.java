@@ -6,14 +6,16 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot.commands;
-
+import com.revrobotics.SparkMax;
+import com.revrobotics.ControlType;
 import edu.wpi.first.wpilibj.command.Command;
-
+import frc.robot.RobotMap;
 public class ClimbPullUp extends Command {
-  public ClimbPullUp() {
+  
+    public static SparkMax armMotorMax = new SparkMax(RobotMap.ARM_MOTOR_1_ID);
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-  }
+  
 
   // Called just before this Command runs the first time
   @Override

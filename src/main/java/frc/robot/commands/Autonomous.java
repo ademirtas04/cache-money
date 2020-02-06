@@ -34,8 +34,9 @@ public class Autonomous extends Command {
 
   // Called repeatedly when this Command is scheduled to run
   @Override
-  //The robot will move at 60% speed for 3 seconds as soon as the start auto button is hit
+
   public void execute() {
+
   }
 
   // Make this return true when this Command no longer needs to run execute()
