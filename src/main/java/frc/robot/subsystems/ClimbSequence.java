@@ -6,19 +6,18 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot.subsystems;
+
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+import com.revrobotics.SparkMax;
 
-public class DriveTrain extends Subsystem {
+public class ClimbSequence extends Subsystem {
   /**
    * Drive Train motor declaration
    */
-  private static VictorSPX motorLeft1 = new VictorSPX(RobotMap.MOTOR_LEFT_1_ID);
-  private static VictorSPX motorLeft2 = new VictorSPX(RobotMap.MOTOR_LEFT_2_ID);
-  private static VictorSPX motorRight1 = new VictorSPX(RobotMap.MOTOR_RIGHT_1_ID);
-  private static VictorSPX motorRight2 = new VictorSPX(RobotMap.MOTOR_RIGHT_2_ID);
+  //private static SparkMax armMotorMax = new SparkMax(RobotMap.ARM_MOTOR_1_ID);
  
  
   @Override
@@ -27,14 +26,6 @@ public class DriveTrain extends Subsystem {
   }
 
 //-speed goes reverse
-  public static void setLeftMotors(double speed) {
-      motorLeft1.set(ControlMode.PercentOutput, speed);
-      motorLeft2.set(ControlMode.PercentOutput, speed);
-  }
 
-  public static void setRightMotors(double speed) {
-    motorRight1.set(ControlMode.PercentOutput, -speed);
-    motorRight2.set(ControlMode.PercentOutput, -speed);
-}
 
 }

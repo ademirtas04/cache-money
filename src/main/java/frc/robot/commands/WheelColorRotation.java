@@ -25,7 +25,7 @@ public class WheelColorRotation extends Command {
   @Override
   protected void execute() {
     while(WheelColorIdentification.colorMatch() != false){
-      //move motor
+      System.out.println("Moving");
     }
   }
 

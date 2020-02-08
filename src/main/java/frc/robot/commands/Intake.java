@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.Servo;
 public class Intake extends Command {
   //look for the actual int channel. 
   public static Servo swervo = new Servo(11);
+  public static Servo arm = new Servo(12);
   public Intake() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);

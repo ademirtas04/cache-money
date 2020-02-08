@@ -11,9 +11,14 @@ import com.revrobotics.ControlType;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.RobotMap;
 public class ClimbPullUp extends Command {
-  
-    public static SparkMax armMotorMax = new SparkMax(RobotMap.ARM_MOTOR_1_ID);
-    // Use requires() here to declare subsystem dependencies
+
+
+
+  ClimbPullUp(){
+
+  }
+
+  // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   
 

@@ -97,7 +97,7 @@ public class Autonomous extends Command {
     Intake.dump();
     while(Timer.getFPGATimestamp() - startTime < 5){
     }
-    Intake.stop();
+    Intake.intake();
     autoLine(1);
   }
 }

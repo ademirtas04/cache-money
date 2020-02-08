@@ -13,7 +13,7 @@ import frc.robot.RobotMap;
 
 public class ClimbSequence extends CommandGroup {
     
-  public static SparkMax armMotorMax = new SparkMax(RobotMap.ARM_MOTOR_1_ID);
+  //public static SparkMax armMotorMax = new SparkMax(RobotMap.ARM_MOTOR_1_ID);
   /**
    * Add your docs here.
    */

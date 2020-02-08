@@ -12,11 +12,12 @@ import frc.robot.RobotMap;
 import frc.robot.pixy.Pixy2;
 import frc.robot.pixy.Pixy2Video;
 import frc.robot.pixy.Pixy2Video.RGB;
-import frc.robot.pixy.links.I2CLink;
+import frc.robot.pixy.links.SPILink;
+
 import java.awt.Color;
 
 public class WheelColorIdentification extends Command {
-  public static I2CLink link = new I2CLink();
+  public static SPILink link = new SPILink();
   public static Pixy2 camera = new Pixy2(link);
   public static Pixy2Video video = new Pixy2Video(camera);
   public static RGB ruth = video.new RGB(0, 0, 0);
@@ -26,6 +27,7 @@ public class WheelColorIdentification extends Command {
   boolean match = false;
   public WheelColorIdentification(int i) {
     this.color = i;
+    colorSet();
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
@@ -37,17 +39,21 @@ public class WheelColorIdentification extends Command {
   }
 
   public void colorSet() {
-    switch (this.color){
-      case 1: 
+    if(this.color == 1){
         idealColor = new Color(0,255,0);
-      case 2: 
+        TankDrive.move(0.3,0.3);
+    } else if(this.color == 2){
         idealColor = new Color(255,0,0);
-      case 3:
+        System.out.println("RED");
+    } else if(this.color == 3){
         idealColor = new Color(0,0,255);
-      case 4: 
+        System.out.println("BLUE");
+    } else if(this.color == 4){
         idealColor = new Color(255,255,0); 
-      default:
+        System.out.println("YELLOW");
+    } else {
         idealColor = new Color(0,0,0);
+        System.out.println("NONE");
     }
   }
   public static boolean colorMatch(){
@@ -57,6 +63,15 @@ public class WheelColorIdentification extends Command {
       for(int j = 0; j < 20;j++){
         video.getRGB(startCoordX + j, startCoordY + i, ruth, true);
         Color inputColor = ruth.getColor(); 
+        if(inputColor.getBlue() > 255 - RobotMap.ERROR_CONSTANT){
+          ruth.setB(255);
+        } 
+        if(inputColor.getGreen() > 255 - RobotMap.ERROR_CONSTANT){
+          ruth.setG(255);
+        }
+        if(inputColor.getRed() > 255 - RobotMap.ERROR_CONSTANT){
+          ruth.setR(255);
+        }
         //cannot equal, that would make it too precise.
         //will set the R above if it is in a certain limit.
         if(inputColor.equals(idealColor)){
