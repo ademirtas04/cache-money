@@ -33,7 +33,7 @@ public class Robot extends TimedRobot {
   public static TankDrive tankDrive = new TankDrive();
   public static OI m_oi;
   private Command m_autonomousCommand;
-  private XboxController driveController = new XboxController(RobotMap.DRIVER_CONTROLLER);
+  private XboxController xbox = new XboxController(RobotMap.DRIVER_CONTROLLER);
   private ControlChooser m_controlChooser;
   private SmartDashboardInterface m_smartDashboardInterface;
   private SensorReset m_sensorReset;
@@ -109,8 +109,8 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     //The Left stick is speed control, the Right stick is turning control
-    double speed = driveController.getRawAxis(RobotMap.LEFT_STICK_Y);
-    double turn = -driveController.getRawAxis(RobotMap.RIGHT_STICK_X);
+    double speed = xbox.getRawAxis(RobotMap.LEFT_STICK_Y);
+    double turn = -xbox.getRawAxis(RobotMap.RIGHT_STICK_X);
     //The Left is pos the right is neg
      double left = speed + turn;
      double right = speed - turn;

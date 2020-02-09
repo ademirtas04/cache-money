@@ -27,7 +27,6 @@ public class WheelColorIdentification extends Command {
   boolean match = false;
   public WheelColorIdentification(int i) {
     this.color = i;
-    colorSet();
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
