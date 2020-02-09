@@ -13,18 +13,21 @@ import frc.robot.pixy.Pixy2;
 import frc.robot.pixy.Pixy2Video;
 import frc.robot.pixy.Pixy2Video.RGB;
 import frc.robot.pixy.links.SPILink;
-
 import java.awt.Color;
 
 public class WheelColorIdentification extends Command {
+  
+  //SETS UP PIXY CAM
   public static SPILink link = new SPILink();
   public static Pixy2 camera = new Pixy2(link);
   public static Pixy2Video video = new Pixy2Video(camera);
   public static RGB ruth = video.new RGB(0, 0, 0);
+
+  //VARIABLES USED THROUGHOUT THE CODE
   public static int numCorrect = 0;
   int color;
   public static Color idealColor;
-  boolean match = false;
+  
   public WheelColorIdentification(int i) {
     this.color = i;
     // Use requires() here to declare subsystem dependencies
@@ -41,15 +44,19 @@ public class WheelColorIdentification extends Command {
     if(this.color == 1){
         idealColor = new Color(0,255,0);
         TankDrive.move(0.3,0.3);
+        System.out.println("GREEN");
     } else if(this.color == 2){
         idealColor = new Color(255,0,0);
         System.out.println("RED");
+        TankDrive.move(0.3,0);
     } else if(this.color == 3){
         idealColor = new Color(0,0,255);
         System.out.println("BLUE");
+        TankDrive.move(0,0.3);
     } else if(this.color == 4){
         idealColor = new Color(255,255,0); 
         System.out.println("YELLOW");
+        TankDrive.move(-0.3,-0.3);
     } else {
         idealColor = new Color(0,0,0);
         System.out.println("NONE");
@@ -71,8 +78,6 @@ public class WheelColorIdentification extends Command {
         if(inputColor.getRed() > 255 - RobotMap.ERROR_CONSTANT){
           ruth.setR(255);
         }
-        //cannot equal, that would make it too precise.
-        //will set the R above if it is in a certain limit.
         if(inputColor.equals(idealColor)){
           numCorrect++;
         }
@@ -83,7 +88,6 @@ public class WheelColorIdentification extends Command {
     } else {
       return false;
     }
-    
   }
 	@Override
   protected void execute() {

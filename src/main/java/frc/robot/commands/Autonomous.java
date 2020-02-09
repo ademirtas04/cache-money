@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
+import frc.robot.subsystems.Intake;
 
 public class Autonomous extends Command {
   //declareing variables
@@ -63,41 +64,39 @@ public class Autonomous extends Command {
     lastTimeStamp = Timer.getFPGATimestamp();
   }
   
-  public static void autoLine(int buttonInput) throws IndexOutOfBoundsException {
-  if (buttonInput == 0){
-    setpoint = 10;
-  }else if (buttonInput == 1) {
-    setpoint = 0;
-  } else {
-    throw new IndexOutOfBoundsException();
-  }
-  //get sensor position
-  double sensorPosition = encoder.get() * RobotMap.kDriveTick2Feet;
+  public static void autoLine(int buttonInput){
+    if (buttonInput == 0){
+      setpoint = 10;
+    }else if (buttonInput == 1) {
+      setpoint = 0;
+    }
+    //get sensor position
+    double sensorPosition = encoder.get() * RobotMap.kDriveTick2Feet;
 
-  //calculations
-  double error = setpoint - sensorPosition;
-  double dt = Timer.getFPGATimestamp() - lastTimeStamp;
-  
-  if(Math.abs(error) < RobotMap.iLimit){
-    errorSum += error * dt;
-  }
+    //calculations
+    double error = setpoint - sensorPosition;
+    double dt = Timer.getFPGATimestamp() - lastTimeStamp;
+    
+    if(Math.abs(error) < RobotMap.iLimit){
+      errorSum += error * dt;
+    }
 
-  double errorRate = (error - lastError) / dt; 
+    double errorRate = (error - lastError) / dt; 
 
-  double outputSpeed = RobotMap.kP * error + RobotMap.kI * errorSum + RobotMap.kD * errorRate;
-  //output to motors
-  TankDrive.move(outputSpeed, -outputSpeed);
-  lastTimeStamp = Timer.getFPGATimestamp();
-  lastError = error;
+    double outputSpeed = RobotMap.kP * error + RobotMap.kI * errorSum + RobotMap.kD * errorRate;
+    //output to motors
+    TankDrive.move(outputSpeed, -outputSpeed);
+    lastTimeStamp = Timer.getFPGATimestamp();
+    lastError = error;
   }
 
   public static void autoSequence(){
     autoLine(0);
     double startTime = Timer.getFPGATimestamp();
-    Intake.dump();
+    Intake.IntakeMove();
     while(Timer.getFPGATimestamp() - startTime < 5){
     }
-    Intake.intake();
+    Intake.IntakeReset();
     autoLine(1);
   }
 }

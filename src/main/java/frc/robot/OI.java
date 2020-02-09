@@ -1,12 +1,12 @@
 package frc.robot;
 
-
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import frc.robot.commands.Autonomous;
 import frc.robot.commands.WheelColorIdentification;
+import frc.robot.commands.WheelColorRotation;
+import frc.robot.commands.WheelRotation;
 
 //XYAB will be used for the pixycam, bumpers and triggers for arm control
 public class OI {
@@ -41,9 +41,13 @@ public class OI {
         yellowButton = new JoystickButton(xbox, RobotMap.BUTTON_YELLOW);
         yellowButton.whenPressed(new WheelColorIdentification(4));
 
-        //MISCELLANEOUS BUTTONS
+        //WHEEL ROTATION BUTTONS
         LeftTrigButton = new JoystickButton(xbox, RobotMap.BUTTON_LEFTTRIG);
+        LeftTrigButton.whenPressed(new WheelColorRotation());
         RightTrigButton = new JoystickButton(xbox, RobotMap.BUTTON_RIGHTTRIG);
+        RightTrigButton.whenPressed(new WheelRotation(4));
+
+
         LeftBumpButton = new JoystickButton(xbox, RobotMap.BUTTON_LEFTBUMP);
         RightBumpButton = new JoystickButton(xbox, RobotMap.BUTTON_RIGHTBUMP);
     }

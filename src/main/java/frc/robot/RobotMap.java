@@ -7,7 +7,6 @@
 
 package frc.robot;
 
-//Reference to all the id's for the motors
 public class RobotMap {
 
 	//MOTORS
@@ -20,7 +19,7 @@ public class RobotMap {
 	public static final int ARM_MOTOR_3_ID = 27;
 	public static final int ARM_MOTOR_4_ID = 28;
 
-	//CONTROLLERS AND STICKS
+	//CONTROLLERS AND STICK VALUES
 	public static final int DRIVER_CONTROLLER = 0;
 	public static final int BUTTON_CONTROLLER = 1;
 	public static final int LEFT_STICK_Y = 4;
@@ -48,6 +47,9 @@ public class RobotMap {
 	public static final int PIXY_WIDTH = 640;
 	public static final int PIXY_LENGTH = 400;
 	public static final int ERROR_CONSTANT = 15;
+
+	//ROTATION VALUES
+	public static final double SINGLE_ROTATION_TIME = 0;
 
 
 
