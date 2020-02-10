@@ -8,9 +8,12 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.subsystems.Intake;
 
 public class WheelColorRotation extends Command {
-  public WheelColorRotation(int red, int blue, int green) {
+  private boolean armMoved;
+  public WheelColorRotation() {
+    armMoved = false;
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
@@ -18,14 +21,20 @@ public class WheelColorRotation extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    //moveArm;
+    System.out.println("Rotation Starting");
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    while(WheelColorIdentification.colorMatch() != false){
-      System.out.println("Moving");
+    if(armMoved == false){
+      Intake.armMove();
+      armMoved = true;
+    }
+    if(WheelColorIdentification.colorMatch() != false){
+      System.out.println("Moving");  
+    } else {
+      this.end();
     }
   }
 
@@ -38,6 +47,8 @@ public class WheelColorRotation extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    System.out.println("Stopped");
+    Intake.armReset();
   }
 
   // Called when another command which requires one or more of the same
