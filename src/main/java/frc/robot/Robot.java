@@ -43,7 +43,6 @@ public class Robot extends TimedRobot {
   @Override
  
   public void robotInit() {
-    new RobotMap();
     m_controlChooser = new ControlChooser();
     m_smartDashboardInterface = new SmartDashboardInterface();
     m_sensorReset = new SensorReset();

@@ -8,11 +8,13 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.OI;
 import frc.robot.RobotMap;
 import frc.robot.pixy.Pixy2;
 import frc.robot.pixy.Pixy2Video;
 import frc.robot.pixy.Pixy2Video.RGB;
 import frc.robot.pixy.links.SPILink;
+import frc.robot.commands.TankDrive;
 import java.awt.Color;
 
 public class WheelColorIdentification extends Command {
@@ -28,8 +30,7 @@ public class WheelColorIdentification extends Command {
   int color;
   public static Color idealColor;
   
-  public WheelColorIdentification(int i) {
-    this.color = i;
+  public WheelColorIdentification() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
@@ -37,26 +38,21 @@ public class WheelColorIdentification extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    colorSet();
   }
 
   public void colorSet() {
-    if(this.color == 1){
+    if(OI.xbox.getRawButton(1)){
         idealColor = new Color(0,255,0);
-        TankDrive.move(0.3,0.3);
         System.out.println("GREEN");
-    } else if(this.color == 2){
+    } else if(OI.xbox.getRawButton(2)){
         idealColor = new Color(255,0,0);
         System.out.println("RED");
-        TankDrive.move(0.3,0);
-    } else if(this.color == 3){
+    } else if(OI.xbox.getRawButton(3)){
         idealColor = new Color(0,0,255);
         System.out.println("BLUE");
-        TankDrive.move(0,0.3);
-    } else if(this.color == 4){
+    } else if(OI.xbox.getRawButton(4)){
         idealColor = new Color(255,255,0); 
         System.out.println("YELLOW");
-        TankDrive.move(-0.3,-0.3);
     } else {
         idealColor = new Color(0,0,0);
         System.out.println("NONE");

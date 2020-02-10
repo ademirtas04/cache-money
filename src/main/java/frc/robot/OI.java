@@ -10,8 +10,10 @@ import frc.robot.commands.WheelRotation;
 
 //XYAB will be used for the pixycam, bumpers and triggers for arm control
 public class OI {
-    private XboxController xbox;
-    private Joystick joystick;
+    //CONTROLLERS 
+    public static XboxController xbox = new XboxController(RobotMap.DRIVER_CONTROLLER);
+    public static Joystick joystick = new Joystick(RobotMap.BUTTON_CONTROLLER);
+    
     private Button greenButton;
     private Button redButton;
     private Button blueButton;
@@ -23,23 +25,19 @@ public class OI {
 
 
 
-    public OI() {
-        //Drive Controllers
-        xbox = new XboxController(RobotMap.DRIVER_CONTROLLER);
-        joystick = new Joystick(RobotMap.BUTTON_CONTROLLER);
+    public OI(){
 
         //COLOR BUTTONS
         greenButton = new JoystickButton(xbox, RobotMap.BUTTON_GREEN);
-        greenButton.whenPressed(new WheelColorIdentification(1));
-
         redButton = new JoystickButton(xbox, RobotMap.BUTTON_RED);
-        redButton.whenPressed(new WheelColorIdentification(2));
-
         blueButton = new JoystickButton(xbox, RobotMap.BUTTON_BLUE);
-        blueButton.whenPressed(new WheelColorIdentification(3));
-
         yellowButton = new JoystickButton(xbox, RobotMap.BUTTON_YELLOW);
-        yellowButton.whenPressed(new WheelColorIdentification(4));
+
+        //WHEN PRESSED
+        blueButton.whenPressed(new WheelColorIdentification());
+        greenButton.whenPressed(new WheelColorIdentification());
+        redButton.whenPressed(new WheelColorIdentification());
+        yellowButton.whenPressed(new WheelColorIdentification());
 
         //WHEEL ROTATION BUTTONS
         LeftTrigButton = new JoystickButton(xbox, RobotMap.BUTTON_LEFTTRIG);
