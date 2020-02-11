@@ -12,7 +12,7 @@ public class PrintTester3 extends Command {
 
 
   private int printeger;
-  PrintTester3(){
+  public PrintTester3(){
     
   }
 

@@ -11,7 +11,7 @@ public class PrintTester2 extends Command {
 
 
   private int printeger;
-  PrintTester2(int i){
+  public PrintTester2(int i){
     this.printeger = i;
   }
 

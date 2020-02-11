@@ -11,15 +11,14 @@ public class PrintTester1 extends Command {
 
 
 
-  PrintTester1(){
-
-  }
-
   // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   
 
-  // Called just before this Command runs the first time
+  public PrintTester1() {
+	}
+
+// Called just before this Command runs the first time
   @Override
   protected void initialize() {
     System.out.println("INIT");
