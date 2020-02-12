@@ -17,6 +17,7 @@ import com.revrobotics.SparkMax;
 public class Intake extends Subsystem {
   public static Servo intake = new Servo(11);
   public static Servo arm = new Servo(12);
+  public static Servo base = new Servo(13);
  
  
   @Override
@@ -39,6 +40,14 @@ public class Intake extends Subsystem {
   
   public static void armReset(){
     intake.setAngle(0);
+  }
+
+  public static void baseMove(){
+    base.setAngle(90);
+  }
+
+  public static void baseReset(){
+    base.setAngle(0);
   }
 
 
