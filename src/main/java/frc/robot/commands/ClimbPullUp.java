@@ -6,15 +6,20 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot.commands;
+import frc.robot.subsystems.Climb;
+import frc.robot.Robot;
 import com.revrobotics.SparkMax;
 import com.revrobotics.ControlType;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.RobotMap;
+
+
 public class ClimbPullUp extends Command {
 
 
 
-  ClimbPullUp(){
+  public ClimbPullUp(){
+    requires(Robot.Climb);
 
   }
 
@@ -48,4 +53,5 @@ public class ClimbPullUp extends Command {
   @Override
   protected void interrupted() {
   }
+  
 }
