@@ -19,58 +19,36 @@ import frc.robot.commands.WheelRotation;
 //XYAB will be used for the pixycam, bumpers and triggers for arm control
 public class OI {
     // CONTROLLERS
-    public static XboxController xbox = new XboxController(RobotMap.DRIVER_CONTROLLER);
+    public static Joystick xbox = new Joystick(RobotMap.DRIVER_CONTROLLER);
     public static Joystick joystick = new Joystick(RobotMap.BUTTON_CONTROLLER);
 
-    private Button greenButton;
-    private Button redButton;
-    private Button blueButton;
-    private Button yellowButton;
-    private Button LeftTrigButton;
-    private Button RightTrigButton;
-    private Button LeftBumpButton;
-    private Button RightBumpButton;
+    private Button greenButton = new JoystickButton(xbox, RobotMap.BUTTON_GREEN);
+    private Button redButton = new JoystickButton(xbox, RobotMap.BUTTON_RED);
+    private Button blueButton = new JoystickButton(xbox, RobotMap.BUTTON_BLUE);
+    private Button yellowButton = new JoystickButton(xbox, RobotMap.BUTTON_YELLOW);
+    private Button LeftTrigButton = new JoystickButton(xbox, RobotMap.BUTTON_LEFTTRIG);
+    private Button RightTrigButton = new JoystickButton(xbox, RobotMap.BUTTON_RIGHTTRIG);
+    private Button LeftBumpButton = new JoystickButton(xbox, RobotMap.BUTTON_LEFTBUMP);
+    private Button RightBumpButton = new JoystickButton(xbox, RobotMap.BUTTON_RIGHTBUMP);
 
     public OI() {
-        /*
-        // COLOR BUTTONS
-        greenButton = new JoystickButton(xbox, RobotMap.BUTTON_GREEN);
-        redButton = new JoystickButton(xbox, RobotMap.BUTTON_RED);
-        blueButton = new JoystickButton(xbox, RobotMap.BUTTON_BLUE);
-        yellowButton = new JoystickButton(xbox, RobotMap.BUTTON_YELLOW);
-
-        // WHEN PRESSED || ACTUAL VALUES COMMENTED OUT FOR TESTING
-        blueButton.whenPressed(new PrintTester1());
-        greenButton.whenPressed(new PrintTester2(2));
-        redButton.whenPressed(new PrintTester3());
         
-        //blueButton.whenPressed(new WheelColorIdentification());
-        //greenButton.whenPressed(new WheelColorIdentification());
-        //redButton.whenPressed(new WheelColorIdentification());
-        //yellowButton.whenPressed(new WheelColorIdentification());
+        // COLOR BUTTONS
+        
+
+        // WHEN PRESSED || ACTUAL VALUES COMMENTED OUT FOR TESTING       
+        blueButton.whenPressed(new WheelColorIdentification());
+        greenButton.whenPressed(new WheelColorIdentification());
+        redButton.whenPressed(new WheelColorIdentification());
+        yellowButton.whenPressed(new WheelColorIdentification());
 
         //WHEEL ROTATION BUTTONS
         
 
         //SERVO ARM ROTATION BUTTONS
-        RightTrigButton = new JoystickButton(xbox, RobotMap.BUTTON_RIGHTTRIG);
         RightTrigButton.whenPressed(new BaseSink());
-        LeftTrigButton = new JoystickButton(xbox, RobotMap.BUTTON_LEFTTRIG);
         LeftTrigButton.whenPressed(new BaseLift());
-        LeftBumpButton = new JoystickButton(xbox, RobotMap.BUTTON_LEFTBUMP);
         LeftBumpButton.whenPressed(new ArmDump());
-        RightBumpButton = new JoystickButton(xbox, RobotMap.BUTTON_RIGHTBUMP);
         RightBumpButton.whenPressed(new ArmIntake());
-        */
-        if(xbox.getAButtonPressed()){
-            WheelColorIdentification.colorSet(1);
-        } else if(xbox.getBButtonPressed()){
-            WheelColorIdentification.colorSet(2);
-        } else if(xbox.getYButtonPressed()){
-            WheelColorIdentification.colorSet(3);
-        } else if (xbox.getXButtonPressed()){
-            WheelColorIdentification.colorSet(4);
-        }
     }
-
 }
