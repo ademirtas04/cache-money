@@ -42,21 +42,21 @@ public class WheelColorIdentification extends Command {
 
   public static void colorSet(int i) {
     if(i == 1){
-        idealColor = new Color(0,255,0);
-        System.out.println("GREEN");
-    } else if(i == 2){
-        idealColor = new Color(255,0,0);
-        System.out.println("RED");
-    } else if(i == 3){
-        idealColor = new Color(0,0,255);
-        System.out.println("BLUE");
-    } else if(i == 4){
-        idealColor = new Color(255,255,0); 
-        System.out.println("YELLOW");
-    } else {
-        idealColor = new Color(0,0,0);
-        System.out.println("NONE");
-    }
+      idealColor = new Color(0,255,0);
+      System.out.println("GREEN");
+  } else if(i == 2){
+      idealColor = new Color(255,0,0);
+      System.out.println("RED");
+  } else if(i == 3){
+      idealColor = new Color(0,0,255);
+      System.out.println("BLUE");
+  } else if(i == 4){
+      idealColor = new Color(255,255,0); 
+      System.out.println("YELLOW");
+  } else {
+      idealColor = new Color(0,0,0);
+      System.out.println("NONE");
+  }
   }
   public static boolean colorMatch(){
     int startCoordX = RobotMap.PIXY_WIDTH/2 - 10;
