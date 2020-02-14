@@ -9,11 +9,12 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.VictorSPX;
-import com.revrobotics.SparkMax;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 public class ClimbSequence extends Subsystem {
+  public static CANSparkMax armMotorMax = new CANSparkMax(RobotMap.ARM_MOTOR_1_ID, MotorType.kBrushless);
+
   /**
    * Drive Train motor declaration
    */
