@@ -12,8 +12,10 @@ import frc.robot.RobotMap;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
-public class ClimbSequence extends Subsystem {
+public class Climb extends Subsystem {
   public static CANSparkMax armMotorMax = new CANSparkMax(RobotMap.ARM_MOTOR_1_ID, MotorType.kBrushless);
+
+
 
   /**
    * Drive Train motor declaration
@@ -23,10 +25,15 @@ public class ClimbSequence extends Subsystem {
  
   @Override
   public void initDefaultCommand() {
-    // This method will be called once per scheduler run
+    
+
+    
+   
   }
 
-//-speed goes reverse
+  public static void setMotor(double speed) {
+    armMotorMax.set(speed);
 
+}
 
 }
