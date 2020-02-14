@@ -6,22 +6,31 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot.commands;
+
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.OI;
+import frc.robot.RobotMap;
 import frc.robot.pixy.Pixy2;
 import frc.robot.pixy.Pixy2Video;
-//import frc.robot.pixy.Pixy2Video.RGB;
-import frc.robot.pixy.links.I2CLink;
+import frc.robot.pixy.Pixy2Video.RGB;
+import frc.robot.pixy.links.SPILink;
+import frc.robot.commands.TankDrive;
 import java.awt.Color;
 
 public class WheelColorIdentification extends Command {
-  public I2CLink link = new I2CLink();
-  public Pixy2 camera = new Pixy2(link);
-  public Pixy2Video video = new Pixy2Video(camera);
+  
+  //SETS UP PIXY CAM
+  public static SPILink link = new SPILink();
+  public static Pixy2 camera = new Pixy2(link);
+  public static Pixy2Video video = new Pixy2Video(camera);
+  public static RGB ruth = video.new RGB(0, 0, 0);
+
+  //VARIABLES USED THROUGHOUT THE CODE
+  public static int numCorrect = 0;
   int color;
-  Color idealColor;
-  boolean match = false;
-  public WheelColorIdentification(int i) {
-    this.color = i;
+  public static Color idealColor;
+  
+  public WheelColorIdentification() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
@@ -29,27 +38,53 @@ public class WheelColorIdentification extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    colorSet();
   }
 
   public void colorSet() {
-    switch (this.color){
-      case 1: 
+    if(OI.xbox.getRawButton(1)){
         idealColor = new Color(0,255,0);
-      case 2: 
+        System.out.println("GREEN");
+    } else if(OI.xbox.getRawButton(2)){
         idealColor = new Color(255,0,0);
-      case 3:
+        System.out.println("RED");
+    } else if(OI.xbox.getRawButton(3)){
         idealColor = new Color(0,0,255);
-      case 4: 
+        System.out.println("BLUE");
+    } else if(OI.xbox.getRawButton(4)){
         idealColor = new Color(255,255,0); 
-      default:
+        System.out.println("YELLOW");
+    } else {
         idealColor = new Color(0,0,0);
+        System.out.println("NONE");
     }
   }
-  //public boolean colorMatch(){
-    //Color inputColor = video.getColor(); 
-    //return true;
-  //}
+  public static boolean colorMatch(){
+    int startCoordX = RobotMap.PIXY_WIDTH/2 - 10;
+    int startCoordY = RobotMap.PIXY_LENGTH/2 - 10;
+    for(int i = 0; i < 20; i++){
+      for(int j = 0; j < 20;j++){
+        video.getRGB(startCoordX + j, startCoordY + i, ruth, true);
+        Color inputColor = ruth.getColor(); 
+        if(inputColor.getBlue() > 255 - RobotMap.ERROR_CONSTANT){
+          ruth.setB(255);
+        } 
+        if(inputColor.getGreen() > 255 - RobotMap.ERROR_CONSTANT){
+          ruth.setG(255);
+        }
+        if(inputColor.getRed() > 255 - RobotMap.ERROR_CONSTANT){
+          ruth.setR(255);
+        }
+        if(inputColor.equals(idealColor)){
+          numCorrect++;
+        }
+      }
+    } 
+    if(numCorrect > 300){
+      return true;
+    } else {
+      return false;
+    }
+  }
 	@Override
   protected void execute() {
   }

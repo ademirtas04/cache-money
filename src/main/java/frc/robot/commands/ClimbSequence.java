@@ -6,10 +6,14 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot.commands;
-
+import com.revrobotics.SparkMax;
+import com.revrobotics.ControlType;
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import frc.robot.RobotMap;
 
 public class ClimbSequence extends CommandGroup {
+    
+  //public static SparkMax armMotorMax = new SparkMax(RobotMap.ARM_MOTOR_1_ID);
   /**
    * Add your docs here.
    */

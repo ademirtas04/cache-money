@@ -7,11 +7,10 @@
 
 package frc.robot;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.XboxController;
+
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
@@ -32,26 +31,23 @@ import frc.robot.subsystems.DriveTrain;
 public class Robot extends TimedRobot {
   public static DriveTrain driveTrain = new DriveTrain();
   public static TankDrive tankDrive = new TankDrive();
-  public static Autonomous autonomous = new Autonomous();
   public static OI m_oi;
   private Command m_autonomousCommand;
-  private XboxController driveController = new XboxController(RobotMap.DRIVER_CONTROLLER);
-  private WPI_VictorSPX motorLeft1 = new WPI_VictorSPX(RobotMap.MOTOR_LEFT_1_ID);
-  private WPI_VictorSPX motorLeft2 = new WPI_VictorSPX(RobotMap.MOTOR_LEFT_2_ID);
-  private WPI_VictorSPX motorRight1 = new WPI_VictorSPX(RobotMap.MOTOR_RIGHT_1_ID);
-  private WPI_VictorSPX motorRight2 = new WPI_VictorSPX(RobotMap.MOTOR_RIGHT_2_ID);
+  private XboxController xbox = new XboxController(RobotMap.DRIVER_CONTROLLER);
   private ControlChooser m_controlChooser;
   private SmartDashboardInterface m_smartDashboardInterface;
   private SensorReset m_sensorReset;
 
- 
+
+
   @Override
  
   public void robotInit() {
-    new RobotMap();
     m_controlChooser = new ControlChooser();
     m_smartDashboardInterface = new SmartDashboardInterface();
     m_sensorReset = new SensorReset();
+    System.out.println("WORKS");
+    m_oi = new OI();
     //variable instances
  
   
@@ -62,6 +58,7 @@ public class Robot extends TimedRobot {
  
   @Override
   public void robotPeriodic() {
+    
     
     CommandScheduler.getInstance().run();
     m_smartDashboardInterface.SmartDashboardPeriodic();
@@ -86,20 +83,15 @@ public class Robot extends TimedRobot {
   @Override
   //Code when the enable button is hit in the autonomous tab
   public void autonomousInit() {
-    m_controlChooser.ControlInit(SmartDashboardInterface.controlType.getSelected());
- 
-    if (m_autonomousCommand != null) {
-      m_autonomousCommand.schedule();
-    }
+    Autonomous.autoStart();
   }
 
-  /**
-   * This function is called periodically during autonomous every 0.02 seconds
-   */
   @Override
   public void autonomousPeriodic() {
-    autonomous.execute();
+    Autonomous.autoSequence();
   }
+  
+
 
   @Override
   //Code when the Enable button is hit during teleop period
@@ -118,17 +110,13 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     //The Left stick is speed control, the Right stick is turning control
-    double speed = driveController.getRawAxis(RobotMap.LEFT_STICK_Y);
-
-    double turn = -driveController.getRawAxis(RobotMap.RIGHT_STICK_X);
+    double speed = xbox.getRawAxis(RobotMap.LEFT_STICK_Y);
+    double turn = -xbox.getRawAxis(RobotMap.RIGHT_STICK_X);
     //The Left is pos the right is neg
      double left = speed + turn;
      double right = speed - turn;
+     TankDrive.move(left,right);
 
-     motorLeft1.set(ControlMode.PercentOutput, left);
-     motorLeft2.set(ControlMode.PercentOutput, left);
-     motorRight1.set(ControlMode.PercentOutput, -right);
-     motorRight2.set(ControlMode.PercentOutput, -right);
   }
 
   @Override

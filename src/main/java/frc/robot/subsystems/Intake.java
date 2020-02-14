@@ -6,19 +6,18 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot.subsystems;
+
+import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+import com.revrobotics.SparkMax;
 
-public class DriveTrain extends Subsystem {
-  /**
-   * Drive Train motor declaration
-   */
-  private static VictorSPX motorLeft1 = new VictorSPX(RobotMap.MOTOR_LEFT_1_ID);
-  private static VictorSPX motorLeft2 = new VictorSPX(RobotMap.MOTOR_LEFT_2_ID);
-  private static VictorSPX motorRight1 = new VictorSPX(RobotMap.MOTOR_RIGHT_1_ID);
-  private static VictorSPX motorRight2 = new VictorSPX(RobotMap.MOTOR_RIGHT_2_ID);
+public class Intake extends Subsystem {
+  public static Servo intake = new Servo(11);
+  public static Servo arm = new Servo(12);
+  public static Servo base = new Servo(13);
  
  
   @Override
@@ -26,15 +25,30 @@ public class DriveTrain extends Subsystem {
     // This method will be called once per scheduler run
   }
 
-//-speed goes reverse
-  public static void setLeftMotors(double speed) {
-    motorLeft1.set(ControlMode.PercentOutput, speed);
-    motorLeft2.set(ControlMode.PercentOutput, speed);
+  public static void IntakeMove(){
+    //ALERT: We need to find the right angle for this (see if it's negative or not) 
+    intake.setAngle(-90);
   }
 
-  public static void setRightMotors(double speed) {
-    motorRight1.set(ControlMode.PercentOutput, -speed);
-    motorRight2.set(ControlMode.PercentOutput, -speed);
-}
+  public static void IntakeReset(){
+    intake.setAngle(0);
+  }
+
+  public static void armMove(){
+    intake.setAngle(-90);
+  }
+  
+  public static void armReset(){
+    intake.setAngle(0);
+  }
+
+  public static void baseMove(){
+    base.setAngle(90);
+  }
+
+  public static void baseReset(){
+    base.setAngle(0);
+  }
+
 
 }

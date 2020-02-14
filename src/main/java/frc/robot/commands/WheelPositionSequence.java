@@ -14,8 +14,8 @@ public class WheelPositionSequence extends CommandGroup {
    * Add your docs here.
    */
   public WheelPositionSequence() {
-    addSequential(new WheelColorIdentification(1));
-    addSequential(new WheelColorRotation(100, 0, 100));
+    addSequential(new WheelColorIdentification());
+    addSequential(new WheelColorRotation());
     // Add Commands here:
     // e.g. addSequential(new Command1());
     // addSequential(new Command2());

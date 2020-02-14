@@ -8,7 +8,7 @@
 package frc.robot.commands;
 
 import frc.robot.Robot;
-import frc.robot.RobotMap;
+import frc.robot.subsystems.DriveTrain;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -26,40 +26,29 @@ public class TankDrive extends Command {
   @Override
   // variables and mapping out buttons for the controller when it starts
   public void initialize() {
-      double speed = -Robot.m_oi.getDriverRawAxis(RobotMap.LEFT_STICK_Y);
-      double turn = Robot.m_oi.getDriverRawAxis(RobotMap.RIGHT_STICK_X);
 
-      double left = speed + turn;
-      double right = speed - turn;
-
-      Robot.driveTrain.setLeftMotors(left);
-      Robot.driveTrain.setRightMotors(-right);
   }
 
   //variables and mapping out buttons called 50 times per second
   @Override
   public void execute() {
-    double speed = -Robot.m_oi.getDriverRawAxis(RobotMap.LEFT_STICK_Y);
-    double turn = Robot.m_oi.getDriverRawAxis(RobotMap.RIGHT_STICK_X);
-
-     double left = speed + turn;
-     double right = speed - turn;
-
-     Robot.driveTrain.setLeftMotors(left);
-     Robot.driveTrain.setRightMotors(-right);
 
   }
   // When the stop button is hit, the motors turn off
   @Override
   public void end() {
-      Robot.driveTrain.setLeftMotors(0);
-      Robot.driveTrain.setRightMotors(0);
+
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
     return false;
+  }
+
+  public static void move(double left, double right){
+    DriveTrain.setLeftMotors(left);
+    DriveTrain.setRightMotors(right);
   }
 
 }
