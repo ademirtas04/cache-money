@@ -15,9 +15,9 @@ import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.revrobotics.SparkMax;
 
 public class Intake extends Subsystem {
-  public static Servo intake = new Servo(11);
-  public static Servo arm = new Servo(12);
-  public static Servo base = new Servo(13);
+  public static Servo intake = new Servo(RobotMap.INTAKE_PORT);
+  public static Servo arm = new Servo(RobotMap.ARM_PORT);
+  public static Servo base = new Servo(RobotMap.BASE_PORT);
  
  
   @Override
@@ -43,11 +43,11 @@ public class Intake extends Subsystem {
   }
 
   public static void baseMove(){
-    base.setAngle(90);
+    base.setSpeed(1.0);
   }
 
   public static void baseReset(){
-    base.setAngle(0);
+    base.setAngle(-1.0);
   }
 
 

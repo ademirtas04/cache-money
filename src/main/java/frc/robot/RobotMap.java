@@ -50,6 +50,12 @@ public class RobotMap {
 
 	//ROTATION VALUES
 	public static final double SINGLE_ROTATION_TIME = 0;
+	public static final double CONSTANT_TIMER = 0;
+	public static final double CONSTANT_ARM_TIMER = 0;
+	public static final int INTAKE_PORT = 0;
+	public static final int ARM_PORT = 0;
+	public static final int BASE_SPORT = 0;
+	public static final int BASE_PORT = 0;
 
 
 

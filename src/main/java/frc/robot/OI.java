@@ -5,6 +5,10 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.commands.ArmDump;
+import frc.robot.commands.ArmIntake;
+import frc.robot.commands.BaseLift;
+import frc.robot.commands.BaseSink;
 import frc.robot.commands.PrintTester1;
 import frc.robot.commands.PrintTester2;
 import frc.robot.commands.PrintTester3;
@@ -46,14 +50,17 @@ public class OI {
         //yellowButton.whenPressed(new WheelColorIdentification());
 
         //WHEEL ROTATION BUTTONS
-        LeftTrigButton = new JoystickButton(xbox, RobotMap.BUTTON_LEFTTRIG);
-        LeftTrigButton.whenPressed(new WheelColorRotation());
+        
+
+        //SERVO ARM ROTATION BUTTONS
         RightTrigButton = new JoystickButton(xbox, RobotMap.BUTTON_RIGHTTRIG);
-        RightTrigButton.whenPressed(new WheelRotation(4));
-
-
+        RightTrigButton.whenPressed(new BaseSink());
+        LeftTrigButton = new JoystickButton(xbox, RobotMap.BUTTON_LEFTTRIG);
+        LeftTrigButton.whenPressed(new BaseLift());
         LeftBumpButton = new JoystickButton(xbox, RobotMap.BUTTON_LEFTBUMP);
+        LeftBumpButton.whenPressed(new ArmDump());
         RightBumpButton = new JoystickButton(xbox, RobotMap.BUTTON_RIGHTBUMP);
+        RightBumpButton.whenPressed(new ArmIntake());
     }
 
 }

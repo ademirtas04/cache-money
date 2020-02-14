@@ -12,10 +12,10 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.RobotMap;
 import frc.robot.subsystems.Intake;
 
-public class BaseLift extends Command {
+public class ArmDump extends Command {
   private double startTime;
   
-  public BaseLift() {
+  public ArmDump() {
     //requires(Robot.Intake);
   }
 
@@ -29,8 +29,8 @@ public class BaseLift extends Command {
   @Override
 
   public void execute() {
-    if(Timer.getFPGATimestamp() - RobotMap.CONSTANT_TIMER < startTime){
-      Intake.baseReset();
+    if(Timer.getFPGATimestamp() - RobotMap.CONSTANT_ARM_TIMER < startTime){
+      Intake.armMove();
     } else {
       this.end();
     }
@@ -45,6 +45,7 @@ public class BaseLift extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    Intake.armReset();
   }
 
   // Called when another command which requires one or more of the same

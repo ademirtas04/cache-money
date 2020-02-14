@@ -12,10 +12,10 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.RobotMap;
 import frc.robot.subsystems.Intake;
 
-public class BaseLift extends Command {
+public class BaseSink extends Command {
   private double startTime;
   
-  public BaseLift() {
+  public BaseSink() {
     //requires(Robot.Intake);
   }
 
@@ -30,7 +30,7 @@ public class BaseLift extends Command {
 
   public void execute() {
     if(Timer.getFPGATimestamp() - RobotMap.CONSTANT_TIMER < startTime){
-      Intake.baseReset();
+      Intake.baseMove();
     } else {
       this.end();
     }
