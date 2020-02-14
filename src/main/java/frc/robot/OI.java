@@ -32,7 +32,7 @@ public class OI {
     private Button RightBumpButton;
 
     public OI() {
-
+        /*
         // COLOR BUTTONS
         greenButton = new JoystickButton(xbox, RobotMap.BUTTON_GREEN);
         redButton = new JoystickButton(xbox, RobotMap.BUTTON_RED);
@@ -60,7 +60,20 @@ public class OI {
         LeftBumpButton = new JoystickButton(xbox, RobotMap.BUTTON_LEFTBUMP);
         LeftBumpButton.whenPressed(new ArmDump());
         RightBumpButton = new JoystickButton(xbox, RobotMap.BUTTON_RIGHTBUMP);
+<<<<<<< HEAD
         RightBumpButton.whenPressed(new ArmIntake());
+=======
+        */
+        if(xbox.getAButtonPressed()){
+            WheelColorIdentification.colorSet(1);
+        } else if(xbox.getBButtonPressed()){
+            WheelColorIdentification.colorSet(2);
+        } else if(xbox.getYButtonPressed()){
+            WheelColorIdentification.colorSet(3);
+        } else if (xbox.getXButtonPressed()){
+            WheelColorIdentification.colorSet(4);
+        }
+>>>>>>> 2ee61bdf54a3a1b6e370771efc160c4b90051c3c
     }
 
 }

@@ -45,7 +45,6 @@ public class Intake extends Subsystem {
   public static void baseMove(){
     base.setSpeed(1.0);
   }
-
   public static void baseReset(){
     base.setAngle(-1.0);
   }
