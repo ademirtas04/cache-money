@@ -6,7 +6,7 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot.commands;
-import frc.robot.subsystems.Climb;
+//import frc.robot.subsystems.Climb;
 import frc.robot.Robot;
 import com.revrobotics.SparkMax;
 import com.revrobotics.ControlType;
