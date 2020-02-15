@@ -53,6 +53,7 @@ public class Robot extends TimedRobot {
     m_smartDashboardInterface = new SmartDashboardInterface();
     m_sensorReset = new SensorReset();
     System.out.println("WORKS");
+    Robot.m_oi = new OI();
     //variable instances
  
   
