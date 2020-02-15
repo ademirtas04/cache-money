@@ -37,10 +37,11 @@ public class OI {
         
 
         // WHEN PRESSED || ACTUAL VALUES COMMENTED OUT FOR TESTING       
-        blueButton.whenPressed(new WheelColorIdentification());
-        greenButton.whenPressed(new WheelColorIdentification());
-        redButton.whenPressed(new WheelColorIdentification());
-        yellowButton.whenPressed(new WheelColorIdentification());
+        
+        greenButton.whenPressed(new WheelColorIdentification(1));
+        blueButton.whenPressed(new WheelColorIdentification(3));
+        redButton.whenPressed(new WheelColorIdentification(2));
+        yellowButton.whenPressed(new WheelColorIdentification(4));
 
         //WHEEL ROTATION BUTTONS
         

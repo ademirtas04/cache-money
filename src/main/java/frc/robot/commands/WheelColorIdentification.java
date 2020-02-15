@@ -30,17 +30,17 @@ public class WheelColorIdentification extends Command {
   int color;
   public static Color idealColor;
   
-  public WheelColorIdentification() {
-    // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
+  public WheelColorIdentification(int i) {
+    this.color = i;
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    this.colorSet(this.color);
   }
 
-  public static void colorSet(int i) {
+  public void colorSet(int i) {
     if(i == 1){
       idealColor = new Color(0,255,0);
       System.out.println("GREEN");
