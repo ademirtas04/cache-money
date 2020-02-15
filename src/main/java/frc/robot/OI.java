@@ -55,4 +55,8 @@ public class OI {
         BackButton.whenPressed(new ArmDump());
         StartButton.whenPressed(new ArmIntake());
     }
+
+    public double getDriverRawAxis(int axis) {
+        return xbox.getRawAxis(axis);
+    }
 }

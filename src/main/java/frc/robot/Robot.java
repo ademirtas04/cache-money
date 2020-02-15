@@ -7,8 +7,11 @@
 
 package frc.robot;
 
+import com.ctre.phoenix.schedulers.SequentialScheduler;
+
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
@@ -113,13 +116,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
-    //The Left stick is speed control, the Right stick is turning control
-    double speed = xbox.getRawAxis(RobotMap.LEFT_STICK_Y);
-    double turn = -xbox.getRawAxis(RobotMap.RIGHT_STICK_X);
-    //The Left is pos the right is neg
-     double left = speed + turn;
-     double right = speed - turn;
-     TankDrive.move(left,right);
+     Scheduler.getInstance().run();
 
   }
 
