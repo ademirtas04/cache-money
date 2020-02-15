@@ -7,7 +7,6 @@
 
 package frc.robot;
 
-
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -19,7 +18,11 @@ import frc.robot.commands.TankDrive;
 import frc.robot.misc.ControlChooser;
 import frc.robot.misc.SensorReset;
 import frc.robot.misc.SmartDashboardInterface;
+import frc.robot.subsystems.Arm;
+import frc.robot.subsystems.Base;
+import frc.robot.subsystems.Climb;
 import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.Intake;
 
 
 
@@ -29,9 +32,12 @@ import frc.robot.subsystems.DriveTrain;
  */
 
 public class Robot extends TimedRobot {
-  public static final Subsystem Climb = null;
-public static DriveTrain driveTrain = new DriveTrain();
+  public static Climb climb = new Climb();
+  public static DriveTrain driveTrain = new DriveTrain();
   public static TankDrive tankDrive = new TankDrive();
+  public static Arm arm = new Arm();
+  public static Base base = new Base();
+  public static Intake intake = new Intake();
   public static OI m_oi;
   private Command m_autonomousCommand;
   private XboxController xbox = new XboxController(RobotMap.DRIVER_CONTROLLER);
@@ -59,6 +65,7 @@ public static DriveTrain driveTrain = new DriveTrain();
  
   @Override
   public void robotPeriodic() {
+    System.out.println("PERIODIC");
     
     
     CommandScheduler.getInstance().run();

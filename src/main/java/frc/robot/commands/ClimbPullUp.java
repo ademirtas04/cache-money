@@ -19,7 +19,7 @@ public class ClimbPullUp extends Command {
 
 
   public ClimbPullUp(){
-    requires(Robot.Climb);
+    requires(Robot.climb);
 
   }
 

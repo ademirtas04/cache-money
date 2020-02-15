@@ -9,6 +9,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.subsystems.Intake;
 
@@ -16,7 +17,7 @@ public class ArmIntake extends Command {
   private double startTime;
   
   public ArmIntake() {
-    //requires(Robot.Intake);
+    requires(Robot.arm);
   }
 
   // Called just before this Command runs the first time
@@ -30,7 +31,7 @@ public class ArmIntake extends Command {
 
   public void execute() {
     if(Timer.getFPGATimestamp() - RobotMap.CONSTANT_ARM_TIMER < startTime){
-      Intake.armReset();
+      Intake.IntakeReset();
     } else {
       this.end();
     }
@@ -45,7 +46,7 @@ public class ArmIntake extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Intake.armReset();
+    Intake.IntakeReset();
   }
 
   // Called when another command which requires one or more of the same

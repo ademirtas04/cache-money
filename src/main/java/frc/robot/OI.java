@@ -11,7 +11,6 @@ import frc.robot.commands.BaseLift;
 import frc.robot.commands.BaseSink;
 import frc.robot.commands.PrintTester1;
 import frc.robot.commands.PrintTester2;
-import frc.robot.commands.PrintTester3;
 import frc.robot.commands.WheelColorIdentification;
 import frc.robot.commands.WheelColorRotation;
 import frc.robot.commands.WheelRotation;
@@ -37,15 +36,19 @@ public class OI {
         
 
         // WHEN PRESSED || ACTUAL VALUES COMMENTED OUT FOR TESTING       
-        
+        System.out.println("OI");
+        greenButton.whenPressed(new PrintTester1());
+        blueButton.whenPressed(new PrintTester2(3));
+        /*
         greenButton.whenPressed(new WheelColorIdentification(1));
         blueButton.whenPressed(new WheelColorIdentification(3));
         redButton.whenPressed(new WheelColorIdentification(2));
         yellowButton.whenPressed(new WheelColorIdentification(4));
+        */
 
         //WHEEL ROTATION BUTTONS
         
-
+        
         //SERVO ARM ROTATION BUTTONS
         RightTrigButton.whenPressed(new BaseSink());
         LeftTrigButton.whenPressed(new BaseLift());

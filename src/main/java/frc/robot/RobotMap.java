@@ -19,22 +19,29 @@ public class RobotMap {
 	public static final int ARM_MOTOR_3_ID = 27;
 	public static final int ARM_MOTOR_4_ID = 28;
 
-	//CONTROLLERS AND STICK VALUES
+	//CONTROLLER PORT VALUES
 	public static final int DRIVER_CONTROLLER = 0;
 	public static final int BUTTON_CONTROLLER = 1;
-	public static final int LEFT_STICK_Y = 4;
+
+	//XBOX PORT VALUES
+	public static final int RIGHT_STICK_Y = 0;
 	public static final int RIGHT_STICK_X = 1;
+	public static final int BUTTON_LEFTTRIG = 2;
+	public static final int BUTTON_RIGHTTRIG = 3;
+	public static final int LEFT_STICK_Y = 4;
 	public static final int JOYSTICK_Y = 5;
 
-	//BUTTON VALUES
+	//XBOX BUTTON VALUES
 	public static final int BUTTON_GREEN = 1;
 	public static final int BUTTON_RED = 2;
 	public static final int BUTTON_BLUE = 3;
 	public static final int BUTTON_YELLOW = 4;
-	public static final int BUTTON_LEFTTRIG = 2;
-	public static final int BUTTON_RIGHTTRIG = 3;
-	public static final int BUTTON_RIGHTBUMP = 6;
 	public static final int BUTTON_LEFTBUMP = 5;
+	public final static int BUTTON_RIGHTBUMP = 6;
+	public final static int BUTTON_BACK = 7;
+	public final static int BUTTON_START = 8;
+	public final static int BUTTON_LEFTSTICK = 9;
+	public final static int BUTTON_RIGHTSTICK = 10;
 
     //PID VALUES
 	public static final double kP = 0.5;
@@ -49,13 +56,12 @@ public class RobotMap {
 	public static final int ERROR_CONSTANT = 15;
 
 	//ROTATION VALUES
-	public static final double SINGLE_ROTATION_TIME = 0;
-	public static final double CONSTANT_TIMER = 0;
-	public static final double CONSTANT_ARM_TIMER = 0;
+	public static final double SINGLE_ROTATION_TIME = 0; // Fill in once tested
+	public static final double CONSTANT_TIMER = 5;
+	public static final double CONSTANT_ARM_TIMER = 5;
 	public static final int INTAKE_PORT = 0;
-	public static final int ARM_PORT = 0;
-	public static final int BASE_SPORT = 0;
-	public static final int BASE_PORT = 0;
+	public static final int ARM_PORT = 0; // Fill in once built in
+	public static final int BASE_PORT = 0; // Fill in once built in
 
 
 

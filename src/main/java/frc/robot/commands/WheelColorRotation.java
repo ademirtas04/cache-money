@@ -8,6 +8,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.Intake;
 
 public class WheelColorRotation extends Command {
@@ -28,7 +29,7 @@ public class WheelColorRotation extends Command {
   @Override
   protected void execute() {
     if(armMoved == false){
-      Intake.armMove();
+      Arm.armMove();
       armMoved = true;
     }
     if(WheelColorIdentification.colorMatch() != false){
@@ -48,7 +49,7 @@ public class WheelColorRotation extends Command {
   @Override
   protected void end() {
     System.out.println("Stopped");
-    Intake.armReset();
+    Arm.armReset();
   }
 
   // Called when another command which requires one or more of the same

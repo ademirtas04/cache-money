@@ -9,14 +9,15 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.Robot;
 import frc.robot.RobotMap;
-import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.Base;
 
 public class BaseLift extends Command {
   private double startTime;
   
   public BaseLift() {
-    //requires(Robot.Intake);
+    requires(Robot.base);
   }
 
   // Called just before this Command runs the first time
@@ -30,7 +31,7 @@ public class BaseLift extends Command {
 
   public void execute() {
     if(Timer.getFPGATimestamp() - RobotMap.CONSTANT_TIMER < startTime){
-      Intake.baseReset();
+      Base.baseReset();
     } else {
       this.end();
     }

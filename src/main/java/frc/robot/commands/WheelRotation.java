@@ -10,7 +10,7 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.RobotMap;
-import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.Arm;
 
 public class WheelRotation extends Command {
   private double startTime;
@@ -31,7 +31,7 @@ public class WheelRotation extends Command {
   @Override
   protected void execute() {
     if(this.armMoved == false){
-      Intake.armMove();
+      Arm.armMove();
       this.armMoved = true;
     }
     currentTime = Timer.getFPGATimestamp();
@@ -52,7 +52,7 @@ public class WheelRotation extends Command {
   @Override
   protected void end() {
     System.out.println("STOPPING");
-    Intake.armReset();
+    Arm.armReset();
   }
 
   // Called when another command which requires one or more of the same

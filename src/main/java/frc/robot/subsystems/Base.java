@@ -12,9 +12,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 
 
-public class Intake extends Subsystem {
-  public static Servo intake = new Servo(RobotMap.INTAKE_PORT);
-
+public class Base extends Subsystem {
+  public static Servo base = new Servo(RobotMap.BASE_PORT);
   
  
  
@@ -23,12 +22,14 @@ public class Intake extends Subsystem {
     // This method will be called once per scheduler run
   }
 
-  public static void IntakeMove(){
-    //ALERT: We need to find the right angle for this (see if it's negative or not) 
-    intake.setAngle(-90);
+  public static void baseMove(){
+    base.setBounds(2.0, 1.8, 1.5, 1.2, 1.0);
+    base.setSpeed(1.0);
+  }
+  public static void baseReset(){
+    base.setBounds(2.0, 1.8, 1.5, 1.2, 1.0);
+    base.setAngle(-1.0);
   }
 
-  public static void IntakeReset(){
-    intake.setAngle(0);
-  }
+
 }
