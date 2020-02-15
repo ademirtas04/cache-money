@@ -13,7 +13,7 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 public class Climb extends Subsystem {
-  public static CANSparkMax armMotorMax = new CANSparkMax(RobotMap.ARM_MOTOR_1_ID, MotorType.kBrushless);
+  //public static CANSparkMax armMotorMax = new CANSparkMax(RobotMap.ARM_MOTOR_1_ID, MotorType.kBrushless);
 
 
 
@@ -32,7 +32,7 @@ public class Climb extends Subsystem {
   }
 
   public static void setMotor(double speed) {
-    armMotorMax.set(speed);
+    //armMotorMax.set(speed);
 
 }
 

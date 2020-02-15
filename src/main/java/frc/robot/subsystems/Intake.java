@@ -13,7 +13,7 @@ import frc.robot.RobotMap;
 
 
 public class Intake extends Subsystem {
-  public static Servo intake = new Servo(RobotMap.INTAKE_PORT);
+  //public static Servo intake = new Servo(RobotMap.INTAKE_PORT);
 
   
  
@@ -25,10 +25,19 @@ public class Intake extends Subsystem {
 
   public static void IntakeMove(){
     //ALERT: We need to find the right angle for this (see if it's negative or not) 
-    intake.setAngle(-90);
+    //intake.setAngle(RobotMap.IDEAL_DUMP_ANGLE);
   }
 
   public static void IntakeReset(){
-    intake.setAngle(0);
+    //intake.setAngle(RobotMap.IDEAL_HOLD_ANGLE);
+  }
+
+  public static double getAngle(){
+    //return intake.getAngle();
+    return 0;
+  }
+
+  public static void zeroSpeed(){
+    //intake.setSpeed(0);
   }
 }

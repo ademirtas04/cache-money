@@ -30,23 +30,23 @@ public class ArmDump extends Command {
   @Override
 
   public void execute() {
-    if(Timer.getFPGATimestamp() - RobotMap.CONSTANT_ARM_TIMER < startTime){
-      Intake.IntakeMove();
-    } else {
-      this.end();
-    }
+    Intake.IntakeMove();
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    if(Timer.getFPGATimestamp() - startTime > RobotMap.CONSTANT_ARM_TIMER || Intake.getAngle() == RobotMap.IDEAL_DUMP_ANGLE){
+      return true;
+    } else {
+      return false;
+    }
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Intake.IntakeReset();
+    Intake.zeroSpeed();
   }
 
   // Called when another command which requires one or more of the same

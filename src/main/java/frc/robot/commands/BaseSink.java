@@ -30,17 +30,17 @@ public class BaseSink extends Command {
   @Override
 
   public void execute() {
-    if(Timer.getFPGATimestamp() - RobotMap.CONSTANT_TIMER < startTime){
-      Base.baseReset();
-    } else {
-      this.end();
-    }
+    Base.baseReset();
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    if(Timer.getFPGATimestamp() - RobotMap.CONSTANT_TIMER < startTime){
+      return true;
+    } else {
+      return false;
+    }
   }
 
   // Called once after isFinished returns true

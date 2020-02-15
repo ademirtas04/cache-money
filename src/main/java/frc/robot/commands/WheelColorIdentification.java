@@ -8,13 +8,11 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.OI;
 import frc.robot.RobotMap;
 import frc.robot.pixy.Pixy2;
 import frc.robot.pixy.Pixy2Video;
 import frc.robot.pixy.Pixy2Video.RGB;
 import frc.robot.pixy.links.SPILink;
-import frc.robot.commands.TankDrive;
 import java.awt.Color;
 
 public class WheelColorIdentification extends Command {

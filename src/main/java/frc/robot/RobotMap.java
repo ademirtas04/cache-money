@@ -63,6 +63,9 @@ public class RobotMap {
 	public static final int ARM_PORT = 0; // Fill in once built in
 	public static final int BASE_PORT = 0; // Fill in once built in
 
+	public static final double IDEAL_DUMP_ANGLE = 90; // Change once tested
+	public static final double IDEAL_HOLD_ANGLE = 10; // Change once tested
+
 
 
 

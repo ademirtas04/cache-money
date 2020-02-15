@@ -1,10 +1,8 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.commands.ArmDump;
 import frc.robot.commands.ArmIntake;
 import frc.robot.commands.BaseLift;
@@ -21,14 +19,16 @@ public class OI {
     public static Joystick xbox = new Joystick(RobotMap.DRIVER_CONTROLLER);
     public static Joystick joystick = new Joystick(RobotMap.BUTTON_CONTROLLER);
 
-    private Button greenButton = new JoystickButton(xbox, RobotMap.BUTTON_GREEN);
-    private Button redButton = new JoystickButton(xbox, RobotMap.BUTTON_RED);
-    private Button blueButton = new JoystickButton(xbox, RobotMap.BUTTON_BLUE);
-    private Button yellowButton = new JoystickButton(xbox, RobotMap.BUTTON_YELLOW);
-    private Button LeftTrigButton = new JoystickButton(xbox, RobotMap.BUTTON_LEFTTRIG);
-    private Button RightTrigButton = new JoystickButton(xbox, RobotMap.BUTTON_RIGHTTRIG);
-    private Button LeftBumpButton = new JoystickButton(xbox, RobotMap.BUTTON_LEFTBUMP);
-    private Button RightBumpButton = new JoystickButton(xbox, RobotMap.BUTTON_RIGHTBUMP);
+    public static Button greenButton = new JoystickButton(xbox, RobotMap.BUTTON_GREEN);
+    public static Button redButton = new JoystickButton(xbox, RobotMap.BUTTON_RED);
+    public static Button blueButton = new JoystickButton(xbox, RobotMap.BUTTON_BLUE);
+    public static Button yellowButton = new JoystickButton(xbox, RobotMap.BUTTON_YELLOW);
+    public static Button LeftTrigButton = new JoystickButton(xbox, RobotMap.BUTTON_LEFTTRIG);
+    public static Button RightTrigButton = new JoystickButton(xbox, RobotMap.BUTTON_RIGHTTRIG);
+    public static Button LeftBumpButton = new JoystickButton(xbox, RobotMap.BUTTON_LEFTBUMP);
+    public static Button RightBumpButton = new JoystickButton(xbox, RobotMap.BUTTON_RIGHTBUMP);
+    public static Button BackButton = new JoystickButton(xbox, RobotMap.BUTTON_BACK);
+    public static Button StartButton = new JoystickButton(xbox, RobotMap.BUTTON_START);
 
     public OI() {
         
@@ -52,7 +52,7 @@ public class OI {
         //SERVO ARM ROTATION BUTTONS
         RightTrigButton.whenPressed(new BaseSink());
         LeftTrigButton.whenPressed(new BaseLift());
-        LeftBumpButton.whenPressed(new ArmDump());
-        RightBumpButton.whenPressed(new ArmIntake());
+        BackButton.whenPressed(new ArmDump());
+        StartButton.whenPressed(new ArmIntake());
     }
 }

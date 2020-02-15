@@ -27,20 +27,21 @@ public class ArmIntake extends Command {
   }
 
   // Called repeatedly when this Command is scheduled to run
+
   @Override
 
   public void execute() {
-    if(Timer.getFPGATimestamp() - RobotMap.CONSTANT_ARM_TIMER < startTime){
-      Intake.IntakeReset();
-    } else {
-      this.end();
-    }
+    Intake.IntakeReset();
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    if(Timer.getFPGATimestamp() - startTime > RobotMap.CONSTANT_ARM_TIMER || Intake.getAngle() == RobotMap.IDEAL_HOLD_ANGLE){
+      return true;
+    } else {
+      return false;
+    }
   }
 
   // Called once after isFinished returns true
