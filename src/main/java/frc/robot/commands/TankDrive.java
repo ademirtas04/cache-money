@@ -34,12 +34,7 @@ public class TankDrive extends Command {
   @Override
   public void execute() {
 //The Left stick is speed control, the Right stick is turning control
-    double speed = Robot.m_oi.getDriverRawAxis(RobotMap.LEFT_STICK_Y);
-    double turn = -Robot.m_oi.getDriverRawAxis(RobotMap.RIGHT_STICK_X);
-    //The Left is pos the right is neg
-    double left = speed + turn;
-    double right = speed - turn;
-    DriveTrain.move(left,right);
+    
   }
   // When the stop button is hit, the motors turn off
   @Override
@@ -52,5 +47,13 @@ public class TankDrive extends Command {
   public boolean isFinished() {
     return false;
   }
-
+  
+  public static void move() {
+    double speed = Robot.m_oi.getDriverRawAxis(RobotMap.LEFT_STICK_Y);
+    double turn = -Robot.m_oi.getDriverRawAxis(RobotMap.RIGHT_STICK_X);
+    //The Left is pos the right is neg
+    double left = speed + turn;
+    double right = speed - turn;
+    DriveTrain.move(left,right);
+  }
 }

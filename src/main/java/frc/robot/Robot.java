@@ -10,7 +10,6 @@ package frc.robot;
 import com.ctre.phoenix.schedulers.SequentialScheduler;
 
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -42,7 +41,6 @@ public class Robot extends TimedRobot {
   public static Intake intake = new Intake();
   public static OI m_oi;
   private Command m_autonomousCommand;
-  private XboxController xbox = new XboxController(RobotMap.DRIVER_CONTROLLER);
   private ControlChooser m_controlChooser;
   private SmartDashboardInterface m_smartDashboardInterface;
   private SensorReset m_sensorReset;
@@ -110,7 +108,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
      Scheduler.getInstance().run();
-
+     TankDrive.move();
   }
 
   @Override
