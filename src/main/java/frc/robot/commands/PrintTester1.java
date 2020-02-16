@@ -14,8 +14,9 @@ public class PrintTester1 extends Command {
   // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   
-
+  private int numPrints = 0;
   public PrintTester1() {
+    
 	}
 
 // Called just before this Command runs the first time
@@ -27,7 +28,10 @@ public class PrintTester1 extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    System.out.println("EXECUTE");
+      System.out.println("EXECUTE");
+      numPrints++;
+    }
+
   }
 
   // Make this return true when this Command no longer needs to run execute()
