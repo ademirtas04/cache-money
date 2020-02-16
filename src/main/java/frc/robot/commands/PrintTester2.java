@@ -9,7 +9,7 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 public class PrintTester2 extends Command {
 
-
+private boolean printed = false;
   private int printeger;
   public PrintTester2(int i){
     this.printeger = i;
@@ -29,12 +29,13 @@ public class PrintTester2 extends Command {
   @Override
   protected void execute() {
     System.out.println("EXECUTE " + printeger);
+    printed = true;
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return printed;
   }
 
   // Called once after isFinished returns true

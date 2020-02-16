@@ -14,7 +14,7 @@ public class PrintTester1 extends Command {
   // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   
-  private int numPrints = 0;
+  private boolean printed = false;
   public PrintTester1() {
     
 	}
@@ -29,15 +29,14 @@ public class PrintTester1 extends Command {
   @Override
   protected void execute() {
       System.out.println("EXECUTE");
-      numPrints++;
-    }
+      printed = true;
 
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+     return printed;
   }
 
   // Called once after isFinished returns true
