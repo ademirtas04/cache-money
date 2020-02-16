@@ -103,17 +103,10 @@ public class Robot extends TimedRobot {
   @Override
   //Code when the Enable button is hit during teleop period
   public void teleopInit() {
-    // This makes sure that the autonomous stops running when
-    // teleop starts running. If you want the autonomous to
-    // continue until interrupted by another command, remove
-    // this line or comment it out.
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
   }
-  /**
-   * Driver Controls
-   */
   @Override
   public void teleopPeriodic() {
      Scheduler.getInstance().run();

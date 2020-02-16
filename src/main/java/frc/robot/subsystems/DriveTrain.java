@@ -37,9 +37,9 @@ public class DriveTrain extends Subsystem {
     motorRight2.set(ControlMode.PercentOutput, -speed);
  }
 
- public static void move(double left, double right){
-  DriveTrain.setLeftMotors(left);
-  DriveTrain.setRightMotors(right);
-}
+  public static void move(double left, double right){
+    setLeftMotors(left);
+    setRightMotors(right);
+  }
 
 }
