@@ -6,19 +6,29 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot.commands;
-//import frc.robot.subsystems.Climb;
+
 import frc.robot.Robot;
 import com.revrobotics.SparkMax;
 import com.revrobotics.ControlType;
+import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.RobotMap;
+import frc.robot.subsystems.Climb;
 
 
 public class ClimbPullUp extends Command {
 
 
-
-  public ClimbPullUp(){
+  private static double setpoint = 0;
+  private static Encoder encoder = new Encoder(0, 1, true, EncodingType.k4X);
+  public static double lastTimeStamp = 0;
+  public static double lastError = 0;
+  public static double errorSum = 0;
+  public static int buttonInput = 0;
+  public ClimbPullUp(int i){
+    ClimbPullUp.buttonInput = i;
     requires(Robot.climb);
 
   }
@@ -30,11 +40,42 @@ public class ClimbPullUp extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    encoder.reset();
+    errorSum = 0;
+    lastError = 0;
+    lastTimeStamp = Timer.getFPGATimestamp();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    if (buttonInput == 0){
+      setpoint = 6.9;
+    }else if (buttonInput == 1) {
+      setpoint = 5.75;
+    }
+    //get sensor position
+    double sensorPosition = encoder.get() * RobotMap.kDriveTick2Feet;
+
+    //calculations
+    double error = setpoint - sensorPosition;
+    if(error != 0){
+      double dt = Timer.getFPGATimestamp() - lastTimeStamp;
+      
+      if(Math.abs(error) < RobotMap.iLimit){
+        errorSum += error * dt;
+      }
+
+      double errorRate = (error - lastError) / dt; 
+
+      double outputSpeed = RobotMap.kP * error + RobotMap.kI * errorSum + RobotMap.kD * errorRate;
+      if(outputSpeed < 0.02){
+
+      }
+      Climb.setMotor(outputSpeed);
+      lastTimeStamp = Timer.getFPGATimestamp();
+      lastError = error;
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()

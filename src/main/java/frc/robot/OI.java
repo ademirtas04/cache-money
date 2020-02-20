@@ -23,8 +23,6 @@ public class OI {
     public static Button redButton = new JoystickButton(xbox, RobotMap.BUTTON_RED);
     public static Button blueButton = new JoystickButton(xbox, RobotMap.BUTTON_BLUE);
     public static Button yellowButton = new JoystickButton(xbox, RobotMap.BUTTON_YELLOW);
-    public static Button LeftTrigButton = new JoystickButton(xbox, RobotMap.BUTTON_LEFTTRIG);
-    public static Button RightTrigButton = new JoystickButton(xbox, RobotMap.BUTTON_RIGHTTRIG);
     public static Button LeftBumpButton = new JoystickButton(xbox, RobotMap.BUTTON_LEFTBUMP);
     public static Button RightBumpButton = new JoystickButton(xbox, RobotMap.BUTTON_RIGHTBUMP);
     public static Button BackButton = new JoystickButton(xbox, RobotMap.BUTTON_BACK);
@@ -39,19 +37,13 @@ public class OI {
         System.out.println("OI");
         greenButton.whenPressed(new PrintTester1());
         blueButton.whenPressed(new PrintTester2(3));
-        /*
-        greenButton.whenPressed(new WheelColorIdentification(1));
-        blueButton.whenPressed(new WheelColorIdentification(3));
-        redButton.whenPressed(new WheelColorIdentification(2));
-        yellowButton.whenPressed(new WheelColorIdentification(4));
-        */
 
         //WHEEL ROTATION BUTTONS
         
         
         //SERVO ARM ROTATION BUTTONS
-        RightTrigButton.whenPressed(new BaseSink());
-        LeftTrigButton.whenPressed(new BaseLift());
+        LeftBumpButton.whenPressed(new BaseSink());
+        RightBumpButton.whenPressed(new BaseLift());
         BackButton.whenPressed(new ArmDump());
         StartButton.whenPressed(new ArmIntake());
     }
