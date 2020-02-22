@@ -43,6 +43,9 @@ public class RobotMap {
 	public final static int BUTTON_LEFTSTICK = 9;
 	public final static int BUTTON_RIGHTSTICK = 10;
 
+	//JOYSTICK BUTTON VALUES
+	public static final int MAIN_TRIGGER = 1;
+
     //PID VALUES
 	public static final double kP = 0.5;
 	public static final double kI = 0.5;
@@ -60,11 +63,18 @@ public class RobotMap {
 	public static final double CONSTANT_TIMER = 5;
 	public static final double CONSTANT_ARM_TIMER = 5;
 	public static final int INTAKE_PORT = 0;
-	public static final int ARM_PORT = 0; // Fill in once built in
+	public static final int ARM_PORT = 1; 
 	public static final int BASE_PORT = 0; // Fill in once built in
 
 	public static final double IDEAL_DUMP_ANGLE = 90; // Change once tested
 	public static final double IDEAL_HOLD_ANGLE = 10; // Change once tested
+
+	//AUTONOMOUS VALUES
+	public static final double AUTO_WAIT = 0;
+	public static final double AUTO_DRIVE_TIME = 0;
+	public static final double AUTO_WAIT_TIME = 0;
+	public static final double AUTO_DROP_TIME = 0;
+	public static final double AUTONOMOUS_LENGTH = 0;
 
 
 

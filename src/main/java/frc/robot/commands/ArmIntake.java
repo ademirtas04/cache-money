@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
+import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.Intake;
 
 public class ArmIntake extends Command {
@@ -31,7 +32,7 @@ public class ArmIntake extends Command {
   @Override
 
   public void execute() {
-    Intake.IntakeReset();
+    Arm.armReset();
   }
 
   // Make this return true when this Command no longer needs to run execute()

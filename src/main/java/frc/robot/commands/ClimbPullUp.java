@@ -8,8 +8,6 @@
 package frc.robot.commands;
 
 import frc.robot.Robot;
-import com.revrobotics.SparkMax;
-import com.revrobotics.ControlType;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.CounterBase.EncodingType;
@@ -27,6 +25,7 @@ public class ClimbPullUp extends Command {
   public static double lastError = 0;
   public static double errorSum = 0;
   public static int buttonInput = 0;
+  public static boolean lifted = false;
   public ClimbPullUp(int i){
     ClimbPullUp.buttonInput = i;
     requires(Robot.climb);
@@ -69,19 +68,19 @@ public class ClimbPullUp extends Command {
       double errorRate = (error - lastError) / dt; 
 
       double outputSpeed = RobotMap.kP * error + RobotMap.kI * errorSum + RobotMap.kD * errorRate;
-      if(outputSpeed < 0.02){
 
-      }
       Climb.setMotor(outputSpeed);
       lastTimeStamp = Timer.getFPGATimestamp();
       lastError = error;
+    } else {
+      lifted = true;
     }
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return lifted;
   }
 
   // Called once after isFinished returns true

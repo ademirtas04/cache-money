@@ -7,11 +7,8 @@ import frc.robot.commands.ArmDump;
 import frc.robot.commands.ArmIntake;
 import frc.robot.commands.BaseLift;
 import frc.robot.commands.BaseSink;
-import frc.robot.commands.PrintTester1;
-import frc.robot.commands.PrintTester2;
-import frc.robot.commands.WheelColorIdentification;
-import frc.robot.commands.WheelColorRotation;
-import frc.robot.commands.WheelRotation;
+import frc.robot.commands.ClimbPullUp;
+
 
 //XYAB will be used for the pixycam, bumpers and triggers for arm control
 public class OI {
@@ -28,6 +25,9 @@ public class OI {
     public static Button BackButton = new JoystickButton(xbox, RobotMap.BUTTON_BACK);
     public static Button StartButton = new JoystickButton(xbox, RobotMap.BUTTON_START);
 
+    public static Button liftButton = new JoystickButton(joystick, RobotMap.MAIN_TRIGGER);
+
+
     public OI() {
         
         // COLOR BUTTONS
@@ -35,8 +35,8 @@ public class OI {
 
         // WHEN PRESSED || ACTUAL VALUES COMMENTED OUT FOR TESTING       
         System.out.println("OI");
-        greenButton.whenPressed(new PrintTester1());
-        blueButton.whenPressed(new PrintTester2(3));
+        greenButton.whenPressed(new ArmDump());
+        blueButton.whenPressed(new ArmIntake());
 
         //WHEEL ROTATION BUTTONS
         
@@ -46,6 +46,10 @@ public class OI {
         RightBumpButton.whenPressed(new BaseLift());
         BackButton.whenPressed(new ArmDump());
         StartButton.whenPressed(new ArmIntake());
+
+        liftButton.whenPressed(new ClimbPullUp(1));
+
+
     }
 
     public double getDriverRawAxis(int axis) {

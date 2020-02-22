@@ -10,11 +10,11 @@ package frc.robot;
 import com.ctre.phoenix.schedulers.SequentialScheduler;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.commands.Autonomous;
 import frc.robot.commands.TankDrive;
 import frc.robot.misc.ControlChooser;
 import frc.robot.misc.SensorReset;
@@ -40,6 +40,7 @@ public class Robot extends TimedRobot {
   public static Base base = new Base();
   public static Intake intake = new Intake();
   public static OI m_oi;
+  public static double startTime = 0;
   private Command m_autonomousCommand;
   private ControlChooser m_controlChooser;
   private SmartDashboardInterface m_smartDashboardInterface;
@@ -88,12 +89,19 @@ public class Robot extends TimedRobot {
   @Override
   //Code when the enable button is hit in the autonomous tab
   public void autonomousInit() {
-    Autonomous.autoStart();
+    startTime = Timer.getFPGATimestamp();
   }
 
   @Override
   public void autonomousPeriodic() {
-    Autonomous.autoSequence();
+    double currentTime = Timer.getFPGATimestamp();
+    if(currentTime - startTime < RobotMap.AUTO_WAIT_TIME){
+      System.out.println("Moving");
+    } else if(currentTime - startTime < RobotMap.AUTO_DRIVE_TIME){
+      DriveTrain.move(-1,1);
+    } else if (currentTime - startTime < RobotMap.AUTO_DROP_TIME){
+      Arm.armMove();
+    } 
   }
   
 

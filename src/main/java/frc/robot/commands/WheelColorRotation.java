@@ -9,7 +9,6 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.subsystems.Arm;
-import frc.robot.subsystems.Intake;
 
 public class WheelColorRotation extends Command {
   private boolean armMoved;

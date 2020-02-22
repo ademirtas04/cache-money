@@ -11,13 +11,14 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
+import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.Intake;
 
 public class ArmDump extends Command {
   private double startTime;
   
   public ArmDump() {
-    requires(Robot.intake);
+    requires(Robot.arm);
   }
 
   // Called just before this Command runs the first time
@@ -30,7 +31,7 @@ public class ArmDump extends Command {
   @Override
 
   public void execute() {
-    Intake.IntakeMove();
+    Arm.armMove();
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -46,7 +47,6 @@ public class ArmDump extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Intake.zeroSpeed();
   }
 
   // Called when another command which requires one or more of the same
