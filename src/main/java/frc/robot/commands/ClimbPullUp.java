@@ -20,7 +20,7 @@ public class ClimbPullUp extends Command {
 
 
   private static double setpoint = 0;
-  private static Encoder encoder = new Encoder(0, 1, true, EncodingType.k4X);
+  private static Encoder encoder = new Encoder(RobotMap.ENCODER1_PORT_A, RobotMap.ENCODER1_PORT_B, true, EncodingType.k4X);
   public static double lastTimeStamp = 0;
   public static double lastError = 0;
   public static double errorSum = 0;
@@ -42,17 +42,18 @@ public class ClimbPullUp extends Command {
     encoder.reset();
     errorSum = 0;
     lastError = 0;
+    if (buttonInput == 0){
+      setpoint = 6.9;
+    }else if (buttonInput == 1) {
+      setpoint = 5.75;
+    }
     lastTimeStamp = Timer.getFPGATimestamp();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if (buttonInput == 0){
-      setpoint = 6.9;
-    }else if (buttonInput == 1) {
-      setpoint = 5.75;
-    }
+
     //get sensor position
     double sensorPosition = encoder.get() * RobotMap.kDriveTick2Feet;
 
@@ -69,7 +70,7 @@ public class ClimbPullUp extends Command {
 
       double outputSpeed = RobotMap.kP * error + RobotMap.kI * errorSum + RobotMap.kD * errorRate;
 
-      Climb.setMotor(outputSpeed);
+      Climb.setClimbs(outputSpeed);
       lastTimeStamp = Timer.getFPGATimestamp();
       lastError = error;
     } else {
@@ -86,6 +87,30 @@ public class ClimbPullUp extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    while(setpoint < 0) {
+
+    //get sensor position
+    double sensorPosition = encoder.get() * RobotMap.kDriveTick2Feet;
+
+    //calculations
+    double error = setpoint - sensorPosition;
+    if(error != 0){
+      double dt = Timer.getFPGATimestamp() - lastTimeStamp;
+      
+      if(Math.abs(error) < RobotMap.iLimit){
+        errorSum += error * dt;
+      }
+
+      double errorRate = (error - lastError) / dt; 
+
+      double outputSpeed = RobotMap.kP * error + RobotMap.kI * errorSum + RobotMap.kD * errorRate;
+
+      Climb.setClimbs(outputSpeed);
+      lastTimeStamp = Timer.getFPGATimestamp();
+      lastError = error;
+    }
+  }
+
   }
 
   // Called when another command which requires one or more of the same

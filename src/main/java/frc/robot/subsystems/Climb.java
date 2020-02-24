@@ -9,11 +9,14 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+
 
 public class Climb extends Subsystem {
-  public static CANSparkMax armMotorMax = new CANSparkMax(RobotMap.ARM_MOTOR_1_ID, MotorType.kBrushless);
+  public static VictorSPX armMotor1 = new VictorSPX(RobotMap.ARM_MOTOR_1_ID);
+  public static VictorSPX armMotor2 = new VictorSPX(RobotMap.ARM_MOTOR_2_ID);
 
 
 
@@ -31,8 +34,9 @@ public class Climb extends Subsystem {
    
   }
 
-  public static void setMotor(double speed) {
-    armMotorMax.set(speed);
+  public static void setClimbs(double speed) {
+    armMotor1.set(ControlMode.PercentOutput, speed);
+    armMotor2.set(ControlMode.PercentOutput, 63/100 * speed);
 
 }
 
