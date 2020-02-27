@@ -53,37 +53,10 @@ public class ClimbPullUp extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    /*
-
-
-    //get sensor position
-    double sensorPosition = encoder.get() * RobotMap.kDriveTick2Feet;
-
-    //calculations
-    double error = setpoint - sensorPosition;
-    if(error != 0){
-      double dt = Timer.getFPGATimestamp() - lastTimeStamp;
-      
-      if(Math.abs(error) < RobotMap.iLimit){
-        errorSum += error * dt;
-      }
-
-      double errorRate = (error - lastError) / dt; 
-
-      double outputSpeed = RobotMap.kP * error + RobotMap.kI * errorSum + RobotMap.kD * errorRate;
-
-      Climb.setClimbs(outputSpeed);
-      lastTimeStamp = Timer.getFPGATimestamp();
-      lastError = error;
-    } else {
-      lifted = true;
-    }
-  }
-
-  // Make this return true when this Command no longer needs to run execute()
-  */
-  if( encoder.get() * RobotMap.kDriveTick2Feet < setpoint){
+  if(encoder.get() * RobotMap.kDriveTick2Feet < setpoint){
     Climb.setClimbs(0.5);
+  } else {
+    lifted = true;
   }
 
   }
@@ -95,29 +68,9 @@ public class ClimbPullUp extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    while(setpoint < 0) {
-
-    //get sensor position
-    double sensorPosition = encoder.get() * RobotMap.kDriveTick2Feet;
-
-    //calculations
-    double error = setpoint - sensorPosition;
-    if(error != 0){
-      double dt = Timer.getFPGATimestamp() - lastTimeStamp;
-      
-      if(Math.abs(error) < RobotMap.iLimit){
-        errorSum += error * dt;
-      }
-
-      double errorRate = (error - lastError) / dt; 
-
-      double outputSpeed = RobotMap.kP * error + RobotMap.kI * errorSum + RobotMap.kD * errorRate;
-
-      Climb.setClimbs(outputSpeed);
-      lastTimeStamp = Timer.getFPGATimestamp();
-      lastError = error;
+    while(encoder.get() * RobotMap.kDriveTick2Feet  > 0) {
+      Climb.setClimbs(-0.5);  
     }
-  }
 
   }
 

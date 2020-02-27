@@ -7,7 +7,6 @@
 
 package frc.robot;
 
-import com.ctre.phoenix.schedulers.SequentialScheduler;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.Timer;
@@ -23,7 +22,6 @@ import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.Base;
 import frc.robot.subsystems.Climb;
 import frc.robot.subsystems.DriveTrain;
-import frc.robot.subsystems.Intake;
 
 
 
@@ -38,7 +36,6 @@ public class Robot extends TimedRobot {
   public static TankDrive tankDrive = new TankDrive();
   public static Arm arm = new Arm();
   public static Base base = new Base();
-  public static Intake intake = new Intake();
   public static OI m_oi;
   public static double startTime = 0;
   private Command m_autonomousCommand;
