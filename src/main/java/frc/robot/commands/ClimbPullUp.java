@@ -53,6 +53,8 @@ public class ClimbPullUp extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    /*
+
 
     //get sensor position
     double sensorPosition = encoder.get() * RobotMap.kDriveTick2Feet;
@@ -79,6 +81,12 @@ public class ClimbPullUp extends Command {
   }
 
   // Make this return true when this Command no longer needs to run execute()
+  */
+  if( encoder.get() * RobotMap.kDriveTick2Feet < setpoint){
+    Climb.setClimbs(0.5);
+  }
+
+  }
   @Override
   protected boolean isFinished() {
     return lifted;
