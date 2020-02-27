@@ -77,7 +77,7 @@ public class RobotMap {
 	public static final double AUTONOMOUS_LENGTH = 0;
 	public static final int ENCODER1_PORT_A = 0; //These two can be values 0-3
 	public static final int ENCODER1_PORT_B = 1;
-	public static final int ENCODER2_PORT_A = 3; //These two can be values 0-3
+	public static final int ENCODER2_PORT_A = 3; //These two can be values 4-7
 	public static final int ENCODER2_PORT_B = 7;
 	public static final double ENDPOINT = 0;
 
