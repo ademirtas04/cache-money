@@ -29,9 +29,10 @@ public class ClimbTestWinch extends Command {
   private Encoder encoder;
   private VictorSPX motor;
   private int direction=0;
-  private double setpoint;
+  private double minsetpoint;
+  private double maxsetpoint;
   private double timeout;
-  public ClimbTestWinch(Encoder encoder, VictorSPX motor, int d, double setpoint, double timeout){
+  public ClimbTestWinch(Encoder encoder, VictorSPX motor, int d, double minsetpoint, double maxsetpoint, double timeout){
     System.out.println("Constructing");
     this.encoder = encoder;
     this.motor = motor;
@@ -40,7 +41,8 @@ public class ClimbTestWinch extends Command {
     } else {
       this.direction = d;
     }
-    this.setpoint = setpoint;
+    this.minsetpoint = minsetpoint;
+    this.maxsetpoint = maxsetpoint;
     this.timeout = timeout;
     
     requires(Robot.winchClimb);
@@ -68,9 +70,11 @@ public class ClimbTestWinch extends Command {
   protected void execute() {
     System.out.println("Execute: Current Time = " +  Timer.getFPGATimestamp());
     System.out.println("Execute: Start Time = " + startTime);
-    if (Timer.getFPGATimestamp() - startTime < timeout && Math.abs(encoder.get() * RobotMap.kDriveTick2Feet) < setpoint){
-      System.out.println("Execute: Encoder value = " + encoder.get() * RobotMap.kDriveTick2Feet);
-      setSpeed(1 * direction);
+    if (Timer.getFPGATimestamp() - startTime < timeout){
+      if((direction == 1 && encoder.get() * RobotMap.kDriveTick2Feet < maxsetpoint) || (direction == -1 && encoder.get() * RobotMap.kDriveTick2Feet > minsetpoint)){
+        System.out.println("Execute: Encoder value = " + encoder.get() * RobotMap.kDriveTick2Feet);
+        setSpeed(1 * direction);
+      }
     } else {
       System.out.println("Execute: Setting done to true");
       done = true;
