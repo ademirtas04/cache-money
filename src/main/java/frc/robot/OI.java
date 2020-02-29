@@ -7,9 +7,9 @@ import frc.robot.commands.ArmDump;
 import frc.robot.commands.ArmIntake;
 import frc.robot.commands.BaseLift;
 import frc.robot.commands.BaseSink;
-//import frc.robot.commands.ClimbPullUp;
-import frc.robot.commands.ClimbTest1;
-//import frc.robot.commands.ClimbTest2;
+import frc.robot.commands.ClimbTestLift;
+import frc.robot.commands.ClimbTestWinch;
+
 import frc.robot.subsystems.Climb;
 
 
@@ -33,7 +33,7 @@ public class OI {
     public static Button liftTestButtonLift = new JoystickButton(joystick, RobotMap.TEST_BUTTON_TWO);
     public static Button liftDropButtonWinch = new JoystickButton(joystick, RobotMap.TEST_BUTTON_THREE);
     public static Button liftDropButtonLift = new JoystickButton(joystick, RobotMap.TEST_BUTTON_FOUR);
-    public static Button liftResetButton = new JoystickButton(joystick, RobotMap.TEST_BUTTON_FIVE);
+    public static Button liftResetButton = new JoystickButton(joystick, RobotMap.TEST_BUTTON_SEVEN);
     public static Button winchResetButton = new JoystickButton(joystick, RobotMap.TEST_BUTTON_SIX);
 
 
@@ -58,12 +58,12 @@ public class OI {
         StartButton.whenPressed(new ArmIntake());
 
         //liftButton.whenPressed(new ClimbPullUp(1));
-        liftTestButtonWinch.whenPressed(new ClimbTest1(Climb.getWinchEncoder() ,Climb.getWinchMotor(), 1, 1, 0.1));
-        liftTestButtonLift.whenPressed(new ClimbTest1(Climb.getLiftEncoder(), Climb.getLiftMotor(), 1, 1, 0.1));
-        liftDropButtonWinch.whenPressed(new ClimbTest1(Climb.getWinchEncoder(), Climb.getWinchMotor(), -1, 1, 0.1));
-        liftDropButtonLift.whenPressed(new ClimbTest1(Climb.getLiftEncoder(), Climb.getLiftMotor(), -1, 1, 0.1));
-        liftResetButton.whenPressed(new ClimbTest1(Climb.getLiftEncoder(), Climb.getLiftMotor(), 0, 1, 0.1));
-        winchResetButton.whenPressed(new ClimbTest1(Climb.getWinchEncoder() ,Climb.getWinchMotor(), 0, 1, 0.1));
+        liftTestButtonWinch.whenPressed(new ClimbTestWinch(Climb.getWinchEncoder() ,Climb.getWinchMotor(), 1, 1.0, 1.0));
+        liftTestButtonLift.whenPressed(new ClimbTestLift(Climb.getLiftEncoder(), Climb.getLiftMotor(), 1, 1.0, 1.0));
+        liftDropButtonWinch.whenPressed(new ClimbTestWinch(Climb.getWinchEncoder(), Climb.getWinchMotor(), -1, 1.0, 1.0));
+        liftDropButtonLift.whenPressed(new ClimbTestLift(Climb.getLiftEncoder(), Climb.getLiftMotor(), -1, 1.0, 1.0));
+        liftResetButton.whenPressed(new ClimbTestLift(Climb.getLiftEncoder(), Climb.getLiftMotor(), 0, 0, 0));
+        winchResetButton.whenPressed(new ClimbTestWinch(Climb.getWinchEncoder() ,Climb.getWinchMotor(), 0, 0, 0));
 
     }
 

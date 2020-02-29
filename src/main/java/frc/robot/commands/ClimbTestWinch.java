@@ -20,7 +20,7 @@ import frc.robot.RobotMap;
 import frc.robot.subsystems.Climb;
 
 
-public class ClimbTest1 extends Command {
+public class ClimbTestWinch extends Command {
 
 
   //private static Encoder encoder = new Encoder(RobotMap.ENCODER1_PORT_A, RobotMap.ENCODER1_PORT_B, true, EncodingType.k4X);
@@ -31,7 +31,7 @@ public class ClimbTest1 extends Command {
   private int direction=0;
   private double setpoint;
   private double timeout;
-  public ClimbTest1(Encoder encoder, VictorSPX motor, int d, double setpoint, double timeout){
+  public ClimbTestWinch(Encoder encoder, VictorSPX motor, int d, double setpoint, double timeout){
     System.out.println("Constructing");
     this.encoder = encoder;
     this.motor = motor;
@@ -43,7 +43,7 @@ public class ClimbTest1 extends Command {
     this.setpoint = setpoint;
     this.timeout = timeout;
     
-    requires(Robot.climb);
+    requires(Robot.winchClimb);
 
   }
 
@@ -70,7 +70,7 @@ public class ClimbTest1 extends Command {
     System.out.println("Execute: Start Time = " + startTime);
     if (Timer.getFPGATimestamp() - startTime < timeout && Math.abs(encoder.get() * RobotMap.kDriveTick2Feet) < setpoint){
       System.out.println("Execute: Encoder value = " + encoder.get() * RobotMap.kDriveTick2Feet);
-      setSpeed(-0.25 * direction);
+      setSpeed(1 * direction);
     } else {
       System.out.println("Execute: Setting done to true");
       done = true;
@@ -86,7 +86,7 @@ public class ClimbTest1 extends Command {
   @Override
   protected void end() {
     System.out.println("End: done");
-    Climb.setLiftSpeed(0);
+    setSpeed(0);
   }
 
   // Called when another command which requires one or more of the same

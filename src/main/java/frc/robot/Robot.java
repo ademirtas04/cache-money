@@ -31,7 +31,8 @@ import frc.robot.subsystems.DriveTrain;
  */
 
 public class Robot extends TimedRobot {
-  public static Climb climb = new Climb();
+  public static Climb liftClimb = new Climb();
+  public static Climb winchClimb = new Climb();
   public static DriveTrain driveTrain = new DriveTrain();
   public static TankDrive tankDrive = new TankDrive();
   public static Arm arm = new Arm();

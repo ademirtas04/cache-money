@@ -28,7 +28,7 @@ public class ClimbPullUp extends Command {
   public static boolean lifted = false;
   public ClimbPullUp(int i){
     ClimbPullUp.buttonInput = i;
-    requires(Robot.climb);
+    requires(Robot.liftClimb);
 
   }
 

@@ -24,7 +24,7 @@ public class ClimbTest2 extends Command {
   public static double lastTimeStamp = 0;
   public static boolean lifted = false;
   public ClimbTest2(){
-    requires(Robot.climb);
+    requires(Robot.liftClimb);
 
   }
 
