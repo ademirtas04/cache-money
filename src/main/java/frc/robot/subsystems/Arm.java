@@ -22,7 +22,7 @@ public class Arm extends Subsystem {
   }
 
   public static void armMove(){
-    arm.setAngle(90);
+    arm.setAngle(180);
   }
   
   public static void armReset(){
