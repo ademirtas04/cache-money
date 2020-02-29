@@ -7,9 +7,10 @@ import frc.robot.commands.ArmDump;
 import frc.robot.commands.ArmIntake;
 import frc.robot.commands.BaseLift;
 import frc.robot.commands.BaseSink;
-import frc.robot.commands.ClimbPullUp;
+//import frc.robot.commands.ClimbPullUp;
 import frc.robot.commands.ClimbTest1;
-import frc.robot.commands.ClimbTest2;
+//import frc.robot.commands.ClimbTest2;
+import frc.robot.subsystems.Climb;
 
 
 //XYAB will be used for the pixycam, bumpers and triggers for arm control
@@ -28,8 +29,11 @@ public class OI {
     public static Button StartButton = new JoystickButton(xbox, RobotMap.BUTTON_START);
 
     public static Button liftButton = new JoystickButton(joystick, RobotMap.MAIN_TRIGGER);
-    public static Button liftTestButtonOne = new JoystickButton(joystick, RobotMap.TEST_BUTTON_ONE);
-    public static Button liftTestButtonTwo = new JoystickButton(joystick, RobotMap.TEST_BUTTON_TWO);
+    public static Button liftTestButtonWinch = new JoystickButton(joystick, RobotMap.TEST_BUTTON_ONE);
+    public static Button liftTestButtonLift = new JoystickButton(joystick, RobotMap.TEST_BUTTON_TWO);
+    public static Button liftDropButtonWinch = new JoystickButton(joystick, RobotMap.TEST_BUTTON_THREE);
+    public static Button liftDropButtonLift = new JoystickButton(joystick, RobotMap.TEST_BUTTON_FOUR);
+
 
 
     public OI() {
@@ -51,9 +55,10 @@ public class OI {
         StartButton.whenPressed(new ArmIntake());
 
         //liftButton.whenPressed(new ClimbPullUp(1));
-        liftTestButtonOne.whenPressed(new ClimbTest1());
-        //liftTestButtonTwo.whenPressed(new ClimbTest2());
-
+        liftTestButtonWinch.whenPressed(new ClimbTest1(Climb.getWinchEncoder() ,Climb.getWinchMotor(), 1, 1, 0.1));
+        liftTestButtonLift.whenPressed(new ClimbTest1(Climb.getLiftEncoder(), Climb.getLiftMotor(), 1, 1, 0.1));
+        liftDropButtonWinch.whenPressed(new ClimbTest1(Climb.getWinchEncoder(), Climb.getWinchMotor(), -1, 1, 0.1));
+        liftDropButtonLift.whenPressed(new ClimbTest1(Climb.getLiftEncoder(), Climb.getLiftMotor(), -1, 1, 0.1));
     }
 
     public double getDriverRawAxis(int axis) {

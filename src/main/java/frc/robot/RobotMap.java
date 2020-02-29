@@ -7,6 +7,7 @@
 
 package frc.robot;
 
+
 public class RobotMap {
 
 	//MOTORS
@@ -47,6 +48,8 @@ public class RobotMap {
 	public static final int MAIN_TRIGGER = 1;
 	public static final int TEST_BUTTON_ONE = 2;
 	public static final int TEST_BUTTON_TWO = 3;
+	public static final int TEST_BUTTON_FOUR = 4;
+	public static final int TEST_BUTTON_THREE = 5;
 
     //PID VALUES
 	public static final double kP = 0.5;
@@ -85,8 +88,13 @@ public class RobotMap {
 	public static final int LIFT_MOTOR_ID = 26;
 	public static final int ENCODER1_PORT_A = 0; //These two can be values 0-3
 	public static final int ENCODER1_PORT_B = 1;
-	public static final int ENCODER2_PORT_A = 3; //These two can be values 4-7
-	public static final int ENCODER2_PORT_B = 7;
+	public static final int ENCODER2_PORT_A = 4; //These two can be values 4-7
+	public static final int ENCODER2_PORT_B = 5;
+	public static final int ENCODER_WINCH_PORT_A = 0;
+	public static final int ENCODER_WINCH_PORT_B = 1;
+	public static final int ENCODER_LIFT_PORT_A = 4;
+	public static final int ENCODER_LIFT_PORT_B = 5;
+
 
 
 
