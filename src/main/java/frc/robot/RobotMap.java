@@ -45,13 +45,15 @@ public class RobotMap {
 
 	//JOYSTICK BUTTON VALUES
 	public static final int MAIN_TRIGGER = 1;
+	public static final int TEST_BUTTON_ONE = 2;
+	public static final int TEST_BUTTON_TWO = 3;
 
     //PID VALUES
 	public static final double kP = 0.5;
 	public static final double kI = 0.5;
 	public static final double kD = 0.1;
 	public static final double iLimit = 1;
-	public static final double kDriveTick2Feet = 1.0 / 128 * 6 * Math.PI / 12;
+	public static final double kDriveTick2Feet = 1.0 / 128 * 6 * Math.PI / 12; //CHECK THESE
 
 	//PIXY CAM CONSTANTS
 	public static final int PIXY_WIDTH = 640;
@@ -70,16 +72,21 @@ public class RobotMap {
 	public static final double IDEAL_HOLD_ANGLE = 10; // Change once tested
 
 	//AUTONOMOUS VALUES
-	public static final double AUTO_WAIT = 0;
-	public static final double AUTO_DRIVE_TIME = 0;
+	public static final double AUTO_WAIT = 5;
+	public static final double AUTO_DRIVE_TIME = 10;
 	public static final double AUTO_WAIT_TIME = 0;
-	public static final double AUTO_DROP_TIME = 0;
-	public static final double AUTONOMOUS_LENGTH = 0;
+	public static final double AUTO_DROP_TIME = 15;
+	public static final double AUTONOMOUS_LENGTH = 15;
+	public static final double ENDPOINT = 0;
+
+	//CLIMB VALUES
+
+	public static final int WINCH_MOTOR_ID = 25;
+	public static final int LIFT_MOTOR_ID = 26;
 	public static final int ENCODER1_PORT_A = 0; //These two can be values 0-3
 	public static final int ENCODER1_PORT_B = 1;
 	public static final int ENCODER2_PORT_A = 3; //These two can be values 4-7
 	public static final int ENCODER2_PORT_B = 7;
-	public static final double ENDPOINT = 0;
 
 
 

@@ -15,28 +15,32 @@ import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 
 public class Climb extends Subsystem {
-  public static VictorSPX armMotor1 = new VictorSPX(RobotMap.ARM_MOTOR_1_ID);
-  public static VictorSPX armMotor2 = new VictorSPX(RobotMap.ARM_MOTOR_2_ID);
+  public static VictorSPX winch = new VictorSPX(RobotMap.WINCH_MOTOR_ID);
+  public static VictorSPX lift = new VictorSPX(RobotMap.LIFT_MOTOR_ID);
 
 
 
   /**
    * Drive Train motor declaration
    */
-  //private static SparkMax armMotorMax = new SparkMax(RobotMap.ARM_MOTOR_1_ID);
  
  
   @Override
   public void initDefaultCommand() {
-    
+      
+  }
 
-    
-   
+  public static void setWinchSpeed(double speed){
+    winch.set(ControlMode.PercentOutput, speed);
+  }
+
+  public static void setLiftSpeed(double speed){
+    lift.set(ControlMode.PercentOutput, speed);
   }
 
   public static void setClimbs(double speed) {
-    armMotor1.set(ControlMode.PercentOutput, speed);
-    armMotor2.set(ControlMode.PercentOutput, 63/100 * speed);
+    winch.set(ControlMode.PercentOutput, speed);
+    lift.set(ControlMode.PercentOutput, 63/100 * speed);
 
 }
 

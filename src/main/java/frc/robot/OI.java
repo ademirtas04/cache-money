@@ -8,6 +8,8 @@ import frc.robot.commands.ArmIntake;
 import frc.robot.commands.BaseLift;
 import frc.robot.commands.BaseSink;
 import frc.robot.commands.ClimbPullUp;
+import frc.robot.commands.ClimbTest1;
+import frc.robot.commands.ClimbTest2;
 
 
 //XYAB will be used for the pixycam, bumpers and triggers for arm control
@@ -26,6 +28,8 @@ public class OI {
     public static Button StartButton = new JoystickButton(xbox, RobotMap.BUTTON_START);
 
     public static Button liftButton = new JoystickButton(joystick, RobotMap.MAIN_TRIGGER);
+    public static Button liftTestButtonOne = new JoystickButton(joystick, RobotMap.TEST_BUTTON_ONE);
+    public static Button liftTestButtonTwo = new JoystickButton(joystick, RobotMap.TEST_BUTTON_TWO);
 
 
     public OI() {
@@ -34,7 +38,6 @@ public class OI {
         
 
         // WHEN PRESSED || ACTUAL VALUES COMMENTED OUT FOR TESTING       
-        System.out.println("OI");
         greenButton.whenPressed(new ArmDump());
         blueButton.whenPressed(new ArmIntake());
 
@@ -47,8 +50,9 @@ public class OI {
         BackButton.whenPressed(new ArmDump());
         StartButton.whenPressed(new ArmIntake());
 
-        liftButton.whenPressed(new ClimbPullUp(1));
-
+        //liftButton.whenPressed(new ClimbPullUp(1));
+        liftTestButtonOne.whenPressed(new ClimbTest1());
+        //liftTestButtonTwo.whenPressed(new ClimbTest2());
 
     }
 
