@@ -28,16 +28,21 @@ public class ClimbTest1 extends Command {
   public static boolean done = false;
   private Encoder encoder;
   private VictorSPX motor;
-  private int direction;
+  private int direction=0;
   private double setpoint;
   private double timeout;
-  public ClimbTest1(Encoder encoder, VictorSPX motor, int direction, double setpoint, double timeout){
+  public ClimbTest1(Encoder encoder, VictorSPX motor, int d, double setpoint, double timeout){
     System.out.println("Constructing");
     this.encoder = encoder;
     this.motor = motor;
-    this.direction = direction;
+    if(d==0){
+      encoder.reset();
+    } else {
+      this.direction = d;
+    }
     this.setpoint = setpoint;
     this.timeout = timeout;
+    
     requires(Robot.climb);
 
   }
@@ -51,7 +56,7 @@ public class ClimbTest1 extends Command {
   protected void initialize() {
     System.out.println("Initialize: Begin");
     System.out.println("Initialize: Motor = " + motor.getDeviceID());
-    encoder.reset();
+    //encoder.reset();
     startTime = Timer.getFPGATimestamp(); 
     System.out.println("Initialize: Start Time = " + startTime);
     done=false;  

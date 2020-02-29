@@ -33,6 +33,9 @@ public class OI {
     public static Button liftTestButtonLift = new JoystickButton(joystick, RobotMap.TEST_BUTTON_TWO);
     public static Button liftDropButtonWinch = new JoystickButton(joystick, RobotMap.TEST_BUTTON_THREE);
     public static Button liftDropButtonLift = new JoystickButton(joystick, RobotMap.TEST_BUTTON_FOUR);
+    public static Button liftResetButton = new JoystickButton(joystick, RobotMap.TEST_BUTTON_FIVE);
+    public static Button winchResetButton = new JoystickButton(joystick, RobotMap.TEST_BUTTON_SIX);
+
 
 
 
@@ -59,6 +62,9 @@ public class OI {
         liftTestButtonLift.whenPressed(new ClimbTest1(Climb.getLiftEncoder(), Climb.getLiftMotor(), 1, 1, 0.1));
         liftDropButtonWinch.whenPressed(new ClimbTest1(Climb.getWinchEncoder(), Climb.getWinchMotor(), -1, 1, 0.1));
         liftDropButtonLift.whenPressed(new ClimbTest1(Climb.getLiftEncoder(), Climb.getLiftMotor(), -1, 1, 0.1));
+        liftResetButton.whenPressed(new ClimbTest1(Climb.getLiftEncoder(), Climb.getLiftMotor(), 0, 1, 0.1));
+        winchResetButton.whenPressed(new ClimbTest1(Climb.getWinchEncoder() ,Climb.getWinchMotor(), 0, 1, 0.1));
+
     }
 
     public double getDriverRawAxis(int axis) {

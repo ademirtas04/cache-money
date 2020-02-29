@@ -48,8 +48,10 @@ public class RobotMap {
 	public static final int MAIN_TRIGGER = 1;
 	public static final int TEST_BUTTON_ONE = 2;
 	public static final int TEST_BUTTON_TWO = 3;
-	public static final int TEST_BUTTON_FOUR = 4;
-	public static final int TEST_BUTTON_THREE = 5;
+	public static final int TEST_BUTTON_THREE = 4;
+	public static final int TEST_BUTTON_FOUR = 5;
+	public static final int TEST_BUTTON_FIVE = 6;
+	public static final int TEST_BUTTON_SIX = 7;
 
     //PID VALUES
 	public static final double kP = 0.5;

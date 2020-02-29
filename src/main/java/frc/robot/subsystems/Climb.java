@@ -41,6 +41,11 @@ public class Climb extends Subsystem {
     lift.set(ControlMode.PercentOutput, speed);
   }
 
+  public static void resetEncoders(){
+    liftEncoder.reset();
+    winchEncoder.reset();
+  }
+
   public static VictorSPX getLiftMotor(){
     return lift;
   }
