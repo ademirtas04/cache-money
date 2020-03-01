@@ -33,13 +33,7 @@ public class Climb extends Subsystem {
       
   }
 
-  public static void setWinchSpeed(double speed){
-    winch.set(ControlMode.PercentOutput, speed);
-  }
 
-  public static void setLiftSpeed(double speed){
-    lift.set(ControlMode.PercentOutput, speed);
-  }
 
   public static void resetEncoders(){
     liftEncoder.reset();
@@ -62,9 +56,9 @@ public class Climb extends Subsystem {
     return winchEncoder;
   }
 
-  public static void setClimbs(double speed) {
-    winch.set(ControlMode.PercentOutput, speed);
-    lift.set(ControlMode.PercentOutput, 63/100 * speed);
+  public static void setSpeed(double speed, VictorSPX motorWinch, VictorSPX motorLift) {
+    motorWinch.set(ControlMode.PercentOutput, speed);
+    motorLift.set(ControlMode.PercentOutput, 63/100 * speed);
 
 }
 

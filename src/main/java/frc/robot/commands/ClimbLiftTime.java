@@ -9,41 +9,28 @@ package frc.robot.commands;
 
 import frc.robot.Robot;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
-import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.RobotMap;
+import frc.robot.subsystems.Climb;
 
 
-public class ClimbTestWinch extends Command {
+public class ClimbLiftTime extends Command {
 
 
-  //private static Encoder encoder = new Encoder(RobotMap.ENCODER1_PORT_A, RobotMap.ENCODER1_PORT_B, true, EncodingType.k4X);
   public static double startTime = 0;
   public static boolean done = false;
-  private Encoder encoder;
-  private VictorSPX motor;
-  private int direction=0;
-  private double minsetpoint;
-  private double maxsetpoint;
+  private VictorSPX liftMotor;
+  private VictorSPX winchMotor;
   private double timeout;
-  public ClimbTestWinch(Encoder encoder, VictorSPX motor, int d, double minsetpoint, double maxsetpoint, double timeout){
+  private double direction = 0;
+  public ClimbLiftTime(VictorSPX liftMotor, VictorSPX winchMotor, int d, double timeout){
     System.out.println("Constructing");
-    this.encoder = encoder;
-    this.motor = motor;
-    if(d==0){
-      encoder.reset();
-    } else {
-      this.direction = d;
-    }
-    this.minsetpoint = minsetpoint;
-    this.maxsetpoint = maxsetpoint;
-    this.timeout = timeout;
-    
-    requires(Robot.winchClimb);
+    this.liftMotor = liftMotor;
+    this.winchMotor = winchMotor;  
+    this.direction = d;
+    requires(Robot.timeClimb);
 
   }
 
@@ -55,7 +42,8 @@ public class ClimbTestWinch extends Command {
   @Override
   protected void initialize() {
     System.out.println("Initialize: Begin");
-    System.out.println("Initialize: Motor = " + motor.getDeviceID());
+    System.out.println("Initialize: Lift Motor = " + liftMotor.getDeviceID());
+    System.out.println("Initialize: Winch Motor = " + winchMotor.getDeviceID());
     //encoder.reset();
     startTime = Timer.getFPGATimestamp(); 
     System.out.println("Initialize: Start Time = " + startTime);
@@ -66,13 +54,10 @@ public class ClimbTestWinch extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    System.out.println("Execute: Current Time = " +  Timer.getFPGATimestamp());
-    System.out.println("Execute: Start Time = " + startTime);
-    if (Timer.getFPGATimestamp() - startTime < timeout){
-      if((direction == 1 && encoder.get() * RobotMap.kDriveTick2Feet < maxsetpoint) || (direction == -1 && encoder.get() * RobotMap.kDriveTick2Feet > minsetpoint)){
-        System.out.println("Execute: Encoder value = " + encoder.get() * RobotMap.kDriveTick2Feet);
-        setSpeed(1 * direction);
-      }
+    double currentTime = Timer.getFPGATimestamp();
+    System.out.println("Execute: Current Time = " +  currentTime);
+    if (currentTime - startTime < timeout){
+      Climb.setSpeed(1.0 * direction, winchMotor, liftMotor);
     } else {
       System.out.println("Execute: Setting done to true");
       done = true;
@@ -88,7 +73,7 @@ public class ClimbTestWinch extends Command {
   @Override
   protected void end() {
     System.out.println("End: done");
-    setSpeed(0);
+    Climb.setSpeed(0, this.winchMotor, this.liftMotor);
   }
 
   // Called when another command which requires one or more of the same
@@ -97,9 +82,4 @@ public class ClimbTestWinch extends Command {
   protected void interrupted() {
   }
 
-  //Helper methods
-  protected void setSpeed(double speed){
-    this.motor.set(ControlMode.PercentOutput, speed);
-  }
-  
 }

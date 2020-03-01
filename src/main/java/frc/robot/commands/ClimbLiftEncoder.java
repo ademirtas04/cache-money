@@ -9,41 +9,43 @@ package frc.robot.commands;
 
 import frc.robot.Robot;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.RobotMap;
+import frc.robot.subsystems.Climb;
 
 
-public class ClimbTestWinch extends Command {
+public class ClimbLiftEncoder extends Command {
 
 
   //private static Encoder encoder = new Encoder(RobotMap.ENCODER1_PORT_A, RobotMap.ENCODER1_PORT_B, true, EncodingType.k4X);
   public static double startTime = 0;
   public static boolean done = false;
-  private Encoder encoder;
-  private VictorSPX motor;
+  private Encoder liftEncoder;
+  private Encoder winchEncoder;
+  private VictorSPX liftMotor;
+  private VictorSPX winchMotor;
   private int direction=0;
   private double minsetpoint;
   private double maxsetpoint;
-  private double timeout;
-  public ClimbTestWinch(Encoder encoder, VictorSPX motor, int d, double minsetpoint, double maxsetpoint, double timeout){
+  public ClimbLiftEncoder(Encoder encoder1, Encoder encoder2, VictorSPX lift, VictorSPX winch, int d, double minsetpoint, double maxsetpoint){
     System.out.println("Constructing");
-    this.encoder = encoder;
-    this.motor = motor;
+    this.liftEncoder = encoder1;
+    this.winchEncoder = encoder2;
+    this.liftMotor = lift;
+    this.winchMotor = winch;
     if(d==0){
-      encoder.reset();
+      liftEncoder.reset();
+      winchEncoder.reset();
     } else {
       this.direction = d;
     }
     this.minsetpoint = minsetpoint;
     this.maxsetpoint = maxsetpoint;
-    this.timeout = timeout;
     
-    requires(Robot.winchClimb);
+    requires(Robot.encoderClimb);
 
   }
 
@@ -55,9 +57,9 @@ public class ClimbTestWinch extends Command {
   @Override
   protected void initialize() {
     System.out.println("Initialize: Begin");
-    System.out.println("Initialize: Motor = " + motor.getDeviceID());
+    System.out.println("Initialize: Winch Motor = " + winchMotor.getDeviceID());
+    System.out.println("Initialize: Lift Motor = " + liftMotor.getDeviceID());
     //encoder.reset();
-    startTime = Timer.getFPGATimestamp(); 
     System.out.println("Initialize: Start Time = " + startTime);
     done=false;  
     System.out.println("Initialize: Done");
@@ -66,13 +68,11 @@ public class ClimbTestWinch extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    System.out.println("Execute: Current Time = " +  Timer.getFPGATimestamp());
     System.out.println("Execute: Start Time = " + startTime);
-    if (Timer.getFPGATimestamp() - startTime < timeout){
-      if((direction == 1 && encoder.get() * RobotMap.kDriveTick2Feet < maxsetpoint) || (direction == -1 && encoder.get() * RobotMap.kDriveTick2Feet > minsetpoint)){
-        System.out.println("Execute: Encoder value = " + encoder.get() * RobotMap.kDriveTick2Feet);
-        setSpeed(1 * direction);
-      }
+    System.out.println("Execute: Winch Encoder value = " + winchEncoder.get() * RobotMap.kDriveTick2Feet);
+    System.out.println("Execute: Lift Encoder value = " + liftEncoder.get() * RobotMap.kDriveTick2Feet);
+    if(Math.abs(liftEncoder.get() - winchEncoder.get()) < 0.1 && ((direction == 1 && winchEncoder.get() * RobotMap.kDriveTick2Feet < maxsetpoint) || (direction == -1 && winchEncoder.get() * RobotMap.kDriveTick2Feet > minsetpoint))){
+       Climb.setSpeed(1 * direction, winchMotor, liftMotor);
     } else {
       System.out.println("Execute: Setting done to true");
       done = true;
@@ -88,18 +88,12 @@ public class ClimbTestWinch extends Command {
   @Override
   protected void end() {
     System.out.println("End: done");
-    setSpeed(0);
+    Climb.setSpeed(0, winchMotor,liftMotor);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-  }
-
-  //Helper methods
-  protected void setSpeed(double speed){
-    this.motor.set(ControlMode.PercentOutput, speed);
-  }
-  
+  }  
 }

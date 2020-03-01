@@ -7,13 +7,15 @@ import frc.robot.commands.ArmDump;
 import frc.robot.commands.ArmIntake;
 import frc.robot.commands.BaseLift;
 import frc.robot.commands.BaseSink;
+/*
 import frc.robot.commands.ClimbTestLift;
 import frc.robot.commands.ClimbTestWinch;
 
 import frc.robot.subsystems.Climb;
+*/
+import frc.robot.commands.ClimbLiftTime;
+import frc.robot.subsystems.Climb;
 
-
-//XYAB will be used for the pixycam, bumpers and triggers for arm control
 public class OI {
     // CONTROLLERS
     public static Joystick xbox = new Joystick(RobotMap.DRIVER_CONTROLLER);
@@ -57,13 +59,19 @@ public class OI {
         BackButton.whenPressed(new ArmDump());
         StartButton.whenPressed(new ArmIntake());
 
-        //liftButton.whenPressed(new ClimbPullUp(1));
+        /*
         liftTestButtonWinch.whenPressed(new ClimbTestWinch(Climb.getWinchEncoder() ,Climb.getWinchMotor(), 1, 1.0, 1.0));
         liftTestButtonLift.whenPressed(new ClimbTestLift(Climb.getLiftEncoder(), Climb.getLiftMotor(), 1, 1.0, 1.0));
         liftDropButtonWinch.whenPressed(new ClimbTestWinch(Climb.getWinchEncoder(), Climb.getWinchMotor(), -1, 1.0, 1.0));
         liftDropButtonLift.whenPressed(new ClimbTestLift(Climb.getLiftEncoder(), Climb.getLiftMotor(), -1, 1.0, 1.0));
         liftResetButton.whenPressed(new ClimbTestLift(Climb.getLiftEncoder(), Climb.getLiftMotor(), 0, 0, 0));
         winchResetButton.whenPressed(new ClimbTestWinch(Climb.getWinchEncoder() ,Climb.getWinchMotor(), 0, 0, 0));
+        */
+        liftTestButtonWinch.whenPressed(new ClimbLiftTime(Climb.getLiftMotor(), Climb.getWinchMotor(), 1, 3.0));
+        liftTestButtonLift.whenPressed(new ClimbLiftTime(Climb.getLiftMotor(), Climb.getWinchMotor(), -1, 3.0));
+        liftResetButton.whenPressed(new ClimbLiftTime(Climb.getLiftMotor(), Climb.getWinchMotor(), 1, 5.0));
+        winchResetButton.whenPressed(new ClimbLiftTime(Climb.getLiftMotor(), Climb.getWinchMotor(), -1, 5.0));
+
 
     }
 

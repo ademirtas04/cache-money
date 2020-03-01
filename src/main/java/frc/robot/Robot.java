@@ -33,6 +33,8 @@ import frc.robot.subsystems.DriveTrain;
 public class Robot extends TimedRobot {
   public static Climb liftClimb = new Climb();
   public static Climb winchClimb = new Climb();
+  public static Climb timeClimb = new Climb();
+  public static Climb encoderClimb = new Climb();
   public static DriveTrain driveTrain = new DriveTrain();
   public static TankDrive tankDrive = new TankDrive();
   public static Arm arm = new Arm();
@@ -94,10 +96,8 @@ public class Robot extends TimedRobot {
   public void autonomousPeriodic() {
     double currentTime = Timer.getFPGATimestamp();
     if(currentTime - startTime < RobotMap.AUTO_WAIT_TIME){
-      System.out.println("Moving");
-    } else if(currentTime - startTime < RobotMap.AUTO_DRIVE_TIME){
-      DriveTrain.move(-1,1);
-    } else if (currentTime - startTime < RobotMap.AUTO_DROP_TIME){
+      DriveTrain.move(1,1);
+    }  else if (currentTime - startTime < RobotMap.AUTO_DROP_TIME){
       Arm.armMove();
     } 
   }
