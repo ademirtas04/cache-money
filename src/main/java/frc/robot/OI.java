@@ -67,10 +67,10 @@ public class OI {
         liftResetButton.whenPressed(new ClimbTestLift(Climb.getLiftEncoder(), Climb.getLiftMotor(), 0, 0, 0));
         winchResetButton.whenPressed(new ClimbTestWinch(Climb.getWinchEncoder() ,Climb.getWinchMotor(), 0, 0, 0));
         */
-        liftTestButtonWinch.whenPressed(new ClimbLiftTime(Climb.getLiftMotor(), Climb.getWinchMotor(), 1, 3.0));
-        liftTestButtonLift.whenPressed(new ClimbLiftTime(Climb.getLiftMotor(), Climb.getWinchMotor(), -1, 3.0));
-        liftResetButton.whenPressed(new ClimbLiftTime(Climb.getLiftMotor(), Climb.getWinchMotor(), 1, 5.0));
-        winchResetButton.whenPressed(new ClimbLiftTime(Climb.getLiftMotor(), Climb.getWinchMotor(), -1, 5.0));
+        liftTestButtonWinch.whenPressed(new ClimbLiftTime(Climb.getLiftMotor(), Climb.getWinchMotor(), 1));
+        liftTestButtonLift.whenPressed(new ClimbLiftTime(Climb.getLiftMotor(), Climb.getWinchMotor(), -1));
+        liftResetButton.whenPressed(new ClimbLiftTime(Climb.getLiftMotor(), Climb.getWinchMotor(), 1));
+        winchResetButton.whenPressed(new ClimbLiftTime(Climb.getLiftMotor(), Climb.getWinchMotor(), -1));
 
 
     }
