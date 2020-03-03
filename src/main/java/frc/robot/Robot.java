@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.commands.BaseSink;
 import frc.robot.commands.TankDrive;
 import frc.robot.misc.ControlChooser;
 import frc.robot.misc.SensorReset;
@@ -52,11 +53,6 @@ public class Robot extends TimedRobot {
   @Override
  
   public void robotInit() {
-    Scanner s = new Scanner(System.in);
-    System.out.println("What autonomous would you like to execute? 0: Normal 1: Move from Different Position 2: Dump");
-    autonomous = s.nextInt();
-    s.close();
-    System.out.println(autonomous);
     m_controlChooser = new ControlChooser();
     m_smartDashboardInterface = new SmartDashboardInterface();
     m_sensorReset = new SensorReset();
