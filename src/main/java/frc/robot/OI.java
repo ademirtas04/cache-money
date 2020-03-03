@@ -15,6 +15,7 @@ import frc.robot.subsystems.Climb;
 */
 import frc.robot.commands.ClimbLiftTime;
 import frc.robot.commands.ClimbLiftWinch;
+import frc.robot.commands.ClimbWinchTime;
 import frc.robot.subsystems.Climb;
 
 public class OI {
@@ -76,7 +77,7 @@ public class OI {
         */
         liftTestButtonWinch.whenPressed(new ClimbLiftTime(Climb.getLiftMotor(), 1));
         liftTestButtonLift.whenPressed(new ClimbLiftTime(Climb.getLiftMotor(), -1));
-        liftButton.whenPressed(new ClimbLiftWinch(Climb.getLiftMotor(), Climb.getWinchMotor(), 1));
+        liftButton.whenPressed(new ClimbWinchTime(Climb.getWinchMotor()));
 
 
     }
