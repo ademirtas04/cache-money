@@ -16,17 +16,15 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 
-public class ClimbLiftTime extends Command {
+public class ClimbWinchTime extends Command {
 
 
   public static double startTime = 0;
   public static boolean done = false;
-  private VictorSPX liftMotor;
-  private double direction = 0;
-  public ClimbLiftTime(VictorSPX liftMotor, int d){
+  private VictorSPX winchMotor;
+  public ClimbWinchTime(VictorSPX winchMotor){
     System.out.println("Constructing");
-    this.liftMotor = liftMotor;
-    this.direction = d;
+    this.winchMotor = winchMotor;
     requires(Robot.timeClimb);
 
   }
@@ -39,7 +37,7 @@ public class ClimbLiftTime extends Command {
   @Override
   protected void initialize() {
     System.out.println("Initialize: Begin");
-    System.out.println("Initialize: Lift Motor = " + liftMotor.getDeviceID());
+    System.out.println("Initialize: Lift Motor = " + winchMotor.getDeviceID());
     //encoder.reset();
     startTime = Timer.getFPGATimestamp(); 
     System.out.println("Initialize: Start Time = " + startTime);
@@ -52,7 +50,7 @@ public class ClimbLiftTime extends Command {
   protected void execute() {
     System.out.println("Execute: Current Time = " +  Timer.getFPGATimestamp());
     if (Timer.getFPGATimestamp() - startTime < 4.75){
-      setSpeed(1.0 * direction);
+      setSpeed(1.0);
     } else {
       System.out.println("Execute: Setting done to true");
       done = true;
@@ -78,7 +76,7 @@ public class ClimbLiftTime extends Command {
   }
 
   protected void setSpeed(double speed){
-    this.liftMotor.set(ControlMode.PercentOutput, -0.63 * speed);
+    this.winchMotor.set(ControlMode.PercentOutput, speed);
   }
 
 }
