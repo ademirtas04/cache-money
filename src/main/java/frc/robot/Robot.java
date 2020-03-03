@@ -7,6 +7,7 @@
 
 package frc.robot;
 
+import java.util.Scanner;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.Timer;
@@ -45,12 +46,17 @@ public class Robot extends TimedRobot {
   private ControlChooser m_controlChooser;
   private SmartDashboardInterface m_smartDashboardInterface;
   private SensorReset m_sensorReset;
-
+  private int autonomous;
 
 
   @Override
  
   public void robotInit() {
+    Scanner s = new Scanner(System.in);
+    System.out.println("What autonomous would you like to execute? 0: Normal 1: Move from Different Position 2: Dump");
+    autonomous = s.nextInt();
+    s.close();
+    System.out.println(autonomous);
     m_controlChooser = new ControlChooser();
     m_smartDashboardInterface = new SmartDashboardInterface();
     m_sensorReset = new SensorReset();
@@ -95,11 +101,25 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousPeriodic() {
     double currentTime = Timer.getFPGATimestamp();
-    if(currentTime - startTime < RobotMap.AUTO_WAIT_TIME){
-      DriveTrain.move(1,1);
-    }  else if (currentTime - startTime < RobotMap.AUTO_DROP_TIME){
+    if(autonomous == 0){
+      if(currentTime - startTime < RobotMap.AUTO_WAIT_TIME){
+        DriveTrain.move(1,1);
+      }  else if (currentTime - startTime < RobotMap.AUTO_DROP_TIME){
+        Arm.armMove();
+      }
+    } else if(autonomous == 1){
+      if(currentTime - startTime < 2){
+        DriveTrain.move(1,1);
+      }
+      if(currentTime - startTime < 2.25){
+        DriveTrain.move(1,-1);
+      }
+      if(currentTime - startTime < 15){
+        Arm.armMove();
+      }
+    } else if(autonomous == 2){
       Arm.armMove();
-    } 
+    }
   }
   
 

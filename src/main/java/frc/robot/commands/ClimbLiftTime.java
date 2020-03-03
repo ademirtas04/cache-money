@@ -14,7 +14,6 @@ import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.subsystems.Climb;
 
 
 public class ClimbLiftTime extends Command {
