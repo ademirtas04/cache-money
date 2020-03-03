@@ -37,6 +37,12 @@ public class OI {
     public static Button liftDropButtonLift = new JoystickButton(joystick, RobotMap.TEST_BUTTON_FOUR);
     public static Button liftResetButton = new JoystickButton(joystick, RobotMap.TEST_BUTTON_SEVEN);
     public static Button winchResetButton = new JoystickButton(joystick, RobotMap.TEST_BUTTON_SIX);
+    public static Button TestButton1 = new JoystickButton(joystick, RobotMap.TEST_BUTTON_SEVEN);
+    public static Button TestButton2 = new JoystickButton(joystick, RobotMap.TEST_BUTTON_EIGHT);
+    public static Button TestButton3 = new JoystickButton(joystick, RobotMap.TEST_BUTTON_NINE);
+    public static Button TestButton4 = new JoystickButton(joystick, RobotMap.TEST_BUTTON_TEN);
+    public static Button TestButton5 = new JoystickButton(joystick, RobotMap.TEST_BUTTON_ELEVEN);
+    
 
 
 

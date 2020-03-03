@@ -52,7 +52,10 @@ public class RobotMap {
 	public static final int TEST_BUTTON_FOUR = 5;
 	public static final int TEST_BUTTON_SIX = 7;
 	public static final int TEST_BUTTON_SEVEN = 8;
-
+	public static final int TEST_BUTTON_EIGHT = 9;
+	public static final int TEST_BUTTON_NINE = 10;
+	public static final int TEST_BUTTON_TEN = 11;
+	public static final int TEST_BUTTON_ELEVEN = 12;
     //PID VALUES
 	public static final double kP = 0.5;
 	public static final double kI = 0.5;
