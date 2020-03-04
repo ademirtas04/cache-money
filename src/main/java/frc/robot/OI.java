@@ -14,8 +14,8 @@ import frc.robot.commands.ClimbTestWinch;
 import frc.robot.subsystems.Climb;
 */
 import frc.robot.commands.ClimbLiftTime;
-import frc.robot.commands.ClimbLiftWinch;
 import frc.robot.commands.ClimbWinchTime;
+import frc.robot.commands.WheelRotation;
 import frc.robot.subsystems.Climb;
 
 public class OI {
@@ -32,15 +32,15 @@ public class OI {
     public static Button BackButton = new JoystickButton(xbox, RobotMap.BUTTON_BACK);
     public static Button StartButton = new JoystickButton(xbox, RobotMap.BUTTON_START);
 
-    public static Button liftButton = new JoystickButton(joystick, RobotMap.MAIN_TRIGGER);
-    public static Button liftTestButtonWinch = new JoystickButton(joystick, RobotMap.TEST_BUTTON_ONE);
-    public static Button liftTestButtonLift = new JoystickButton(joystick, RobotMap.TEST_BUTTON_TWO);
-    public static Button liftDropButtonWinch = new JoystickButton(joystick, RobotMap.TEST_BUTTON_THREE);
-    public static Button liftDropButtonLift = new JoystickButton(joystick, RobotMap.TEST_BUTTON_FOUR);
-    public static Button liftResetButton = new JoystickButton(joystick, RobotMap.TEST_BUTTON_SEVEN);
-    public static Button winchResetButton = new JoystickButton(joystick, RobotMap.TEST_BUTTON_SIX);
-    public static Button TestButton1 = new JoystickButton(joystick, RobotMap.TEST_BUTTON_SEVEN);
-    public static Button TestButton2 = new JoystickButton(joystick, RobotMap.TEST_BUTTON_EIGHT);
+    public static Button wheelButton = new JoystickButton(joystick, RobotMap.MAIN_TRIGGER);
+    public static Button spareButton = new JoystickButton(joystick, RobotMap.TEST_BUTTON_ONE);
+    public static Button BaseSink = new JoystickButton(joystick, RobotMap.TEST_BUTTON_TWO);
+    public static Button BaseLift = new JoystickButton(joystick, RobotMap.TEST_BUTTON_THREE);
+    public static Button ArmDump = new JoystickButton(joystick, RobotMap.TEST_BUTTON_FOUR);
+    public static Button ArmIntake = new JoystickButton(joystick, RobotMap.TEST_BUTTON_FIVE);
+    public static Button liftButton = new JoystickButton(joystick, RobotMap.TEST_BUTTON_SIX);
+    public static Button dropButton = new JoystickButton(joystick, RobotMap.TEST_BUTTON_SEVEN);
+    public static Button winchButton = new JoystickButton(joystick, RobotMap.TEST_BUTTON_EIGHT);
     public static Button TestButton3 = new JoystickButton(joystick, RobotMap.TEST_BUTTON_NINE);
     public static Button TestButton4 = new JoystickButton(joystick, RobotMap.TEST_BUTTON_TEN);
     public static Button TestButton5 = new JoystickButton(joystick, RobotMap.TEST_BUTTON_ELEVEN);
@@ -55,29 +55,20 @@ public class OI {
         
 
         // WHEN PRESSED || ACTUAL VALUES COMMENTED OUT FOR TESTING       
-        greenButton.whenPressed(new ArmDump());
-        blueButton.whenPressed(new ArmIntake());
+        ArmDump.whenPressed(new ArmDump());
+        ArmIntake.whenPressed(new ArmIntake());
 
         //WHEEL ROTATION BUTTONS
         
-        
+        wheelButton.whenPressed(new WheelRotation());
         //SERVO ARM ROTATION BUTTONS
-        LeftBumpButton.whenPressed(new BaseSink());
-        RightBumpButton.whenPressed(new BaseLift());
-        BackButton.whenPressed(new ArmDump());
-        StartButton.whenPressed(new ArmIntake());
+        BaseSink.whenPressed(new BaseSink());
+        BaseLift.whenPressed(new BaseLift());
 
-        /*
-        liftTestButtonWinch.whenPressed(new ClimbTestWinch(Climb.getWinchEncoder() ,Climb.getWinchMotor(), 1, 1.0, 1.0));
-        liftTestButtonLift.whenPressed(new ClimbTestLift(Climb.getLiftEncoder(), Climb.getLiftMotor(), 1, 1.0, 1.0));
-        liftDropButtonWinch.whenPressed(new ClimbTestWinch(Climb.getWinchEncoder(), Climb.getWinchMotor(), -1, 1.0, 1.0));
-        liftDropButtonLift.whenPressed(new ClimbTestLift(Climb.getLiftEncoder(), Climb.getLiftMotor(), -1, 1.0, 1.0));
-        liftResetButton.whenPressed(new ClimbTestLift(Climb.getLiftEncoder(), Climb.getLiftMotor(), 0, 0, 0));
-        winchResetButton.whenPressed(new ClimbTestWinch(Climb.getWinchEncoder() ,Climb.getWinchMotor(), 0, 0, 0));
-        */
-        liftTestButtonWinch.whenPressed(new ClimbLiftTime(Climb.getLiftMotor(), 1));
-        liftTestButtonLift.whenPressed(new ClimbLiftTime(Climb.getLiftMotor(), -1));
-        liftButton.whenPressed(new ClimbWinchTime(Climb.getWinchMotor()));
+
+        liftButton.whenPressed(new ClimbLiftTime(Climb.getLiftMotor(), 1));
+        dropButton.whenPressed(new ClimbLiftTime(Climb.getLiftMotor(), -1));
+        winchButton.whenPressed(new ClimbWinchTime(Climb.getWinchMotor()));
 
 
     }

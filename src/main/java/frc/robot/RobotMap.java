@@ -50,6 +50,7 @@ public class RobotMap {
 	public static final int TEST_BUTTON_TWO = 3;
 	public static final int TEST_BUTTON_THREE = 4;
 	public static final int TEST_BUTTON_FOUR = 5;
+	public static final int TEST_BUTTON_FIVE = 6;
 	public static final int TEST_BUTTON_SIX = 7;
 	public static final int TEST_BUTTON_SEVEN = 8;
 	public static final int TEST_BUTTON_EIGHT = 9;
@@ -99,6 +100,9 @@ public class RobotMap {
 	public static final int ENCODER_WINCH_PORT_B = 1;
 	public static final int ENCODER_LIFT_PORT_A = 4;
 	public static final int ENCODER_LIFT_PORT_B = 5;
+	public static final int WHEEL_ARM_PORT = 0;
+	public static final int WHEEL_ARM_MOTOR_ID = 27;
+	public static final double TIME_FOR_ONE_ROTATION = 100/625/Math.PI*4/3;
 
 
 
