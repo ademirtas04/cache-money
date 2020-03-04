@@ -20,6 +20,11 @@ public class RobotMap {
 	public static final int ARM_MOTOR_3_ID = 27;
 	public static final int ARM_MOTOR_4_ID = 28;
 
+	//SERVO PORTS
+	public static final int BASE_PORT = 0;
+	public static final int ARM_PORT = 1; 
+	public static final int WHEEL_ARM_PORT = 2;
+
 	//CONTROLLER PORT VALUES
 	public static final int DRIVER_CONTROLLER = 0;
 	public static final int BUTTON_CONTROLLER = 1;
@@ -73,8 +78,9 @@ public class RobotMap {
 	public static final double SINGLE_ROTATION_TIME = 0; // Fill in once tested
 	public static final double CONSTANT_TIMER = 5;
 	public static final double CONSTANT_ARM_TIMER = 5;
-	public static final int INTAKE_PORT = 0;
-	public static final int ARM_PORT = 1; 
+
+
+
 
 	public static final double IDEAL_DUMP_ANGLE = 90; // Change once tested
 	public static final double IDEAL_HOLD_ANGLE = 10; // Change once tested
@@ -99,10 +105,8 @@ public class RobotMap {
 	public static final int ENCODER_WINCH_PORT_B = 1;
 	public static final int ENCODER_LIFT_PORT_A = 4;
 	public static final int ENCODER_LIFT_PORT_B = 5;
-	public static final int WHEEL_ARM_PORT = 0;
 	public static final int WHEEL_ARM_MOTOR_ID = 27;
 	public static final double TIME_FOR_ONE_ROTATION = 100/625/Math.PI*4/3;
-	public static final int BASE_PORT = 0;
 
 
 
