@@ -19,7 +19,7 @@ import frc.robot.misc.ControlChooser;
 import frc.robot.misc.SensorReset;
 import frc.robot.misc.SmartDashboardInterface;
 import frc.robot.subsystems.Arm;
-import frc.robot.subsystems.Base;
+import frc.robot.subsystems.Ramp;
 import frc.robot.subsystems.Climb;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.WheelArm;
@@ -40,7 +40,7 @@ public class Robot extends TimedRobot {
   public static DriveTrain driveTrain = new DriveTrain();
   public static TankDrive tankDrive = new TankDrive();
   public static Arm arm = new Arm();
-  public static Base base = new Base();
+  public static Ramp ramp = new Ramp();
   public static OI m_oi;
   public static double startTime = 0;
   private Command m_autonomousCommand;

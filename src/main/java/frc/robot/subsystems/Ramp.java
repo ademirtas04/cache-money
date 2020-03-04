@@ -12,8 +12,10 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 
 
-public class Base extends Subsystem {
-  public static Servo base = new Servo(RobotMap.BASE_PORT);
+public class Ramp extends Subsystem {
+
+
+  public static Servo ramp = new Servo(RobotMap.BASE_PORT);
   
  
  
@@ -23,13 +25,14 @@ public class Base extends Subsystem {
   }
 
   public static void baseMove(){
-    base.setBounds(2.0, 1.8, 1.5, 1.2, 1.0);
-    base.setSpeed(1.0);
+    ramp.setBounds(2.0, 1.8, 1.5, 1.2, 1.0);
+    ramp.setSpeed(1.0);
   }
   public static void baseReset(){
-    base.setBounds(2.0, 1.8, 1.5, 1.2, 1.0);
-    base.setAngle(-1.0);
+    ramp.setBounds(2.0, 1.8, 1.5, 1.2, 1.0);
+    ramp.setAngle(-1.0);
   }
+  
 
 
 }

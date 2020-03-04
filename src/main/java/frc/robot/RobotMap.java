@@ -93,7 +93,7 @@ public class RobotMap {
 	public static final int LIFT_MOTOR_ID = 26;
 	public static final int ENCODER1_PORT_A = 0; //These two can be values 0-3
 	public static final int ENCODER1_PORT_B = 1;
-	public static final int ENCODER2_PORT_A = 4; //These two can be values 4-7
+	public static final int ENCODER2_PORT_A = 4; //These two can be values 4-7 
 	public static final int ENCODER2_PORT_B = 5;
 	public static final int ENCODER_WINCH_PORT_A = 0;
 	public static final int ENCODER_WINCH_PORT_B = 1;

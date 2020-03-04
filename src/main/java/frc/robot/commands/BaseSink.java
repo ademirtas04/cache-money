@@ -9,13 +9,13 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
-import frc.robot.subsystems.Base;
+import frc.robot.subsystems.Ramp;
 
 public class BaseSink extends Command {
   private boolean dropped = false;
   
   public BaseSink() {
-    requires(Robot.base);
+    requires(Robot.ramp);
   }
 
   // Called just before this Command runs the first time
@@ -27,7 +27,7 @@ public class BaseSink extends Command {
   @Override
 
   public void execute() {
-    Base.baseReset();
+   Ramp.baseReset();
     dropped = true;
   }
 
