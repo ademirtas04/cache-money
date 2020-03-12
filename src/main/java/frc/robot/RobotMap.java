@@ -80,7 +80,6 @@ public class RobotMap {
 	public static final double IDEAL_HOLD_ANGLE = 10; // Change once tested
 
 	//AUTONOMOUS VALUES
-	public static final double AUTO_WAIT = 5;
 	public static final double AUTO_DRIVE_TIME = 10;
 	public static final double AUTO_WAIT_TIME = 0;
 	public static final double AUTO_DROP_TIME = 15;

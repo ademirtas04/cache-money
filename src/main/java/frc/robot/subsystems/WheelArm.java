@@ -15,8 +15,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 
 public class WheelArm extends Subsystem {
-  public static Servo arm = new Servo(RobotMap.WHEEL_ARM_PORT);
-  public static VictorSPX armMotor = new VictorSPX(RobotMap.WHEEL_ARM_MOTOR_ID);
+  //public static Servo arm = new Servo(RobotMap.WHEEL_ARM_PORT);
+  //public static VictorSPX armMotor = new VictorSPX(RobotMap.WHEEL_ARM_MOTOR_ID);
   
  
  
@@ -26,19 +26,20 @@ public class WheelArm extends Subsystem {
   }
 
   public static void armMove(){
-    arm.setAngle(90);
+    //arm.setAngle(90);
   }
   
   public static void armReset(){
-    arm.setAngle(0);
+    //arm.setAngle(0);
   }
 
   public static void wheelMove(double speed){
-    armMotor.set(ControlMode.PercentOutput, speed);
+    //armMotor.set(ControlMode.PercentOutput, speed);
   }
 
   public static double getArmAngle(){
-    return arm.getAngle();
+    //return arm.getAngle();
+    return -1;
   }
 
   

@@ -51,7 +51,7 @@ public class ClimbLiftTime extends Command {
   @Override
   protected void execute() {
     System.out.println("Execute: Current Time = " +  Timer.getFPGATimestamp());
-    if (Timer.getFPGATimestamp() - startTime < 4.75){
+    if (Timer.getFPGATimestamp() - startTime < 4.8){
       setSpeed(1.0 * direction);
     } else {
       System.out.println("Execute: Setting done to true");
