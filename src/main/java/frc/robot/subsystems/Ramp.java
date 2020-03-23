@@ -33,6 +33,9 @@ public class Ramp extends Subsystem {
     ramp.setAngle(-1.0);
   }
   
-
+  public static void baseMid(){
+    ramp.setBounds(1.3, 1.22, 1.15, 1.07, 1.0);
+    ramp.setSpeed(1.0);
+  }
 
 }

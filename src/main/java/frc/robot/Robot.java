@@ -42,6 +42,7 @@ public class Robot extends TimedRobot {
   public static Arm arm = new Arm();
   public static Ramp ramp = new Ramp();
   public static OI m_oi;
+  public static boolean movable;
   public static double startTime = 0;
   private Command m_autonomousCommand;
   private ControlChooser m_controlChooser;
@@ -95,12 +96,16 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousPeriodic() {
+    
     double currentTime = Timer.getFPGATimestamp();
-      if(currentTime - startTime < RobotMap.AUTO_WAIT_TIME){
-        DriveTrain.move(1,1);
-      }  else if (currentTime - startTime < RobotMap.AUTO_DROP_TIME){
+    if(currentTime - startTime < RobotMap.AUTO_WAIT_TIME){
+        DriveTrain.move(0,0);
+      } if(currentTime - startTime < (3+RobotMap.AUTO_WAIT_TIME) && currentTime - startTime > RobotMap.AUTO_WAIT_TIME){
+        DriveTrain.move(0.5,-0.5);
+      }  else if (currentTime - startTime > (3+RobotMap.AUTO_WAIT_TIME) && currentTime - startTime < (RobotMap.AUTO_WAIT_TIME + 6)){
         Arm.armMove();
       }
+      
     }  
   
 

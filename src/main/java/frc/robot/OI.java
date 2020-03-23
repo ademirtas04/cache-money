@@ -7,16 +7,12 @@ import frc.robot.commands.ArmDump;
 import frc.robot.commands.ArmIntake;
 import frc.robot.commands.BaseLift;
 import frc.robot.commands.BaseSink;
-/*
-import frc.robot.commands.ClimbTestLift;
-import frc.robot.commands.ClimbTestWinch;
-
+import frc.robot.commands.ClimbLiftLong;
 import frc.robot.subsystems.Climb;
-*/
+import frc.robot.commands.BaseMid;
 import frc.robot.commands.ClimbLiftTime;
 import frc.robot.commands.ClimbWinchTime;
 import frc.robot.commands.WheelRotation;
-import frc.robot.subsystems.Climb;
 
 public class OI {
     // CONTROLLERS
@@ -33,7 +29,7 @@ public class OI {
     public static Button StartButton = new JoystickButton(xbox, RobotMap.BUTTON_START);
 
     public static Button wheelButton = new JoystickButton(joystick, RobotMap.MAIN_TRIGGER);
-    public static Button spareButton = new JoystickButton(joystick, RobotMap.TEST_BUTTON_ONE);
+    public static Button BaseMid = new JoystickButton(joystick, RobotMap.TEST_BUTTON_ONE);
     public static Button BaseSink = new JoystickButton(joystick, RobotMap.TEST_BUTTON_TWO);
     public static Button BaseLift = new JoystickButton(joystick, RobotMap.TEST_BUTTON_THREE);
     public static Button ArmDump = new JoystickButton(joystick, RobotMap.TEST_BUTTON_FOUR);
@@ -41,9 +37,9 @@ public class OI {
     public static Button liftButton = new JoystickButton(joystick, RobotMap.TEST_BUTTON_SIX);
     public static Button dropButton = new JoystickButton(joystick, RobotMap.TEST_BUTTON_SEVEN);
     public static Button winchButton = new JoystickButton(joystick, RobotMap.TEST_BUTTON_EIGHT);
-    public static Button TestButton3 = new JoystickButton(joystick, RobotMap.TEST_BUTTON_NINE);
-    public static Button TestButton4 = new JoystickButton(joystick, RobotMap.TEST_BUTTON_TEN);
-    public static Button TestButton5 = new JoystickButton(joystick, RobotMap.TEST_BUTTON_ELEVEN);
+    public static Button spareButton = new JoystickButton(joystick, RobotMap.TEST_BUTTON_NINE);
+    public static Button longLiftButton = new JoystickButton(joystick, RobotMap.TEST_BUTTON_TEN);
+    public static Button longDropButton = new JoystickButton(joystick, RobotMap.TEST_BUTTON_ELEVEN);
     
 
 
@@ -62,12 +58,14 @@ public class OI {
         
         wheelButton.whenPressed(new WheelRotation());
         //SERVO ARM ROTATION BUTTONS
+        BaseMid.whenPressed(new BaseMid());
         BaseSink.whenPressed(new BaseSink());
         BaseLift.whenPressed(new BaseLift());
 
-
         liftButton.whenPressed(new ClimbLiftTime(Climb.getLiftMotor(), 1));
         dropButton.whenPressed(new ClimbLiftTime(Climb.getLiftMotor(), -1));
+        longLiftButton.whenPressed(new ClimbLiftLong(Climb.getLiftMotor(), 1));
+        longDropButton.whenPressed(new ClimbLiftLong(Climb.getLiftMotor(), -1));
         winchButton.whenPressed(new ClimbWinchTime(Climb.getWinchMotor()));
 
 
@@ -76,4 +74,5 @@ public class OI {
     public double getDriverRawAxis(int axis) {
         return xbox.getRawAxis(axis);
     }
+
 }

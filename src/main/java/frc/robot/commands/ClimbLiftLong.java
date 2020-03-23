@@ -12,36 +12,22 @@ import frc.robot.Robot;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
-import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.RobotMap;
 
 
-public class ClimbTestLift extends Command {
+public class ClimbLiftLong extends Command {
 
 
-  //private static Encoder encoder = new Encoder(RobotMap.ENCODER1_PORT_A, RobotMap.ENCODER1_PORT_B, true, EncodingType.k4X);
   public static double startTime = 0;
   public static boolean done = false;
-  private Encoder encoder;
-  private VictorSPX motor;
-  private int direction=0;
-  private double setpoint;
-  private double timeout;
-  public ClimbTestLift(Encoder encoder, VictorSPX motor, int d, double setpoint, double timeout){
+  private VictorSPX liftMotor;
+  private double direction = 0;
+  public ClimbLiftLong(VictorSPX liftMotor, int d){
     System.out.println("Constructing");
-    this.encoder = encoder;
-    this.motor = motor;
-    if(d==0){
-      encoder.reset();
-    } else {
-      this.direction = d;
-    }
-    this.setpoint = setpoint;
-    this.timeout = timeout;
-    
-    requires(Robot.liftClimb);
+    this.liftMotor = liftMotor;
+    this.direction = d;
+    requires(Robot.timeClimb);
 
   }
 
@@ -53,7 +39,7 @@ public class ClimbTestLift extends Command {
   @Override
   protected void initialize() {
     System.out.println("Initialize: Begin");
-    System.out.println("Initialize: Motor = " + motor.getDeviceID());
+    System.out.println("Initialize: Lift Motor = " + liftMotor.getDeviceID());
     //encoder.reset();
     startTime = Timer.getFPGATimestamp(); 
     System.out.println("Initialize: Start Time = " + startTime);
@@ -65,10 +51,8 @@ public class ClimbTestLift extends Command {
   @Override
   protected void execute() {
     System.out.println("Execute: Current Time = " +  Timer.getFPGATimestamp());
-    System.out.println("Execute: Start Time = " + startTime);
-    if (Timer.getFPGATimestamp() - startTime < timeout && Math.abs(encoder.get() * RobotMap.kDriveTick2Feet) < setpoint){
-      System.out.println("Execute: Encoder value = " + encoder.get() * RobotMap.kDriveTick2Feet);
-      setSpeed(0.3 * direction);
+    if (Timer.getFPGATimestamp() - startTime < 4.90){
+      setSpeed(1.0 * direction);
     } else {
       System.out.println("Execute: Setting done to true");
       done = true;
@@ -93,9 +77,8 @@ public class ClimbTestLift extends Command {
   protected void interrupted() {
   }
 
-  //Helper methods
   protected void setSpeed(double speed){
-    this.motor.set(ControlMode.PercentOutput, speed);
+    this.liftMotor.set(ControlMode.PercentOutput, -0.63 * speed);
   }
-  
+
 }
