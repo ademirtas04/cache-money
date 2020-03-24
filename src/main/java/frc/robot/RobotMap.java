@@ -7,6 +7,7 @@
 
 package frc.robot;
 
+
 public class RobotMap {
 
 	//MOTORS
@@ -18,6 +19,11 @@ public class RobotMap {
 	public static final int ARM_MOTOR_2_ID = 26;
 	public static final int ARM_MOTOR_3_ID = 27;
 	public static final int ARM_MOTOR_4_ID = 28;
+
+	//SERVO PORTS
+	public static final int BASE_PORT = 0;
+	public static final int ARM_PORT = 1; 
+	public static final int WHEEL_ARM_PORT = 2;
 
 	//CONTROLLER PORT VALUES
 	public static final int DRIVER_CONTROLLER = 0;
@@ -43,12 +49,25 @@ public class RobotMap {
 	public final static int BUTTON_LEFTSTICK = 9;
 	public final static int BUTTON_RIGHTSTICK = 10;
 
+	//JOYSTICK BUTTON VALUES
+	public static final int MAIN_TRIGGER = 1;
+	public static final int TEST_BUTTON_ONE = 2;
+	public static final int TEST_BUTTON_TWO = 3;
+	public static final int TEST_BUTTON_THREE = 4;
+	public static final int TEST_BUTTON_FOUR = 5;
+	public static final int TEST_BUTTON_FIVE = 6;
+	public static final int TEST_BUTTON_SIX = 7;
+	public static final int TEST_BUTTON_SEVEN = 8;
+	public static final int TEST_BUTTON_EIGHT = 9;
+	public static final int TEST_BUTTON_NINE = 10;
+	public static final int TEST_BUTTON_TEN = 11;
+	public static final int TEST_BUTTON_ELEVEN = 12;
     //PID VALUES
 	public static final double kP = 0.5;
 	public static final double kI = 0.5;
 	public static final double kD = 0.1;
 	public static final double iLimit = 1;
-	public static final double kDriveTick2Feet = 1.0 / 128 * 6 * Math.PI / 12;
+	public static final double kDriveTick2Feet = 0.196 / 12; //CHECK THESE
 
 	//PIXY CAM CONSTANTS
 	public static final int PIXY_WIDTH = 640;
@@ -59,12 +78,34 @@ public class RobotMap {
 	public static final double SINGLE_ROTATION_TIME = 0; // Fill in once tested
 	public static final double CONSTANT_TIMER = 5;
 	public static final double CONSTANT_ARM_TIMER = 5;
-	public static final int INTAKE_PORT = 0;
-	public static final int ARM_PORT = 0; // Fill in once built in
-	public static final int BASE_PORT = 0; // Fill in once built in
+
+
+
 
 	public static final double IDEAL_DUMP_ANGLE = 90; // Change once tested
 	public static final double IDEAL_HOLD_ANGLE = 10; // Change once tested
+
+	//AUTONOMOUS VALUES
+	public static final double AUTO_DRIVE_TIME = 10;
+	public static final double AUTO_WAIT_TIME = 0;
+	public static final double AUTO_DROP_TIME = 15;
+	public static final double AUTONOMOUS_LENGTH = 15;
+	public static final double ENDPOINT = 0;
+
+	//CLIMB VALUES
+
+	public static final int WINCH_MOTOR_ID = 25;
+	public static final int LIFT_MOTOR_ID = 26;
+	public static final int ENCODER1_PORT_A = 0; //These two can be values 0-3
+	public static final int ENCODER1_PORT_B = 1;
+	public static final int ENCODER2_PORT_A = 4; //These two can be values 4-7 
+	public static final int ENCODER2_PORT_B = 5;
+	public static final int ENCODER_WINCH_PORT_A = 0;
+	public static final int ENCODER_WINCH_PORT_B = 1;
+	public static final int ENCODER_LIFT_PORT_A = 4;
+	public static final int ENCODER_LIFT_PORT_B = 5;
+	public static final int WHEEL_ARM_MOTOR_ID = 27;
+	public static final double TIME_FOR_ONE_ROTATION = 100/625/Math.PI*4/3;
 
 
 

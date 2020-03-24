@@ -11,13 +11,13 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
-import frc.robot.subsystems.Base;
+import frc.robot.subsystems.Ramp;
 
 public class BaseLift extends Command {
   private double startTime;
   
   public BaseLift() {
-    requires(Robot.base);
+    requires(Robot.ramp);
   }
 
   // Called just before this Command runs the first time
@@ -30,7 +30,7 @@ public class BaseLift extends Command {
   @Override
 
   public void execute() {
-    Base.baseMove();
+    Ramp.baseMove();
   }
 
   // Make this return true when this Command no longer needs to run execute()

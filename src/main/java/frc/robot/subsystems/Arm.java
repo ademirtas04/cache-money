@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 
 public class Arm extends Subsystem {
-  //public static Servo arm = new Servo(RobotMap.ARM_PORT);
+  public static Servo arm = new Servo(RobotMap.ARM_PORT);
   
  
  
@@ -22,11 +22,11 @@ public class Arm extends Subsystem {
   }
 
   public static void armMove(){
-    //arm.setAngle(-90);
+    arm.setAngle(125);
   }
   
   public static void armReset(){
-    //arm.setAngle(0);
+    arm.setAngle(55);
   }
 
   

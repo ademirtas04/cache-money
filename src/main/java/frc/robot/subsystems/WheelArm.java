@@ -7,14 +7,16 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 
-
-public class Intake extends Subsystem {
-  //public static Servo intake = new Servo(RobotMap.INTAKE_PORT);
-
+public class WheelArm extends Subsystem {
+  //public static Servo arm = new Servo(RobotMap.WHEEL_ARM_PORT);
+  //public static VictorSPX armMotor = new VictorSPX(RobotMap.WHEEL_ARM_MOTOR_ID);
   
  
  
@@ -23,21 +25,22 @@ public class Intake extends Subsystem {
     // This method will be called once per scheduler run
   }
 
-  public static void IntakeMove(){
-    //ALERT: We need to find the right angle for this (see if it's negative or not) 
-    //intake.setAngle(RobotMap.IDEAL_DUMP_ANGLE);
+  public static void armMove(){
+    //arm.setAngle(90);
+  }
+  
+  public static void armReset(){
+    //arm.setAngle(0);
   }
 
-  public static void IntakeReset(){
-    //intake.setAngle(RobotMap.IDEAL_HOLD_ANGLE);
+  public static void wheelMove(double speed){
+    //armMotor.set(ControlMode.PercentOutput, speed);
   }
 
-  public static double getAngle(){
-    //return intake.getAngle();
-    return 0;
+  public static double getArmAngle(){
+    //return arm.getAngle();
+    return -1;
   }
 
-  public static void zeroSpeed(){
-    //intake.setSpeed(0);
-  }
+  
 }

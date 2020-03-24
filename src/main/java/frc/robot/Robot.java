@@ -7,21 +7,22 @@
 
 package frc.robot;
 
+
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.commands.Autonomous;
 import frc.robot.commands.TankDrive;
 import frc.robot.misc.ControlChooser;
 import frc.robot.misc.SensorReset;
 import frc.robot.misc.SmartDashboardInterface;
 import frc.robot.subsystems.Arm;
-import frc.robot.subsystems.Base;
+import frc.robot.subsystems.Ramp;
 import frc.robot.subsystems.Climb;
 import frc.robot.subsystems.DriveTrain;
-import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.WheelArm;
 
 
 
@@ -31,19 +32,22 @@ import frc.robot.subsystems.Intake;
  */
 
 public class Robot extends TimedRobot {
-  public static Climb climb = new Climb();
+  public static Climb liftClimb = new Climb();
+  public static Climb winchClimb = new Climb();
+  public static Climb timeClimb = new Climb();
+  public static Climb encoderClimb = new Climb();
+  public static WheelArm wheelArm = new WheelArm();
   public static DriveTrain driveTrain = new DriveTrain();
   public static TankDrive tankDrive = new TankDrive();
   public static Arm arm = new Arm();
-  public static Base base = new Base();
-  public static Intake intake = new Intake();
+  public static Ramp ramp = new Ramp();
   public static OI m_oi;
+  public static boolean movable;
+  public static double startTime = 0;
   private Command m_autonomousCommand;
-  private XboxController xbox = new XboxController(RobotMap.DRIVER_CONTROLLER);
   private ControlChooser m_controlChooser;
   private SmartDashboardInterface m_smartDashboardInterface;
   private SensorReset m_sensorReset;
-
 
 
   @Override
@@ -87,40 +91,36 @@ public class Robot extends TimedRobot {
   @Override
   //Code when the enable button is hit in the autonomous tab
   public void autonomousInit() {
-    Autonomous.autoStart();
+    startTime = Timer.getFPGATimestamp();
   }
 
   @Override
   public void autonomousPeriodic() {
-    Autonomous.autoSequence();
-  }
+    
+    double currentTime = Timer.getFPGATimestamp();
+    if(currentTime - startTime < RobotMap.AUTO_WAIT_TIME){
+        DriveTrain.move(0,0);
+      } if(currentTime - startTime < (3+RobotMap.AUTO_WAIT_TIME) && currentTime - startTime > RobotMap.AUTO_WAIT_TIME){
+        DriveTrain.move(0.5,-0.5);
+      }  else if (currentTime - startTime > (3+RobotMap.AUTO_WAIT_TIME) && currentTime - startTime < (RobotMap.AUTO_WAIT_TIME + 6)){
+        Arm.armMove();
+      }
+      
+    }  
   
 
 
   @Override
   //Code when the Enable button is hit during teleop period
   public void teleopInit() {
-    // This makes sure that the autonomous stops running when
-    // teleop starts running. If you want the autonomous to
-    // continue until interrupted by another command, remove
-    // this line or comment it out.
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
   }
-  /**
-   * Driver Controls
-   */
   @Override
   public void teleopPeriodic() {
-    //The Left stick is speed control, the Right stick is turning control
-    double speed = xbox.getRawAxis(RobotMap.LEFT_STICK_Y);
-    double turn = -xbox.getRawAxis(RobotMap.RIGHT_STICK_X);
-    //The Left is pos the right is neg
-     double left = speed + turn;
-     double right = speed - turn;
-     TankDrive.move(left,right);
-
+     Scheduler.getInstance().run();
+     TankDrive.move();
   }
 
   @Override
