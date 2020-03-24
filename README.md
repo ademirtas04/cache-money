@@ -1,11 +1,11 @@
 # Infinite-Recharge-Robot
-Team 5830's robot code for FIRST Infinite Recharge (2020)
+Team 8096's robot code for FIRST Infinite Recharge (2020)
 
 ---
 
 ## Developer Policy
 
-#### All Team 5830 developers MUST follow this policy. Commits and pull requests not adhering to this policy will be automatically rejected.
+#### All Team 8096 developers MUST follow this policy. Commits and pull requests not adhering to this policy will be automatically rejected.
 
 ##### Issues
 Whenever a change is required, an issue must be created.
