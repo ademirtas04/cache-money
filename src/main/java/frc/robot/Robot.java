@@ -36,6 +36,7 @@ public class Robot extends TimedRobot {
   public static Climb winchClimb = new Climb();
   public static Climb timeClimb = new Climb();
   public static Climb encoderClimb = new Climb();
+  public static Climb testClimb = new Climb();
   public static WheelArm wheelArm = new WheelArm();
   public static DriveTrain driveTrain = new DriveTrain();
   public static TankDrive tankDrive = new TankDrive();
@@ -95,8 +96,8 @@ public class Robot extends TimedRobot {
   }
 
   @Override
-  public void autonomousPeriodic() {
-    
+  public void autonomousPeriodic() {}
+    /*
     double currentTime = Timer.getFPGATimestamp();
     if(currentTime - startTime < RobotMap.AUTO_WAIT_TIME){
         DriveTrain.move(0,0);
@@ -104,9 +105,9 @@ public class Robot extends TimedRobot {
         DriveTrain.move(0.5,-0.5);
       }  else if (currentTime - startTime > (3+RobotMap.AUTO_WAIT_TIME) && currentTime - startTime < (RobotMap.AUTO_WAIT_TIME + 6)){
         Arm.armMove();
-      }
-      
+      }      
     }  
+    */
   
 
 
