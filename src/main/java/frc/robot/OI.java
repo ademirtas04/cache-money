@@ -13,6 +13,7 @@ import frc.robot.commands.BaseMid;
 import frc.robot.commands.ClimbLiftTime;
 import frc.robot.commands.ClimbWinchTime;
 import frc.robot.commands.WheelRotation;
+import frc.robot.commands.TestEncoder;
 
 public class OI {
     // CONTROLLERS

@@ -31,9 +31,9 @@ public class TestEncoder extends Command {
   public int direction=0;
   private double minsetpoint;
   private double maxsetpoint;
-  public TestEncoder(Encoder encoder1, Encoder encoder2, VictorSPX lift, VictorSPX winch, int d, double minsetpoint, double maxsetpoint){
+  public TestEncoder(/*Encoder encoder1, Encoder encoder2, VictorSPX lift, VictorSPX winch, int d, double minsetpoint, double maxsetpoint*/){
     System.out.println("Constructing");
-    this.liftEncoder = encoder1;
+    /*this.liftEncoder = encoder1;
     this.winchEncoder = encoder2;
     this.liftMotor = lift;
     this.winchMotor = winch;
@@ -45,7 +45,7 @@ public class TestEncoder extends Command {
     }
     this.minsetpoint = minsetpoint;
     this.maxsetpoint = maxsetpoint;
-    
+    */
     requires(Robot.testClimb);
 
   }
@@ -57,5 +57,11 @@ public class TestEncoder extends Command {
     Climb.setSpeed(0.25, this.winchEncoder, this.liftEncoder);
     System.out.print(encoder.get());
     */
+  }
+
+  @Override
+  protected boolean isFinished() {
+    // TODO Auto-generated method stub
+    return false;
   }
 }
