@@ -9,10 +9,12 @@ package frc.robot.commands;
 
 import frc.robot.Robot;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.RobotMap;
 import frc.robot.subsystems.Climb;
@@ -21,9 +23,10 @@ import frc.robot.subsystems.Climb;
 public class TestEncoder extends Command {
 
 
-  //private static Encoder encoder = new Encoder(RobotMap.ENCODER1_PORT_A, RobotMap.ENCODER1_PORT_B, true, EncodingType.k4X);
+//public Encoder encoder = new Encoder(RobotMap.ENCODER2_PORT_A, RobotMap.ENCODER2_PORT_B, true, EncodingType.k4X);
   public static double startTime = 0;
   public static boolean done = false;
+  public boolean initialized = false;
   public Encoder liftEncoder;
   public Encoder winchEncoder;
   public VictorSPX liftMotor;
@@ -52,11 +55,19 @@ public class TestEncoder extends Command {
 
   @Override
   public void start() {
-    System.out.println(Timer.getFPGATimestamp());
-    /*Test #2
-    Climb.setSpeed(0.25, this.winchEncoder, this.liftEncoder);
-    System.out.print(encoder.get());
-    */
+    //System.out.println(Timer.getFPGATimestamp());
+    if(!initialized){
+      liftEncoder = Climb.getLiftEncoder();
+    }
+    Climb.getLiftMotor().set(ControlMode.PercentOutput, 0.75);
+    System.out.println(liftEncoder.get());
+  }
+
+  @Override
+  public void cancel(){
+    Climb.getLiftMotor().set(ControlMode.PercentOutput, 0);
+    liftEncoder.reset();
+    super.cancel();
   }
 
   @Override
@@ -64,4 +75,6 @@ public class TestEncoder extends Command {
     // TODO Auto-generated method stub
     return false;
   }
+
+
 }
