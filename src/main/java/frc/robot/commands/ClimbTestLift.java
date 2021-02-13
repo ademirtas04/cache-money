@@ -68,7 +68,7 @@ public class ClimbTestLift extends Command {
     System.out.println("Execute: Start Time = " + startTime);
     if (Timer.getFPGATimestamp() - startTime < timeout && Math.abs(encoder.get() * RobotMap.kDriveTick2Feet) < setpoint){
       System.out.println("Execute: Encoder value = " + encoder.get() * RobotMap.kDriveTick2Feet);
-      setSpeed(0.3 * direction);
+      //setSpeed(0.3 * direction);
     } else {
       System.out.println("Execute: Setting done to true");
       done = true;

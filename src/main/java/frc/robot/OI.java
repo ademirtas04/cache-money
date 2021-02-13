@@ -69,7 +69,7 @@ public class OI {
         longDropButton.whenPressed(new ClimbLiftLong(Climb.getLiftMotor(), -1));
         winchButton.whenPressed(new ClimbWinchTime(Climb.getWinchMotor()));
         */
-        spareButton.whileHeld(new TestEncoder());
+        //spareButton.whileHeld(new TestEncoder());
 
 
     }

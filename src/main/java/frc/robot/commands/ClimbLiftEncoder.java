@@ -24,6 +24,7 @@ public class ClimbLiftEncoder extends Command {
   public static double startTime = 0;
   public static boolean done = false;
   private Encoder liftEncoder;
+  
   private Encoder winchEncoder;
   private VictorSPX liftMotor;
   private VictorSPX winchMotor;
@@ -32,6 +33,10 @@ public class ClimbLiftEncoder extends Command {
   private double maxsetpoint;
   public ClimbLiftEncoder(Encoder encoder1, Encoder encoder2, VictorSPX lift, VictorSPX winch, int d, double minsetpoint, double maxsetpoint){
     System.out.println("Constructing");
+  liftEncoder.setDistancePerPulse(1./2048.); //sets distance to 1 rotation per 2048 pulses(1 encoder rotation)
+  liftEncoder.setMaxPeriod(.1);
+  liftEncoder.setMinRate(10);
+  liftEncoder.setSamplesToAverage(5);
     this.liftEncoder = encoder1;
     this.winchEncoder = encoder2;
     this.liftMotor = lift;
@@ -59,7 +64,7 @@ public class ClimbLiftEncoder extends Command {
     System.out.println("Initialize: Begin");
     System.out.println("Initialize: Winch Motor = " + winchMotor.getDeviceID());
     System.out.println("Initialize: Lift Motor = " + liftMotor.getDeviceID());
-    //encoder.reset();
+    liftEncoder.reset();
     System.out.println("Initialize: Start Time = " + startTime);
     done=false;  
     System.out.println("Initialize: Done");
@@ -69,14 +74,16 @@ public class ClimbLiftEncoder extends Command {
   @Override
   protected void execute() {
     System.out.println("Execute: Start Time = " + startTime);
-    System.out.println("Execute: Winch Encoder value = " + winchEncoder.get() * RobotMap.kDriveTick2Feet);
-    System.out.println("Execute: Lift Encoder value = " + liftEncoder.get() * RobotMap.kDriveTick2Feet);
+    //System.out.println("Execute: Winch Encoder value = " + winchEncoder.get() * RobotMap.kDriveTick2Feet);
+  System.out.println("Execute: Lift Encoder value = " + liftEncoder.getDistance());//liftEncoder.get() * RobotMap.kDriveTick2Feet);
+  /*
     if(Math.abs(liftEncoder.get() - winchEncoder.get()) < 0.1 && ((direction == 1 && winchEncoder.get() * RobotMap.kDriveTick2Feet < maxsetpoint) || (direction == -1 && winchEncoder.get() * RobotMap.kDriveTick2Feet > minsetpoint))){
        Climb.setSpeed(1 * direction, winchMotor, liftMotor);
     } else {
       System.out.println("Execute: Setting done to true");
       done = true;
     }
+  */
   }
   @Override
   protected boolean isFinished() {

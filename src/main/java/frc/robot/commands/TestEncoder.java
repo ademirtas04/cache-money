@@ -23,7 +23,8 @@ import frc.robot.subsystems.Climb;
 public class TestEncoder extends Command {
 
 
-  public Encoder encoder = new Encoder(RobotMap.ENCODER2_PORT_A, RobotMap.ENCODER2_PORT_B, true, EncodingType.k4X);
+  public Encoder encoder = new Encoder(RobotMap.ENCODER2_PORT_A, RobotMap.ENCODER2_PORT_B);
+   
   public static double startTime = 0;
   public static boolean done = false;
   public boolean initialized = false;
@@ -32,18 +33,22 @@ public class TestEncoder extends Command {
   public VictorSPX liftMotor;
   public VictorSPX winchMotor;
   public int direction=0;
-  public static final double kDistancePerRevolution = 15;
-  public static final double kPulsesPerRevolution =  2048;
-  public static final double kDistancePerPulse = kDistancePerRevolution / kPulsesPerRevolution;
+  
+
   private double minsetpoint;
   private double maxsetpoint;
  
   public TestEncoder(Encoder encoder1, Encoder encoder2, VictorSPX lift, VictorSPX winch, int d, double minsetpoint, double maxsetpoint){
     System.out.println("Constructing");
     this.liftEncoder = encoder1;
+
     this.winchEncoder = encoder2;
     this.liftMotor = lift;
     this.winchMotor = winch;
+
+    
+    
+    
     if(d==0){
       liftEncoder.reset();
       winchEncoder.reset();
@@ -54,13 +59,17 @@ public class TestEncoder extends Command {
     this.maxsetpoint = maxsetpoint;
     
     
+    
     requires(Robot.testClimb);
 
   }
 
   @Override
-  public void start() {
-   
+  public void start(){
+
+
+    
+    
    
     //System.out.println(Timer.getFPGATimestamp());
     if(!initialized){
@@ -82,6 +91,5 @@ public class TestEncoder extends Command {
     //TODO Auto-generated method stub 
     return false;
   }
-
 
 }

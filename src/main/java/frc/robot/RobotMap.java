@@ -98,15 +98,20 @@ public class RobotMap {
 	public static final int LIFT_MOTOR_ID = 26;
 	public static final int ENCODER1_PORT_A = 0; //These two can be values 0-3
 	public static final int ENCODER1_PORT_B = 1;
-	public static final int ENCODER2_PORT_A = 4; //These two can be values 4-7 
-	public static final int ENCODER2_PORT_B = 5;
+	public static final int ENCODER2_PORT_A = 5; //These two can be values 4-7 
+	public static final int ENCODER2_PORT_B = 6;
+	public static final int ENCODER2_PORT_I = 7;
 	public static final int ENCODER_WINCH_PORT_A = 0;
 	public static final int ENCODER_WINCH_PORT_B = 1;
-	public static final int ENCODER_LIFT_PORT_A = 4;
-	public static final int ENCODER_LIFT_PORT_B = 5;
+	public static final int ENCODER_LIFT_PORT_A = 5;
+	public static final int ENCODER_LIFT_PORT_B = 6;
+	public static final int ENCODER_LIFT_PORT_I = 7;
 	public static final int WHEEL_ARM_MOTOR_ID = 27;
 	public static final double TIME_FOR_ONE_ROTATION = 100/625/Math.PI*4/3;
-
+	public static final double kDistancePerRevolution = 15;
+    public static final double kPulsesPerRevolution =  2048;
+    public static final double kDistancePerPulse = kDistancePerRevolution / kPulsesPerRevolution;
+	
 
 
 
