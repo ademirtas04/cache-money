@@ -78,7 +78,7 @@ public class TestEncoder extends Command {
     Climb.getLiftMotor().set(ControlMode.PercentOutput, 0.75);
     
     //Test One: Testing if encoder counts revolutions, rate, and sees what the motor's -1.0 to 1.0 sets the velocity to
-    System.out.println("Distance: " + liftEncoder.get());
+    System.out.println("Distance: " + liftEncoder.getDistance());
     System.out.println("Rate: " + liftEncoder.getRate());
 
     //Test Three: Begin to use PID to simulate motion + movement - assuming it is not absolute value
@@ -105,7 +105,7 @@ public class TestEncoder extends Command {
 
   @Override
   protected boolean isFinished() {
-    // TODO Auto-generated method stub
+   
     return false;
   }
 
