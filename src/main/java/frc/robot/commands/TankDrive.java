@@ -58,4 +58,8 @@ public class TankDrive extends Command {
     DriveTrain.move(left,right);
     
   }
+
+  public static void move(double ftDistance){
+    
+  }
 }
