@@ -19,7 +19,7 @@ import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 public class Climb extends Subsystem {
   public static VictorSPX winch = new VictorSPX(RobotMap.WINCH_MOTOR_ID);
   public static VictorSPX lift = new VictorSPX(RobotMap.LIFT_MOTOR_ID);
-  public static Encoder liftEncoder = new Encoder(RobotMap.ENCODER_LIFT_PORT_A, RobotMap.ENCODER_LIFT_PORT_B, true, EncodingType.k4X);
+  //public static Encoder liftEncoder = new Encoder(RobotMap.ENCODER_LIFT_PORT_A, RobotMap.ENCODER_LIFT_PORT_B, true, EncodingType.k4X);
   public static Encoder winchEncoder = new Encoder(RobotMap.ENCODER_WINCH_PORT_A, RobotMap.ENCODER_WINCH_PORT_B, true, EncodingType.k4X);
 
 
@@ -36,7 +36,7 @@ public class Climb extends Subsystem {
 
 
   public static void resetEncoders(){
-    liftEncoder.reset();
+    //liftEncoder.reset();
     winchEncoder.reset();
   }
 
@@ -49,7 +49,8 @@ public class Climb extends Subsystem {
   }
 
   public static Encoder getLiftEncoder(){
-    return liftEncoder;
+    //return liftEncoder;
+    return winchEncoder;
   }
 
   public static Encoder getWinchEncoder(){
@@ -61,5 +62,5 @@ public class Climb extends Subsystem {
     motorLift.set(ControlMode.PercentOutput, 63/100 * speed);
 
 }
-
+//TO-DO remember to come back and make this look good.
 }

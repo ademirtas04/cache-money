@@ -49,6 +49,7 @@ public class Robot extends TimedRobot {
   private ControlChooser m_controlChooser;
   private SmartDashboardInterface m_smartDashboardInterface;
   private SensorReset m_sensorReset;
+  public static TestEncoder encodertester = new TestEncoder();
 
 
   @Override
@@ -122,6 +123,8 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
      Scheduler.getInstance().run();
      TankDrive.move();
+     
+     encodertester.returnEncoderValues();
   }
 
   @Override
