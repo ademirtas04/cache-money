@@ -76,7 +76,7 @@ public class TestEncoder extends Command {
   public void returnEncoderValues(){
     rightEncoder.setDistancePerPulse(1);
     leftEncoder.setDistancePerPulse(1);
-    if(leftEncoder.getDistance() > -2048){
+    if(leftEncoder.getDistance() > -1.75 * RobotMap.CONVERSION_RATE){
       DriveTrain.move(0.2,0.2);                                                                                                                                                 
     }
     if(firstValue == 0) {

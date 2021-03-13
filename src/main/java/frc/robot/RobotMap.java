@@ -102,6 +102,7 @@ public class RobotMap {
 	public static final int ENCODER_LEFT_MOTORS_B = 6;
 	public static final int WHEEL_ARM_MOTOR_ID = 27;
 	public static final double TIME_FOR_ONE_ROTATION = 100/625/Math.PI*4/3;
+	public static final double CONVERSION_RATE = 4096/Math.PI;
 
 
 
