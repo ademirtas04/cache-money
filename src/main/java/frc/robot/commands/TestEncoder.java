@@ -38,6 +38,7 @@ public class TestEncoder extends Command {
   private double distance = 0;
   private double rate = 0;
   private double lastTimestamp = 0;
+  private double firstValue = 0;
   
   public TestEncoder(){
     System.out.println("Constructing");
@@ -47,44 +48,6 @@ public class TestEncoder extends Command {
 
   @Override
   public void start() {
-    //System.out.println(Timer.getFPGATimestamp());
-    if(!initialized){
-      // Encoder now counts the number of revolutions
-      leftEncoder.setDistancePerPulse(1);
-      rightEncoder.setDistancePerPulse(1);
-      initialized=true;
-    }
-    //Test Two: Testing if encoder counts the absolute value of the distance traveled or is direction-based
-    /*
-    if(iterations < 10) {
-      Climb.getLiftMotor().set(ControlMode.PercentOutput, 0.75); // remember to comment out the other set
-    } else if (iterations < 20 && iterations >= 10) {
-      Climb.getLiftMotor().set(ControlMode.PercentOutput, -0.75);
-    
-    */
-    Climb.getLiftMotor().set(ControlMode.PercentOutput, 0.75);
-    
-    //Test One: Testing if encoder counts revolutions, rate, and sees what the motor's -1.0 to 1.0 sets the velocity to
-    System.out.println("Left Motor Distance Per Pulse: " + leftEncoder.getDistancePerPulse());
-    System.out.println("Right Motor Distance Per Pulse: " + rightEncoder.getDistancePerPulse());
-    System.out.println("Left Motor Distance: " + leftEncoder.getDistance());
-    System.out.println("Right Motor Distance: " + rightEncoder.getDistance());
-    System.out.println("Left Motor Rate: " + leftEncoder.getRate());
-    System.out.println("Left Motor Rate: " + rightEncoder.getRate());
-
-
-    //Test Three: Begin to use PID to simulate motion + movement - assuming it is not absolute value
-    /*distance = liftEncoder.getDistance() * RobotMap.kDriveTick2Feet;
-
-    rate = (distance - previousDistance) / (Timer.getFPGATimestamp() - lastTimestamp);
-    lastTimestamp = Timer.getFPGATimestamp();
-
-    //We can add the Integral term later - that one will need more knowledge of what we're doing and how encoders work
-    double outputSpeed = RobotMap.kP * distance + RobotMap.kD * rate;
-    Climb.getLiftMotor().set(ControlMode.PercentOutput, outputSpeed)
-    distance = previousDistance;
-    */
-    iterations++;
   
   }
 
@@ -102,7 +65,6 @@ public class TestEncoder extends Command {
     return false;
   }
 
-  public void returnEncoderValues(){
     //Test Two: Testing if encoder counts the absolute value of the distance traveled or is direction-based
     /*
     if(iterations < 10) {
@@ -111,16 +73,25 @@ public class TestEncoder extends Command {
       Climb.getLiftMotor().set(ControlMode.PercentOutput, -0.75);
     
     */
-    DriveTrain.move(0.5,0.5);
+  public void returnEncoderValues(){
+    rightEncoder.setDistancePerPulse(1);
     leftEncoder.setDistancePerPulse(1);
+    if(leftEncoder.getDistance() > -2048){
+      DriveTrain.move(0.2,0.2);                                                                                                                                                 
+    }
+    if(firstValue == 0) {
+      firstValue = leftEncoder.getDistance();
+    }
     //Test One: Testing if encoder counts revolutions, rate, and sees what the motor's -1.0 to 1.0 sets the velocity to
     if(!(leftEncoder.getStopped() && rightEncoder.getStopped())){
       System.out.println("Left Motor Distance Per Pulse: " + leftEncoder.getDistancePerPulse());
       System.out.println("Right Motor Distance Per Pulse: " + rightEncoder.getDistancePerPulse());
       System.out.println("Left Motor Distance: " + leftEncoder.getDistance());
       System.out.println("Right Motor Distance: " + rightEncoder.getDistance());
+      System.out.println("First Value: " + firstValue); 
       System.out.println("Left Motor Rate: " + leftEncoder.getRate());
       System.out.println("Left Motor Rate: " + rightEncoder.getRate());
+      System.out.println("Iterations: " + iterations);
     }
     if(rightEncoder.getStopped() && leftEncoder.getStopped()){
       System.out.println("STOPPED");
@@ -141,6 +112,11 @@ public class TestEncoder extends Command {
     */
     iterations++;
   
+  }
+
+  public void resetEncoders(){
+    leftEncoder.reset();
+    rightEncoder.reset();
   }
 
 

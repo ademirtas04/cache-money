@@ -121,6 +121,7 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
+    encodertester.resetEncoders();
   }
   @Override
   public void teleopPeriodic() {
