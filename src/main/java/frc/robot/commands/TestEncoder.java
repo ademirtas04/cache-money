@@ -26,7 +26,8 @@ public class TestEncoder extends Command {
   public static double startTime = 0;
   public static boolean done = false;
   public boolean initialized = false;
-  public Encoder liftEncoder = new Encoder(RobotMap.ENCODER_LIFT_PORT_A, RobotMap.ENCODER_LIFT_PORT_B, true, EncodingType.k4X);
+  public Encoder leftEncoder = new Encoder(RobotMap.ENCODER_RIGHT_MOTORS_A, RobotMap.ENCODER_RIGHT_MOTORS_B, true, EncodingType.k4X);
+  public Encoder leftEncoder = new Encoder(RobotMap.ENCODER_LEFT_MOTORS_A, RobotMap.ENCODER_LEFT_MOTORS_B, true, EncodingType.k4X);
   public int direction=0;
   private double minsetpoint;
   private double maxsetpoint;
@@ -39,7 +40,7 @@ public class TestEncoder extends Command {
   
   public TestEncoder(){
     System.out.println("Constructing");
-    requires(Robot.testClimb);
+    requires(Robot.driveTrain);
 
   }
 
@@ -48,7 +49,8 @@ public class TestEncoder extends Command {
     //System.out.println(Timer.getFPGATimestamp());
     if(!initialized){
       // Encoder now counts the number of revolutions
-      liftEncoder.setDistancePerPulse(1/2048);
+      leftEncoder.setDistancePerPulse(1);
+      rightEncoder.setDistancePerPulse(1);
       initialized=true;
     }
     //Test Two: Testing if encoder counts the absolute value of the distance traveled or is direction-based
@@ -62,9 +64,13 @@ public class TestEncoder extends Command {
     Climb.getLiftMotor().set(ControlMode.PercentOutput, 0.75);
     
     //Test One: Testing if encoder counts revolutions, rate, and sees what the motor's -1.0 to 1.0 sets the velocity to
-    System.out.println("Distance Per Pulse: " + liftEncoder.getDistancePerPulse());
-    System.out.println("Distance: " + liftEncoder.getDistance());
-    System.out.println("Rate: " + liftEncoder.getRate());
+    System.out.println("Left Motor Distance Per Pulse: " + leftEncoder.getDistancePerPulse());
+    System.out.println("Right Motor Distance Per Pulse: " + rightEncoder.getDistancePerPulse());
+    System.out.println("Left Motor Distance: " + leftEncoder.getDistance());
+    System.out.println("Right Motor Distance: " + rightEncoder.getDistance());
+    System.out.println("Left Motor Rate: " + leftEncoder.getRate());
+    System.out.println("Left Motor Rate: " + rightEncoder.getRate());
+
 
     //Test Three: Begin to use PID to simulate motion + movement - assuming it is not absolute value
     /*distance = liftEncoder.getDistance() * RobotMap.kDriveTick2Feet;
@@ -84,23 +90,18 @@ public class TestEncoder extends Command {
   @Override
   public void cancel(){
     Climb.getLiftMotor().set(ControlMode.PercentOutput, 0);
-    liftEncoder.reset();
+    leftEncoder.reset();
+    rightEncoder.reset();
     super.cancel();
     //once we get to testing PID, set all the values here to 0
   }
 
   @Override
   protected boolean isFinished() {
-   
     return false;
   }
 
   public void returnEncoderValues(){
-    if(!initialized){
-      liftEncoder = Climb.getLiftEncoder();
-      // Encoder now counts the number of revolutions
-      initialized=true;
-    }
     //Test Two: Testing if encoder counts the absolute value of the distance traveled or is direction-based
     /*
     if(iterations < 10) {
@@ -109,17 +110,21 @@ public class TestEncoder extends Command {
       Climb.getLiftMotor().set(ControlMode.PercentOutput, -0.75);
     
     */
-    Climb.getLiftMotor().set(ControlMode.PercentOutput, 0.75);
+    DriveTrain.move(0.5,0.5);
     liftEncoder.setDistancePerPulse(1);
     //Test One: Testing if encoder counts revolutions, rate, and sees what the motor's -1.0 to 1.0 sets the velocity to
     if(!liftEncoder.getStopped()){
-      System.out.println("Distance: " + liftEncoder.getDistance());
-      System.out.println("Rate: " + liftEncoder.getRate());
-      System.out.println("Distance Per Pulse: " + liftEncoder.getDistancePerPulse());
+      System.out.println("Left Motor Distance Per Pulse: " + leftEncoder.getDistancePerPulse());
+      System.out.println("Right Motor Distance Per Pulse: " + rightEncoder.getDistancePerPulse());
+      System.out.println("Left Motor Distance: " + leftEncoder.getDistance());
+      System.out.println("Right Motor Distance: " + rightEncoder.getDistance());
+      System.out.println("Left Motor Rate: " + leftEncoder.getRate());
+      System.out.println("Left Motor Rate: " + rightEncoder.getRate());
     }
     if(liftEncoder.getStopped()){
       System.out.println("STOPPED");
-      System.out.println(liftEncoder.get());
+      System.out.println(leftEncoder.get());
+      System.out.println(rightEncoder.get());     
     }
 
     //Test Three: Begin to use PID to simulate motion + movement - assuming it is not absolute value
