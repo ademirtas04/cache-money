@@ -18,6 +18,7 @@ import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.RobotMap;
 import frc.robot.subsystems.Climb;
+import frc.robot.subsystems.DriveTrain;
 
 
 public class TestEncoder extends Command {
@@ -26,7 +27,7 @@ public class TestEncoder extends Command {
   public static double startTime = 0;
   public static boolean done = false;
   public boolean initialized = false;
-  public Encoder leftEncoder = new Encoder(RobotMap.ENCODER_RIGHT_MOTORS_A, RobotMap.ENCODER_RIGHT_MOTORS_B, true, EncodingType.k4X);
+  public Encoder rightEncoder = new Encoder(RobotMap.ENCODER_RIGHT_MOTORS_A, RobotMap.ENCODER_RIGHT_MOTORS_B, true, EncodingType.k4X);
   public Encoder leftEncoder = new Encoder(RobotMap.ENCODER_LEFT_MOTORS_A, RobotMap.ENCODER_LEFT_MOTORS_B, true, EncodingType.k4X);
   public int direction=0;
   private double minsetpoint;
@@ -111,9 +112,9 @@ public class TestEncoder extends Command {
     
     */
     DriveTrain.move(0.5,0.5);
-    liftEncoder.setDistancePerPulse(1);
+    leftEncoder.setDistancePerPulse(1);
     //Test One: Testing if encoder counts revolutions, rate, and sees what the motor's -1.0 to 1.0 sets the velocity to
-    if(!liftEncoder.getStopped()){
+    if(!(leftEncoder.getStopped() && rightEncoder.getStopped())){
       System.out.println("Left Motor Distance Per Pulse: " + leftEncoder.getDistancePerPulse());
       System.out.println("Right Motor Distance Per Pulse: " + rightEncoder.getDistancePerPulse());
       System.out.println("Left Motor Distance: " + leftEncoder.getDistance());
@@ -121,7 +122,7 @@ public class TestEncoder extends Command {
       System.out.println("Left Motor Rate: " + leftEncoder.getRate());
       System.out.println("Left Motor Rate: " + rightEncoder.getRate());
     }
-    if(liftEncoder.getStopped()){
+    if(rightEncoder.getStopped() && leftEncoder.getStopped()){
       System.out.println("STOPPED");
       System.out.println(leftEncoder.get());
       System.out.println(rightEncoder.get());     

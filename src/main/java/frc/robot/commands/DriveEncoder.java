@@ -16,13 +16,13 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 
-public class ClimbWinchTime extends Command {
+public class DriveEncoder extends Command {
 
 
   public static double startTime = 0;
   public static boolean done = false;
   private VictorSPX winchMotor;
-  public ClimbWinchTime(VictorSPX winchMotor){
+  public DriveEncoder(VictorSPX winchMotor){
     System.out.println("Constructing");
     this.winchMotor = winchMotor;
     requires(Robot.timeClimb);
