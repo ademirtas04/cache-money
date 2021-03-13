@@ -11,8 +11,8 @@ package frc.robot;
 public class RobotMap {
 
 	//MOTORS
-	public static final int MOTOR_LEFT_1_ID = 21;
-    public static final int MOTOR_LEFT_2_ID = 24;
+	public static final int MOTOR_LEFT_1_ID = 24;
+    public static final int MOTOR_LEFT_2_ID = 21;
 	public static final int MOTOR_RIGHT_1_ID = 22;
 	public static final int MOTOR_RIGHT_2_ID = 23;
 	public static final int ARM_MOTOR_1_ID = 25;
@@ -96,16 +96,10 @@ public class RobotMap {
 
 	public static final int WINCH_MOTOR_ID = 25;
 	public static final int LIFT_MOTOR_ID = 26;
-	public static final int ENCODER1_PORT_A = 0; //These two can be values 0-3
-	public static final int ENCODER1_PORT_B = 1;
-	public static final int ENCODER2_PORT_A = 4; //These two can be values 4-7 
-	public static final int ENCODER2_PORT_B = 5;
-	public static final int ENCODER_WINCH_PORT_A = 0;
-	public static final int ENCODER_WINCH_PORT_B = 1;
 	public static final int ENCODER_RIGHT_MOTORS_A = 0;
-	public static final int ENCODER_RIGHT_MOTORS_B = 3;
+	public static final int ENCODER_RIGHT_MOTORS_B = 1;
 	public static final int ENCODER_LEFT_MOTORS_A = 4;
-	public static final int ENCODER_LEFT_MOTORS_B = 7;
+	public static final int ENCODER_LEFT_MOTORS_B = 5;
 	public static final int WHEEL_ARM_MOTOR_ID = 27;
 	public static final double TIME_FOR_ONE_ROTATION = 100/625/Math.PI*4/3;
 
