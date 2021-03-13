@@ -97,14 +97,17 @@ public class Robot extends TimedRobot {
   }
 
   @Override
-  public void autonomousPeriodic() {}
+  public void autonomousPeriodic() {
     
     double currentTime = Timer.getFPGATimestamp();
     if(currentTime - startTime < RobotMap.AUTO_WAIT_TIME){
         DriveTrain.move(0,0);
-      } if(currentTime - startTime < (3+RobotMap.AUTO_WAIT_TIME) && currentTime - startTime > RobotMap.AUTO_WAIT_TIME){
+      }
+      if(currentTime - startTime < (3+RobotMap.AUTO_WAIT_TIME) && currentTime - startTime > RobotMap.AUTO_WAIT_TIME){
         DriveTrain.move(0.5,-0.5);
-      }  else if (currentTime - startTime > (3+RobotMap.AUTO_WAIT_TIME) && currentTime - startTime < (RobotMap.AUTO_WAIT_TIME + 6)){
+
+      }  
+      else if (currentTime - startTime > (3+RobotMap.AUTO_WAIT_TIME) && currentTime - startTime < (RobotMap.AUTO_WAIT_TIME + 6)){
         Arm.armMove();
       }      
     }  
