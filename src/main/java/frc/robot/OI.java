@@ -50,7 +50,7 @@ public class OI {
         
         // COLOR BUTTONS
         
-        /*
+        
         // WHEN PRESSED || ACTUAL VALUES COMMENTED OUT FOR TESTING       
         ArmDump.whenPressed(new ArmDump());
         ArmIntake.whenPressed(new ArmIntake());
@@ -62,13 +62,13 @@ public class OI {
         BaseMid.whenPressed(new BaseMid());
         BaseSink.whenPressed(new BaseSink());
         BaseLift.whenPressed(new BaseLift());
-        /*
+        
         liftButton.whenPressed(new ClimbLiftTime(Climb.getLiftMotor(), 1));
         dropButton.whenPressed(new ClimbLiftTime(Climb.getLiftMotor(), -1));
         longLiftButton.whenPressed(new ClimbLiftLong(Climb.getLiftMotor(), 1));
         longDropButton.whenPressed(new ClimbLiftLong(Climb.getLiftMotor(), -1));
         winchButton.whenPressed(new ClimbWinchTime(Climb.getWinchMotor()));
-        */
+        
         //spareButton.whileHeld(new TestEncoder());
 
 

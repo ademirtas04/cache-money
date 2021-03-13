@@ -98,7 +98,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousPeriodic() {}
-    /*
+    
     double currentTime = Timer.getFPGATimestamp();
     if(currentTime - startTime < RobotMap.AUTO_WAIT_TIME){
         DriveTrain.move(0,0);
@@ -108,7 +108,7 @@ public class Robot extends TimedRobot {
         Arm.armMove();
       }      
     }  
-    */
+    
   
 
 
