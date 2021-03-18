@@ -13,7 +13,6 @@ import frc.robot.commands.BaseMid;
 import frc.robot.commands.ClimbLiftTime;
 import frc.robot.commands.ClimbWinchTime;
 import frc.robot.commands.WheelRotation;
-import frc.robot.commands.TestEncoder;
 
 public class OI {
     // CONTROLLERS
@@ -68,9 +67,6 @@ public class OI {
         longLiftButton.whenPressed(new ClimbLiftLong(Climb.getLiftMotor(), 1));
         longDropButton.whenPressed(new ClimbLiftLong(Climb.getLiftMotor(), -1));
         winchButton.whenPressed(new ClimbWinchTime(Climb.getWinchMotor()));
-        
-        //spareButton.whileHeld(new TestEncoder());
-
 
     }
 

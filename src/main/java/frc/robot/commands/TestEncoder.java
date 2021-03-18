@@ -10,10 +10,8 @@ package frc.robot.commands;
 import frc.robot.Robot;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.RobotMap;
@@ -29,14 +27,7 @@ public class TestEncoder extends Command {
   public Encoder rightEncoder = new Encoder(RobotMap.ENCODER_RIGHT_MOTORS_A, RobotMap.ENCODER_RIGHT_MOTORS_B, true, EncodingType.k4X);
   public Encoder leftEncoder = new Encoder(RobotMap.ENCODER_LEFT_MOTORS_A, RobotMap.ENCODER_LEFT_MOTORS_B, true, EncodingType.k4X);
   public int direction=0;
-  private double minsetpoint;
-  private double maxsetpoint;
   private int iterations = 0;
-  private double setpoint = 2;
-  private double previousDistance = 0;
-  private double distance = 0;
-  private double rate = 0;
-  private double lastTimestamp = 0;
   private double firstValue = 0;
   
   public TestEncoder(){
