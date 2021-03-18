@@ -94,8 +94,8 @@ public class TestEncoder extends Command {
   public void turntoAngle(){
     rightEncoder.setDistancePerPulse(1);
     leftEncoder.setDistancePerPulse(1);
-    if(leftEncoder.getDistance() > -1 * RobotMap.CONVERSION_RATE){
-      DriveTrain.move(-0.2,0.2);                                                                                                                                                 
+    if(leftEncoder.getDistance() > -2.215 * RobotMap.CONVERSION_RATE){
+      DriveTrain.move(-0.4,0.4);                                                                                                                                                 
     }
     if(firstValue == 0) {
       firstValue = leftEncoder.getDistance();
