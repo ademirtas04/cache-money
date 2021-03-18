@@ -127,8 +127,16 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
      Scheduler.getInstance().run();
      TankDrive.move();
-     
-     encodertester.turntoAngle(90);
+     if(encodertester.getBool(0) == false){
+       System.out.println("FALSE");
+     }
+     if(!encodertester.getBool(0)){
+        System.out.println("Found");
+        encodertester.movetoDistance(10);
+     } else if(!encodertester.getBool(1) && encodertester.getBool(0)){
+        System.out.println("Turn");
+        encodertester.turntoAngle(75);
+     }
   }
 
   @Override

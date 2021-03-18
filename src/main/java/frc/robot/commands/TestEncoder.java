@@ -9,7 +9,10 @@ package frc.robot.commands;
 
 import frc.robot.Robot;
 
+import java.lang.reflect.Array;
+
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.fasterxml.jackson.databind.ser.std.StdArraySerializers.IntArraySerializer;
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.CounterBase.EncodingType;
@@ -20,6 +23,7 @@ import frc.robot.RobotMap;
 import frc.robot.subsystems.Climb;
 import frc.robot.subsystems.DriveTrain;
 import edu.wpi.first.wpilibj.SerialPort;
+import java.util.Arrays;
 
 
 public class TestEncoder extends Command {
@@ -30,20 +34,23 @@ public class TestEncoder extends Command {
   public boolean initialized = false;
   public Encoder rightEncoder = new Encoder(RobotMap.ENCODER_RIGHT_MOTORS_A, RobotMap.ENCODER_RIGHT_MOTORS_B, true, EncodingType.k4X);
   public Encoder leftEncoder = new Encoder(RobotMap.ENCODER_LEFT_MOTORS_A, RobotMap.ENCODER_LEFT_MOTORS_B, true, EncodingType.k4X);
+  public Boolean[] boolArray = new Boolean[50];
   public int direction=0;
   private int iterations = 0;
   private double firstValue = 0;
   public PIDController turnController;
   public double rotateToAngleRate;
   public AHRS ahrs;
+  public int step = 0;
   static final double kP = 0.03;
   static final double kI = 0.00;
   static final double kD = 0.00;
   static final double kF = 0.00;
-
-  
   public TestEncoder(){
     System.out.println("Constructing");
+    for(int i = 0; i < boolArray.length; i++){
+      boolArray[i] = false;
+    }
     requires(Robot.driveTrain);
     try {
       ahrs = new AHRS(SerialPort.Port.kUSB1);
@@ -62,7 +69,6 @@ public class TestEncoder extends Command {
 
   @Override
   public void cancel(){
-    Climb.getLiftMotor().set(ControlMode.PercentOutput, 0);
     leftEncoder.reset();
     rightEncoder.reset();
     super.cancel();
@@ -95,7 +101,10 @@ public class TestEncoder extends Command {
     if(rightEncoder.getStopped() && leftEncoder.getStopped()){
       System.out.println("STOPPED");
       System.out.println(leftEncoder.get());
-      System.out.println(rightEncoder.get());     
+      System.out.println(rightEncoder.get()); 
+      boolArray[step] = true;
+      step++;    
+      resetEncoders();
     }
     iterations++;
   }
@@ -105,7 +114,15 @@ public class TestEncoder extends Command {
     if(correctedAngle < setpoint){
       DriveTrain.move(-0.3,0.3);
       System.out.println(correctedAngle);
+    } else {
+      boolArray[step] = true;
+      step++;
+      resetEncoders();
     }
+  }
+
+  public Boolean getBool(int index){
+    return boolArray[index];
   }
 
   public void resetEncoders(){
