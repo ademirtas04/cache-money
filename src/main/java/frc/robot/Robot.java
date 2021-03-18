@@ -128,7 +128,7 @@ public class Robot extends TimedRobot {
      Scheduler.getInstance().run();
      TankDrive.move();
      
-     encodertester.turntoAngle();
+     encodertester.turntoAngle(90);
   }
 
   @Override

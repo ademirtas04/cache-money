@@ -14,9 +14,13 @@ import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.controller.PIDController;
+import edu.wpi.first.wpiutil.math.MathUtil;
 import frc.robot.RobotMap;
 import frc.robot.subsystems.Climb;
 import frc.robot.subsystems.DriveTrain;
+import edu.wpi.first.wpilibj.SerialPort;
+
 
 public class TestEncoder extends Command {
 
@@ -29,10 +33,25 @@ public class TestEncoder extends Command {
   public int direction=0;
   private int iterations = 0;
   private double firstValue = 0;
+  public PIDController turnController;
+  public double rotateToAngleRate;
+  public AHRS ahrs;
+  static final double kP = 0.03;
+  static final double kI = 0.00;
+  static final double kD = 0.00;
+  static final double kF = 0.00;
+
   
   public TestEncoder(){
     System.out.println("Constructing");
     requires(Robot.driveTrain);
+    try {
+      ahrs = new AHRS(SerialPort.Port.kUSB1);
+    } catch (RuntimeException ex) {
+      System.out.println("Error instantiating navX MXP:  " + ex.getMessage());
+    }
+    turnController = new PIDController(kP, kI, kD);
+    turnController.enableContinuousInput(-180.0f, 180.0f);
 
   }
 
@@ -57,7 +76,7 @@ public class TestEncoder extends Command {
   public void movetoDistance(double distance){
     rightEncoder.setDistancePerPulse(1);
     leftEncoder.setDistancePerPulse(1);
-    if(leftEncoder.getDistance() > -distance * RobotMap.CONVERSION_RATE){
+    if(leftEncoder.getDistance() < distance * RobotMap.CONVERSION_RATE){
       DriveTrain.move(0.2,0.2);                                                                                                                                                 
     }
     if(firstValue == 0) {
@@ -81,13 +100,18 @@ public class TestEncoder extends Command {
     iterations++;
   }
 
-  public void turntoAngle(){
-    
+  public void turntoAngle(double setpoint){
+    double correctedAngle = -ahrs.getAngle();
+    if(correctedAngle < setpoint){
+      DriveTrain.move(-0.3,0.3);
+      System.out.println(correctedAngle);
+    }
   }
 
   public void resetEncoders(){
     leftEncoder.reset();
     rightEncoder.reset();
+    ahrs.reset();
   }
 
 
