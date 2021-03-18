@@ -57,22 +57,13 @@ public class TestEncoder extends Command {
     leftEncoder.reset();
     rightEncoder.reset();
     super.cancel();
-    //once we get to testing PID, set all the values here to 0
   }
 
   @Override
   protected boolean isFinished() {
     return false;
   }
-
-    //Test Two: Testing if encoder counts the absolute value of the distance traveled or is direction-based
-    /*
-    if(iterations < 10) {
-      Climb.getLiftMotor().set(ControlMode.PercentOutput, 0.75); // remember to comment out the other set
-    } else if (iterations < 20 && iterations >= 10) {
-      Climb.getLiftMotor().set(ControlMode.PercentOutput, -0.75);
     
-    */
   public void returnEncoderValues(){
     rightEncoder.setDistancePerPulse(1);
     leftEncoder.setDistancePerPulse(1);
@@ -82,7 +73,6 @@ public class TestEncoder extends Command {
     if(firstValue == 0) {
       firstValue = leftEncoder.getDistance();
     }
-    //Test One: Testing if encoder counts revolutions, rate, and sees what the motor's -1.0 to 1.0 sets the velocity to
     if(!(leftEncoder.getStopped() && rightEncoder.getStopped())){
       System.out.println("Left Motor Distance Per Pulse: " + leftEncoder.getDistancePerPulse());
       System.out.println("Right Motor Distance Per Pulse: " + rightEncoder.getDistancePerPulse());
@@ -98,20 +88,34 @@ public class TestEncoder extends Command {
       System.out.println(leftEncoder.get());
       System.out.println(rightEncoder.get());     
     }
-
-    //Test Three: Begin to use PID to simulate motion + movement - assuming it is not absolute value
-    /*distance = liftEncoder.getDistance() * RobotMap.kDriveTick2Feet;
-
-    rate = (distance - previousDistance) / (Timer.getFPGATimestamp() - lastTimestamp);
-    lastTimestamp = Timer.getFPGATimestamp();
-
-    //We can add the Integral term later - that one will need more knowledge of what we're doing and how encoders work
-    double outputSpeed = RobotMap.kP * distance + RobotMap.kD * rate;
-    Climb.getLiftMotor().set(ControlMode.PercentOutput, outputSpeed)
-    distance = previousDistance;
-    */
     iterations++;
-  
+  }
+
+  public void turntoAngle(){
+    rightEncoder.setDistancePerPulse(1);
+    leftEncoder.setDistancePerPulse(1);
+    if(leftEncoder.getDistance() > -1 * RobotMap.CONVERSION_RATE){
+      DriveTrain.move(-0.2,0.2);                                                                                                                                                 
+    }
+    if(firstValue == 0) {
+      firstValue = leftEncoder.getDistance();
+    }
+    if(!(leftEncoder.getStopped() && rightEncoder.getStopped())){
+      System.out.println("Left Motor Distance Per Pulse: " + leftEncoder.getDistancePerPulse());
+      System.out.println("Right Motor Distance Per Pulse: " + rightEncoder.getDistancePerPulse());
+      System.out.println("Left Motor Distance: " + leftEncoder.getDistance());
+      System.out.println("Right Motor Distance: " + rightEncoder.getDistance());
+      System.out.println("First Value: " + firstValue); 
+      System.out.println("Left Motor Rate: " + leftEncoder.getRate());
+      System.out.println("Left Motor Rate: " + rightEncoder.getRate());
+      System.out.println("Iterations: " + iterations);
+    }
+    if(rightEncoder.getStopped() && leftEncoder.getStopped()){
+      System.out.println("STOPPED");
+      System.out.println(leftEncoder.get());
+      System.out.println(rightEncoder.get());     
+    }
+    iterations++;
   }
 
   public void resetEncoders(){
