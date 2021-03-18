@@ -11,7 +11,7 @@ import frc.robot.Robot;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
-
+import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.CounterBase.EncodingType;
@@ -19,7 +19,6 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.RobotMap;
 import frc.robot.subsystems.Climb;
 import frc.robot.subsystems.DriveTrain;
-
 
 public class TestEncoder extends Command {
 
@@ -92,30 +91,7 @@ public class TestEncoder extends Command {
   }
 
   public void turntoAngle(){
-    rightEncoder.setDistancePerPulse(1);
-    leftEncoder.setDistancePerPulse(1);
-    if(leftEncoder.getDistance() > -2.215 * RobotMap.CONVERSION_RATE){
-      DriveTrain.move(-0.4,0.4);                                                                                                                                                 
-    }
-    if(firstValue == 0) {
-      firstValue = leftEncoder.getDistance();
-    }
-    if(!(leftEncoder.getStopped() && rightEncoder.getStopped())){
-      System.out.println("Left Motor Distance Per Pulse: " + leftEncoder.getDistancePerPulse());
-      System.out.println("Right Motor Distance Per Pulse: " + rightEncoder.getDistancePerPulse());
-      System.out.println("Left Motor Distance: " + leftEncoder.getDistance());
-      System.out.println("Right Motor Distance: " + rightEncoder.getDistance());
-      System.out.println("First Value: " + firstValue); 
-      System.out.println("Left Motor Rate: " + leftEncoder.getRate());
-      System.out.println("Left Motor Rate: " + rightEncoder.getRate());
-      System.out.println("Iterations: " + iterations);
-    }
-    if(rightEncoder.getStopped() && leftEncoder.getStopped()){
-      System.out.println("STOPPED");
-      System.out.println(leftEncoder.get());
-      System.out.println(rightEncoder.get());     
-    }
-    iterations++;
+    
   }
 
   public void resetEncoders(){
