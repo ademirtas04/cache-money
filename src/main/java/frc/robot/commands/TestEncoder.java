@@ -64,10 +64,10 @@ public class TestEncoder extends Command {
     return false;
   }
     
-  public void returnEncoderValues(){
+  public void movetoDistance(double distance){
     rightEncoder.setDistancePerPulse(1);
     leftEncoder.setDistancePerPulse(1);
-    if(leftEncoder.getDistance() > -1.75 * RobotMap.CONVERSION_RATE){
+    if(leftEncoder.getDistance() > -distance * RobotMap.CONVERSION_RATE){
       DriveTrain.move(0.2,0.2);                                                                                                                                                 
     }
     if(firstValue == 0) {

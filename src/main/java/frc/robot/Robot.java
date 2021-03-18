@@ -128,7 +128,7 @@ public class Robot extends TimedRobot {
      Scheduler.getInstance().run();
      TankDrive.move();
      
-     encodertester.returnEncoderValues();
+     encodertester.movetoDistance(1.75);
   }
 
   @Override
