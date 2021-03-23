@@ -129,7 +129,7 @@ public class Robot extends TimedRobot {
      Scheduler.getInstance().run();
      TankDrive.move();
      
-     if(!encodertester.getBool(0)){
+    /* if(!encodertester.getBool(0)){
         System.out.println("Found");
         encodertester.movetoDistance(3);
      } 
@@ -212,7 +212,7 @@ public class Robot extends TimedRobot {
     else if(!encodertester.getBool(20) && encodertester.getBool(19)){
       System.out.println("Turn");
       encodertester.movetoDistance(3);
-    }       
+    } */      
   }
 
   @Override
