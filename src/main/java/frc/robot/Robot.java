@@ -128,18 +128,91 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
      Scheduler.getInstance().run();
      TankDrive.move();
-     /*
-     if(encodertester.getBool(0) == false){
-       System.out.println("FALSE");
-     }
+     
      if(!encodertester.getBool(0)){
         System.out.println("Found");
-        encodertester.movetoDistance(10);
-     } else if(!encodertester.getBool(1) && encodertester.getBool(0)){
+        encodertester.movetoDistance(3);
+     } 
+     else if(!encodertester.getBool(1) && encodertester.getBool(0)){
+        System.out.println("Turn");
+        encodertester.turntoAngle(-75);
+     }
+     else if(!encodertester.getBool(2) && encodertester.getBool(1)){
+        System.out.println("Turn");
+        encodertester.movetoDistance(3);
+     } 
+     else if(!encodertester.getBool(3) && encodertester.getBool(2)){
+      System.out.println("Turn");
+      encodertester.turntoAngle(75);
+     }
+    else if(!encodertester.getBool(4) && encodertester.getBool(3)){
+      System.out.println("Turn");
+      encodertester.movetoDistance(3);
+    }
+    else if(!encodertester.getBool(5) && encodertester.getBool(4)){
         System.out.println("Turn");
         encodertester.turntoAngle(75);
-     }
-     */
+    }
+    else if(!encodertester.getBool(6) && encodertester.getBool(5)){
+        System.out.println("Turn");
+        encodertester.movetoDistance(3);
+    } 
+    else if(!encodertester.getBool(7) && encodertester.getBool(6)){
+      System.out.println("Turn");
+      encodertester.turntoAngle(-75);
+    }
+    else if(!encodertester.getBool(8) && encodertester.getBool(7)){
+      System.out.println("Turn");
+      encodertester.movetoDistance(3);
+    }
+    else if(!encodertester.getBool(9) && encodertester.getBool(8)){
+      System.out.println("Turn");
+      encodertester.turntoAngle(-75);
+    }
+    else if(!encodertester.getBool(10) && encodertester.getBool(9)){
+      System.out.println("Turn");
+      encodertester.movetoDistance(3);
+    } 
+    else if(!encodertester.getBool(11) && encodertester.getBool(10)){
+      System.out.println("Turn");
+      encodertester.turntoAngle(-75);
+    }
+    else if(!encodertester.getBool(12) && encodertester.getBool(11)){
+      System.out.println("Turn");
+      encodertester.movetoDistance(3);
+    }
+    else if(!encodertester.getBool(13) && encodertester.getBool(12)){
+        System.out.println("Turn");
+        encodertester.turntoAngle(-75);
+    }
+    else if(!encodertester.getBool(14) && encodertester.getBool(13)){
+        System.out.println("Turn");
+        encodertester.movetoDistance(3);
+    } 
+    else if(!encodertester.getBool(15) && encodertester.getBool(14)){
+      System.out.println("Turn");
+      encodertester.turntoAngle(75);
+    }
+    else if(!encodertester.getBool(16) && encodertester.getBool(15)){
+      System.out.println("Turn");
+      encodertester.movetoDistance(3);
+    }
+    else if(!encodertester.getBool(17) && encodertester.getBool(16)){
+      System.out.println("Turn");
+      encodertester.turntoAngle(75);
+    }
+    else if(!encodertester.getBool(18) && encodertester.getBool(17)){
+        System.out.println("Turn");
+        encodertester.movetoDistance(3);
+    } 
+    else if(!encodertester.getBool(19) && encodertester.getBool(18)){
+      System.out.println("Turn");
+      encodertester.turntoAngle(-75);
+    }
+    else if(!encodertester.getBool(20) && encodertester.getBool(19)){
+      System.out.println("Turn");
+      encodertester.movetoDistance(3);
+    }       
   }
 
   @Override

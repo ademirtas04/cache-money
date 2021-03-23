@@ -117,7 +117,7 @@ public class TestEncoder extends Command {
     } else {
       boolArray[step] = true;
       step++;
-      resetEncoders();
+      resetGyro();
     }
   }
 
@@ -128,6 +128,9 @@ public class TestEncoder extends Command {
   public void resetEncoders(){
     leftEncoder.reset();
     rightEncoder.reset();
+  }
+
+  public void resetGyro(){
     ahrs.reset();
   }
 
