@@ -100,6 +100,7 @@ public class Robot extends TimedRobot {
   public void autonomousPeriodic() {
     
     double currentTime = Timer.getFPGATimestamp();
+    //Git Push
     if(currentTime - startTime < RobotMap.AUTO_WAIT_TIME){
         DriveTrain.move(0,0);
       }
