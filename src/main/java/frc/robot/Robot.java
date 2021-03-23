@@ -105,7 +105,8 @@ public class Robot extends TimedRobot {
         DriveTrain.move(0,0);
       }
       if(currentTime - startTime < (3+RobotMap.AUTO_WAIT_TIME) && currentTime - startTime > RobotMap.AUTO_WAIT_TIME){
-        DriveTrain.move(0.5,-0.5);
+        DriveTrain.move(0.3,-0.3);
+        encodertester.resetEncoders();
 
       }  
       else if (currentTime - startTime > (3+RobotMap.AUTO_WAIT_TIME) && currentTime - startTime < (RobotMap.AUTO_WAIT_TIME + 6)){
@@ -117,7 +118,6 @@ public class Robot extends TimedRobot {
 
 
   @Override
-  //Code when the Enable button is hit during teleop period
   public void teleopInit() {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
@@ -128,6 +128,7 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
      Scheduler.getInstance().run();
      TankDrive.move();
+     /*
      if(encodertester.getBool(0) == false){
        System.out.println("FALSE");
      }
@@ -138,6 +139,7 @@ public class Robot extends TimedRobot {
         System.out.println("Turn");
         encodertester.turntoAngle(75);
      }
+     */
   }
 
   @Override
