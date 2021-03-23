@@ -79,7 +79,7 @@ public class TestEncoder extends Command {
     return false;
   }
     
-  public void movetoDistance(double distance){
+  /*public void movetoDistance(double distance){
     rightEncoder.setDistancePerPulse(1);
     leftEncoder.setDistancePerPulse(1);
     if(leftEncoder.getDistance() < distance * RobotMap.CONVERSION_RATE){
@@ -108,7 +108,8 @@ public class TestEncoder extends Command {
     }
     iterations++;
   }
-
+*/
+/*
   public void turntoAngle(double setpoint){
     double correctedAngle = -ahrs.getAngle();
     if(correctedAngle < setpoint){
@@ -120,8 +121,8 @@ public class TestEncoder extends Command {
       resetGyro();
     }
   }
-
-  public Boolean getBool(int index){
+*/
+ /* public Boolean getBool(int index){
     return boolArray[index];
   }
 
@@ -133,6 +134,6 @@ public class TestEncoder extends Command {
   public void resetGyro(){
     ahrs.reset();
   }
-
+*/
 
 }

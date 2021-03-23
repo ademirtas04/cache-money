@@ -106,7 +106,7 @@ public class Robot extends TimedRobot {
       }
       if(currentTime - startTime < (3+RobotMap.AUTO_WAIT_TIME) && currentTime - startTime > RobotMap.AUTO_WAIT_TIME){
         DriveTrain.move(0.3,-0.3);
-        encodertester.resetEncoders();
+       // encodertester.resetEncoders();
 
       }  
       else if (currentTime - startTime > (3+RobotMap.AUTO_WAIT_TIME) && currentTime - startTime < (RobotMap.AUTO_WAIT_TIME + 6)){
@@ -122,7 +122,7 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
-    encodertester.resetEncoders();
+   // encodertester.resetEncoders();
   }
   @Override
   public void teleopPeriodic() {
