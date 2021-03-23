@@ -50,12 +50,12 @@ public class TankDrive extends Command {
   
   public static void move() {
     
-    double speed = -1*Robot.m_oi.getDriverRawAxis(RobotMap.LEFT_STICK_Y);
+    double speed = 1*Robot.m_oi.getDriverRawAxis(RobotMap.LEFT_STICK_Y);
     double turn  = -0.6*Robot.m_oi.getDriverRawAxis(RobotMap.RIGHT_STICK_X);
     //The Left is pos the right is neg
     double right = speed + turn;
     double left = speed - turn;
-    DriveTrain.move(left,right);
+    DriveTrain.move(-left,-right);
     
   }
 
